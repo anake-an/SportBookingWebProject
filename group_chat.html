@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Chat - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- User Dashboard Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
+        </div>
+        <div class="nav-links">
+            <a href="matchmaking.html" class="active-link">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="post_match.html">Post a Match</a>
+        </div>
+        <div class="nav-icons">
+            <span>Wallet: $50.00</span>
+            <a href="user_profile.html">
+                <svg class="avatar" width="40" height="40" viewBox="0 0 100 100" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#E0E0E0" />
+                    <path d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
+                        fill="#BDBDBD" />
+                    <path
+                        d="M50 56.25C60.3553 56.25 68.75 47.8553 68.75 37.5C68.75 27.1447 60.3553 18.75 50 18.75C39.6447 18.75 31.25 27.1447 31.25 37.5C31.25 47.8553 39.6447 56.25 50 56.25Z"
+                        fill="#BDBDBD" />
+                </svg>
+            </a>
+            <a href="index.html" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Chat Layout -->
+    <main class="dashboard-content">
+        <div class="chat-layout">
+
+            <!-- Sidebar: Match Details -->
+            <aside class="chat-sidebar card">
+                <h3>Match Details</h3>
+                <p class="match-location" style="margin-bottom: 1.5rem;">Host: <strong>Alex M.</strong></p>
+
+                <h4>⚽ Futsal at PowerPlayz</h4>
+                <p class="match-time" style="color: var(--text-color-light); font-weight: 500;">Sat, Nov 2 @ 8:00 PM</p>
+
+                <hr>
+
+                <h4>Players (8/10)</h4>
+                <div class="player-pills" style="margin-bottom: 1rem;">
+                    <span class="avatar-pill avatar-pill-green" title="Alex (Host)">A</span>
+                    <span class="avatar-pill avatar-pill-yellow" title="Ben">B</span>
+                    <span class="avatar-pill" title="You">U</span>
+                    <span class="avatar-pill" title="Maria">M</span>
+                    <span class="avatar-pill" title="Sarah">S</span>
+                    <span class="avatar-pill" title="Ken">K</span>
+                    <span class="avatar-pill" title="Ravi">R</span>
+                    <span class="avatar-pill avatar-pill-plus" title="David">+1</span>
+                </div>
+
+                <hr>
+
+                <h4>Group Wallet</h4>
+                <p>Booking will be confirmed once all 10 players have paid their share.</p>
+                <p class="players-needed">Payment Status: 7 / 10 Paid</p>
+                <div class="player-progress" style="margin-top: 0.5rem;">
+                    <div class="player-progress-bar" style="width: 70%;"></div>
+                </div>
+
+                <!-- This button is for the HOST only -->
+                <button class="btn btn-primary btn-full-width"
+                    style="margin-top: 1.5rem; background-color: var(--success-color);">
+                    Confirm & Book Facility
+                </button>
+                <!-- This button is for normal players -->
+                <button class="btn btn-primary btn-full-width" style="margin-top: 1rem;">
+                    Pay Your Share ($10.00)
+                </button>
+            </aside>
+
+            <!-- Main Content: Chat Area -->
+            <section class="chat-main card">
+                <div class="chat-messages">
+                    <!-- System Message -->
+                    <div class="chat-message system">
+                        <strong>Alex (Host)</strong> has suggested <strong>PowerPlayz Futsal</strong> at <strong>8:00
+                            PM</strong>.
+                    </div>
+
+                    <!-- Other User's Message -->
+                    <div class="chat-message">
+                        <span class="avatar-pill avatar-pill-yellow" title="Ben">B</span>
+                        <div class="message-content">
+                            <strong class="message-sender">Ben</strong>
+                            <p>8 PM works for me! Is everyone okay with PowerPlayz?</p>
+                        </div>
+                    </div>
+
+                    <!-- Your Message -->
+                    <div class="chat-message self">
+                        <div class="message-content">
+                            <p>Sounds good to me. Just paid my share.</p>
+                        </div>
+                    </div>
+
+                    <!-- System Payment Message -->
+                    <div class="chat-message system">
+                        <strong>You</strong> have paid your <strong>$10.00</strong> share.
+                    </div>
+
+                    <!-- Other User's Message -->
+                    <div class="chat-message">
+                        <span class="avatar-pill" title="Sarah">S</span>
+                        <div class="message-content">
+                            <strong class="message-sender">Sarah</strong>
+                            <p>I might be 15 mins late, is that okay?</p>
+                        </div>
+                    </div>
+
+                    <!-- Other User's Message -->
+                    <div class="chat-message">
+                        <span class="avatar-pill avatar-pill-green" title="Alex (Host)">A</span>
+                        <div class="message-content">
+                            <strong class="message-sender">Alex (Host)</strong>
+                            <p>@Sarah No worries, see you then!</p>
+                            <p>@All - We're just waiting on 3 more payments. Please pay up before 12 hours to go!</p>
+                        </div>
+                    </div>
+
+                    <!-- System Payment Message -->
+                    <div class="chat-message system">
+                        <strong>Ben</strong> has paid his <strong>$10.00</strong> share.
+                    </div>
+
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" class="form-input" placeholder="Type your message...">
+                    <button class="btn btn-primary">Send</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- AI Chatbot -->
+    <div class="ai-chat-widget">
+        <button id="ai-chat-toggle" class="ai-chat-bubble">
+            <!-- Icon for the chatbot -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+        <div id="ai-chat-window" class="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI Assistant</h3>
+                <p>I can help you find a match, book a court, or answer questions.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi! How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    </footer>
+
+    <!-- Load the main.js script as a module -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

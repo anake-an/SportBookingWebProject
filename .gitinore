@@ -1,0 +1,24 @@
+This is a "do not upload" list for Git
+
+----- SECRETS -----
+
+Never upload your API keys or environment files.
+
+*.env
+/firebase-init.js
+
+----- SYSTEM FOLDERS -----
+
+This is a common folder from Node.js (npm)
+
+/node_modules
+
+----- OPERATING SYSTEM "JUNK" FILES -----
+
+Mac
+
+.DS_Store
+
+Windows
+
+Thumbs.db

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Court - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- We use the same navbar as the user dashboard -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img"></a>
+        </div>
+        <div class="nav-links">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html" class="active-link">Book a Court</a> <!-- Mark as active -->
+            <a href="post_match.html">Post a Match</a>
+        </div>
+        <div class="nav-icons">
+            <span>Wallet: $50.00</span>
+            <a href="user_profile.html">
+                <svg class="avatar" width="40" height="40" viewBox="0 0 100 100" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#E0E0E0" />
+                    <path d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
+                        fill="#BDBDBD" />
+                    <path
+                        d="M50 56.25C60.3553 56.25 68.75 47.8553 68.75 37.5C68.75 27.1447 60.3553 18.75 50 18.75C39.6447 18.75 31.25 27.1447 31.25 37.5C31.25 47.8553 39.6447 56.25 50 56.25Z"
+                        fill="#BDBDBD" />
+                </svg>
+            </a>
+            <a href="index.html" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Booking Page Content -->
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Find Your Court</h1>
+            <p>Search by sport, date, location, and more.</p>
+        </header>
+
+        <div class="booking-layout">
+
+            <!-- Filter Sidebar -->
+            <aside class="filter-sidebar">
+                <h4>Filters</h4>
+
+                <div class="filter-group">
+                    <label for="sport">Sport</label>
+                    <select id="sport" class="form-input">
+                        <option value="futsal">Futsal</option>
+                        <option value="badminton">Badminton</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="table-tennis">Table Tennis</option>
+                        <option value="pickle ball">Pickle Ball</option>
+                        <option value="squash">Squash</option>
+                        <option value="football">Football</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" class="form-input" value="2025-10-31">
+                </div>
+
+                <div class="filter-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" class="form-input" placeholder="e.g., 'Kota Kinabalu'">
+                </div>
+
+                <div class="filter-group">
+                    <label for="price">Price Range</label>
+                    <input type="range" id="price" min="0" max="200" step="10" style="width: 100%;">
+                    <div class="price-range-label">
+                        <span>$0</span>
+                        <span>$200+</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-full-width">Apply Filters</button>
+            </aside>
+
+            <!-- Search Results -->
+            <section class="search-results">
+
+                <h2>Available Facilities</h2>
+
+                <!-- Result Card 1 -->
+                <div class="card result-card">
+                    <div class="result-card-image">
+                        <!-- Placeholder image, you can add one to assets/img/ -->
+                        <img src="assets/img/ad-placeholder-1.png" alt="PowerPlayz Futsal">
+                    </div>
+                    <div class="result-card-content">
+                        <h3>PowerPlayz Futsal</h3>
+                        <p class="location-text">Kota Kinabalu, Sabah</p>
+                        <div class="availability-summary">
+                            <span class="avail-dot green"></span> Available
+                            <span class="avail-dot yellow"></span> Limited
+                            <span class="avail-dot red"></span> Full
+                        </div>
+                        <p class="price-text">Starting from <strong>$50/hr</strong></p>
+                    </div>
+                    <div class="result-card-action">
+                        <!-- This will link to the (un-built) facility detail page -->
+                        <a href="facility_detail.html" class="btn btn-primary">View Availability</a>
+                    </div>
+                </div>
+
+                <!-- Result Card 2 -->
+                <div class="card result-card">
+                    <div class="result-card-image">
+                        <img src="assets/img/ad-placeholder-2.png" alt="CourtKing Badminton">
+                    </div>
+                    <div class="result-card-content">
+                        <h3>CourtKing Badminton</h3>
+                        <p class="location-text">Inanam, Sabah</p>
+                        <div class="availability-summary">
+                            <span class="avail-dot yellow"></span> Limited
+                        </div>
+                        <p class="price-text">Starting from <strong>$15/hr</strong></p>
+                    </div>
+                    <div class="result-card-action">
+                        <a href="#" class="btn btn-primary">View Availability</a>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant for booking and matchmaking.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

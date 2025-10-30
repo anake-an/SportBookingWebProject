@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPlayz Futsal - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- We use the same navbar as the user dashboard -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img"></a>
+        </div>
+        <div class="nav-links">
+            <a href="user_dashboard.html">Find a Match</a>
+            <a href="booking.html" class="active-link">Book a Court</a>
+            <a href="post_match.html">Post a Match</a>
+        </div>
+        <div class="nav-icons">
+            <span>Wallet: $50.00</span>
+            <a href="user_profile.html">
+                <svg class="avatar" width="40" height="40" viewBox="0 0 100 100" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="#E0E0E0" />
+                    <path d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
+                        fill="#BDBDBD" />
+                    <path
+                        d="M50 56.25C60.3553 56.25 68.75 47.8553 68.75 37.5C68.75 27.1447 60.3553 18.75 50 18.75C39.6447 18.75 31.25 27.1447 31.25 37.5C31.25 47.8553 39.6447 56.25 50 56.25Z"
+                        fill="#BDBDBD" />
+                </svg>
+            </a>
+            <a href="index.html" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Facility Page Content -->
+    <main class="dashboard-content">
+
+        <!-- Page Header -->
+        <div class="facility-header">
+            <a href="booking.html" class="back-link">&larr; Back to Search Results</a>
+            <h1>PowerPlayz Futsal</h1>
+            <p class="location-text">Kota Kinabalu, Sabah</p>
+
+            <!-- Image Gallery -->
+            <div class="facility-gallery">
+                <img src="assets/img/ad-placeholder-1.png" alt="Futsal court 1" class="gallery-main">
+                <img src="assets/img/facility-thumb-1.png" alt="Futsal court 2" class="gallery-thumb">
+                <img src="assets/img/facility-thumb-2.png" alt="Futsal court 3" class="gallery-thumb">
+            </div>
+        </div>
+
+        <!-- Two-column layout for details and booking -->
+        <div class="facility-layout">
+
+            <!-- Left Column: Details & Calendar -->
+            <div class="facility-main">
+                <!-- Tabs for Info/Rules -->
+                <div class="tabs">
+                    <button class="tab-link active">Booking Calendar</button>
+                    <button class="tab-link">Information & Rules</button>
+                </div>
+
+                <!-- Booking Calendar -->
+                <div class="card calendar-container">
+                    <div class="calendar-header">
+                        <div class="time-header">Time</div>
+                        <div>Thu 31/10</div>
+                        <div>Fri 01/11</div>
+                        <div>Sat 02/11</div>
+                        <div>Sun 03/11</div>
+                        <div>Mon 04/11</div>
+                    </div>
+                    <div class="calendar-body">
+                        <!-- 5:00 PM -->
+                        <div class="time-label">5:00 PM</div>
+                        <div class="time-slot full">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot available" data-day="Fri 01/11" data-time="5:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot available" data-day="Sat 02/11" data-time="5:00 PM" data-price="70">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot limited" data-day="Sun 03/11" data-time="5:00 PM" data-price="70">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot available" data-day="Mon 04/11" data-time="5:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <!-- 6:00 PM -->
+                        <div class="time-label">6:00 PM</div>
+                        <div class="time-slot full">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot available" data-day="Fri 01/11" data-time="6:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot limited" data-day="Sun 03/11" data-time="6:00 PM" data-price="70">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot available" data-day="Mon 04/11" data-time="6:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <!-- 7:00 PM -->
+                        <div class="time-label">7:00 PM</div>
+                        <div class="time-slot available" data-day="Thu 31/10" data-time="7:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot limited" data-day="Fri 01/11" data-time="7:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot available" data-day="Mon 04/11" data-time="7:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <!-- 8:00 PM -->
+                        <div class="time-label">8:00 PM</div>
+                        <div class="time-slot available" data-day="Thu 31/10" data-time="8:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot limited" data-day="Mon 04/11" data-time="8:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <!-- 9:00 PM -->
+                        <div class="time-label">9:00 PM</div>
+                        <div class="time-slot available" data-day="Thu 31/10" data-time="9:00 PM" data-price="50">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$50</p>
+                        </div>
+                        <div class="time-slot available" data-day="Sat 02/11" data-time="9:00 PM" data-price="70">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$70</p>
+                        </div>
+                        <div class="time-slot full">
+                            <p>$50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Booking Summary -->
+            <aside class="facility-sidebar">
+                <div class="card" id="booking-summary">
+                    <h4>Booking Summary</h4>
+                    <p id="slot-details" class="placeholder-text">Please select an available time slot from the
+                        calendar.</p>
+                    <div id="price-details" class="price-summary" style="display: none;">
+                        <span>Total Price:</span>
+                        <strong id="total-price">$0</strong>
+                    </div>
+                    <button class="btn btn-primary btn-full-width" id="book-now-btn" disabled>Book Now</button>
+                </div>
+
+                <div class="card facility-info">
+                    <h4>Location & Hours</h4>
+                    <p>123 Futsal Drive, Kota Kinabalu, 88400</p>
+                    <hr>
+                    <p><strong>Weekdays:</strong> 9:00 AM - 10:00 PM</p>
+                    <p><strong>Weekends:</strong> 9:00 AM - 12:00 AM</p>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    </footer>
+
+    <!-- This script tag must be at the bottom -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

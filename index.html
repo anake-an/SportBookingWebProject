@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink - Book Courts, Find Players, Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="landing-page">
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
+        </div>
+        <div class="nav-links-landing">
+            <a href="#features">For Players</a>
+            <a href="#for-owners">For Owners</a>
+        </div>
+        <div class="nav-auth">
+            <button class="btn btn-secondary" onclick="window.location.href='login.html'">Login</button>
+            <button class="btn btn-primary" onclick="window.location.href='register.html'">Register</button>
+        </div>
+    </nav>
+
+    <!-- NEW SLIDESHOW HERO SECTION -->
+    <header class="hero-slideshow">
+        <!-- Slide 1: Welcome Message -->
+        <div class="slide" style="background-image: url('assets/img/landing-hero.png');">
+            <div class="hero-content">
+                <h1>Book, Play, Connect.</h1>
+                <p>Your one-stop platform to book sports facilities and find teammates for your next game.</p>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Get
+                    Started</button>
+            </div>
+        </div>
+        <!-- Slide 2: Ad from Organizer -->
+        <div class="slide" style="background-image: url('assets/img/ad-placeholder-1.png');">
+            <div class="hero-content">
+                <h1>PowerPlayz Futsal</h1>
+                <p>Student Discount: 30% off all weekday bookings before 5 PM!</p>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Book
+                    Now</button>
+            </div>
+        </div>
+        <!-- Slide 3: Another Ad -->
+        <div class="slide" style="background-image: url('assets/img/ad-placeholder-2.png');">
+            <div class="hero-content">
+                <h1>CourtKing Badminton</h1>
+                <p>New weekend tournament. Sign up your team today!</p>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Learn
+                    More</button>
+            </div>
+        </div>
+        <!-- Slideshow Dots -->
+        <div class="slideshow-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </header>
+
+    <section id="features" class="feature-section">
+        <h2>Built for Players</h2>
+
+        <!-- FIXED 3-COLUMN GRID -->
+        <div class="feature-grid">
+
+            <div class="card feature-card">
+                <img src="assets/img/feature-booking.png" alt="Easy Court Booking" class="feature-img">
+                <div class="card-content">
+                    <h3>Easy Court Booking</h3>
+                    <p>Search, filter, and book your favorite courts in real-time with our live calendar.</p>
+                </div>
+            </div>
+
+            <div class="card feature-card">
+                <img src="assets/img/feature-matchmaking.png" alt="AI Matchmaking" class="feature-img">
+                <div class="card-content">
+                    <h3>AI Matchmaking</h3>
+                    <p>Post a game or join one. Our AI helps you find players of a similar skill level.</p>
+                </div>
+            </div>
+
+            <div class="card feature-card">
+                <img src="assets/img/feature-wallet.png" alt="Group Wallet System" class="feature-img">
+                <div class="card-content">
+                    <h3>Group Wallet System</h3>
+                    <p>Split payments easily. Our system handles the costs and ensures everyone pays on time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="for-owners" class="for-owners-section">
+        <div class="for-owners-content">
+            <h2>Are you a Facility Owner?</h2>
+            <p>Stop worrying about empty slots and manual bookings. Join SportLink to maximize your revenue, manage your
+                schedule, and reach thousands of new players.</p>
+            <ul>
+                <li>✓ AI Dynamic Pricing Suggestions</li>
+                <li>✓ Powerful Booking Dashboard</li>
+                <li>✓ Promote Events & Ads</li>
+            </ul>
+            <button class="btn btn-primary" onclick="window.location.href='register.html'">List Your Facility</button>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant for booking and matchmaking.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    </footer>
+
+    <!-- Script tag is at the bottom -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

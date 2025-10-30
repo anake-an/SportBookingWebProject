@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - SportLink Organizer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <!-- Organizer Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="organizer_dashboard.html">Dashboard</a></li>
+            <!-- Set this as the active link -->
+            <li class="active"><a href="organizer_calendar.html">Calendar</a></li>
+            <li><a href="organizer_bookings.html">Bookings</a></li>
+            <li><a href="organizer_ads.html">Ads & Events</a></li>
+            <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
+            <li><a href="organizer_settings.html">Settings</a></li>
+            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <h2>Manage Availability & Pricing</h2>
+            <span>Click on a slot to set its price or mark it as unavailable.</span>
+        </header>
+
+        <!-- Bulk Edit Tools -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <h4>Bulk Edit Tools</h4>
+            <p style="margin: 0 0 1rem 0; font-size: 0.9em;">Apply a template to all slots for a specific day type.</p>
+            <button class="btn btn-secondary">Set Weekday Template (Mon-Fri)</button>
+            <button class="btn btn-secondary" style="margin-left: 10px;">Set Weekend Template (Sat-Sun)</button>
+        </div>
+
+        <!-- Interactive Calendar Editor -->
+        <div class="card calendar-container">
+            <div class="calendar-header" style="grid-template-columns: 80px repeat(7, 1fr);">
+                <div class="time-header">Time</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div style="background-color: #fcf8e3;">Sat</div>
+                <div style="background-color: #fcf8e3;">Sun</div>
+            </div>
+
+            <!-- This is a simplified grid. A real one would be 9AM to 12AM -->
+            <div class="calendar-body" id="organizer-calendar-body" style="grid-template-columns: 80px repeat(7, 1fr);">
+                <!-- 5:00 PM Row -->
+                <div class="time-label">5:00 PM</div>
+                <div class="time-slot available" data-day="Mon" data-time="5:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Tue" data-time="5:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Wed" data-time="5:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Thu" data-time="5:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Fri" data-time="5:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Sat" data-time="5:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+                <div class="time-slot available" data-day="Sun" data-time="5:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+
+                <!-- 6:00 PM Row -->
+                <div class="time-label">6:00 PM</div>
+                <div class="time-slot full" data-day="Mon" data-time="6:00 PM" data-price="0">
+                    <p>Booked</p>
+                </div>
+                <div class="time-slot available" data-day="Tue" data-time="6:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Wed" data-time="6:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot full" data-day="Thu" data-time="6:00 PM" data-price="0">
+                    <p>Booked</p>
+                </div>
+                <div class="time-slot available" data-day="Fri" data-time="6:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Sat" data-time="6:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+                <div class="time-slot available" data-day="Sun" data-time="6:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+
+                <!-- 7:00 PM Row -->
+                <div class="time-label">7:00 PM</div>
+                <div class="time-slot available" data-day="Mon" data-time="7:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Tue" data-time="7:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Wed" data-time="7:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot available" data-day="Thu" data-time="7:00 PM" data-price="50">
+                    <p>$50</p>
+                </div>
+                <div class="time-slot closed" data-day="Fri" data-time="7:00 PM" data-price="0">
+                    <p>Closed</p>
+                </div>
+                <div class="time-slot available" data-day="Sat" data-time="7:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+                <div class="time-slot available" data-day="Sun" data-time="7:00 PM" data-price="70">
+                    <p>$70</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Slot Modal (Hidden by default) -->
+    <div id="edit-slot-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">Edit Slot</h3>
+            <p id="modal-subtitle">Mon, 5:00 PM</p>
+            <div class="filter-group">
+                <label for="slot-status">Status</label>
+                <select id="slot-status" class="form-input">
+                    <option value="available">Available</option>
+                    <option value="closed">Closed / Unavailable</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="slot-price">Price ($)</label>
+                <input type="number" id="slot-price" class="form-input" placeholder="e.g., 50">
+            </div>
+            <div class="modal-actions">
+                <button id="close-modal-btn" class="btn btn-secondary">Cancel</button>
+                <button id="save-slot-btn" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

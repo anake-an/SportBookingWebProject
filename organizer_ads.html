@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads & Events - SportLink Organizer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <!-- Organizer Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="organizer_dashboard.html">Dashboard</a></li>
+            <li><a href="organizer_calendar.html">Calendar</a></li>
+            <li><a href="organizer_bookings.html">Bookings</a></li>
+            <!-- Set this as the active link -->
+            <li class="active"><a href="organizer_ads.html">Ads & Events</a></li>
+            <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
+            <li><a href="organizer_settings.html">Settings</a></li>
+            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <h2>Ads & Events Manager</h2>
+            <span>Promote your facility to thousands of users.</span>
+        </header>
+
+        <div class="dashboard-main-split">
+            <!-- Left Side: Create Ad/Event -->
+            <section>
+                <div class="card">
+                    <h3>Create a New Promotion</h3>
+                    <form class="login-form">
+                        <div class="filter-group">
+                            <label for="ad-type">Promotion Type</label>
+                            <select id="ad-type" class="form-input">
+                                <option value="ad">Ad (Homepage Slideshow) - $10/day</option>
+                                <option value="event">Event (Coming Soon) - $5/day</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="ad-title">Title / Headline</label>
+                            <input type="text" id="ad-title" class="form-input"
+                                placeholder="e.g., Student Discount: 30% Off">
+                        </div>
+                        <div class="filter-group">
+                            <label for="ad-subtitle">Subtitle / Description</label>
+                            <input type="text" id="ad-subtitle" class="form-input"
+                                placeholder="e.g., All weekday bookings before 5 PM!">
+                        </div>
+                        <div class="filter-group">
+                            <label for="ad-image">Background Image (for slideshow)</label>
+                            <input type="file" id="ad-image" class="form-input">
+                        </div>
+
+                        <!-- NEW DURATION & DATE FIELDS -->
+                        <div class="booking-filters" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem;">
+                            <div class="filter-group" style="margin-bottom: 0;">
+                                <label for="ad-start-date">Start Date</label>
+                                <input type="date" id="ad-start-date" class="form-input">
+                            </div>
+                            <div class="filter-group" style="margin-bottom: 0;">
+                                <label for="ad-duration">Duration</label>
+                                <select id="ad-duration" class="form-input">
+                                    <option value="0">Select duration...</option>
+                                    <option value="7">7 Days</option>
+                                    <option value="14">14 Days</option>
+                                    <option value="30">30 Days</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- NEW PRICE SUMMARY -->
+                        <div class="card" style="background-color: var(--light-color); margin-bottom: 1.5rem;">
+                            <strong>Price Summary</strong>
+                            <div class="price-summary-item">
+                                <span>Base Price:</span>
+                                <span id="summary-base-price">$0.00 / day</span>
+                            </div>
+                            <div class="price-summary-item">
+                                <span>Duration:</span>
+                                <span id="summary-duration">0 days</span>
+                            </div>
+                            <div class="price-summary-total">
+                                <span>Total Cost:</span>
+                                <span id="summary-total-cost">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button type="button" id="submit-ad-btn" class="btn btn-primary btn-full-width" disabled>
+                            Please select a duration
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Right Side: AI Suggestions & Active Ads -->
+            <section class="ai-assistant">
+                <h2>AI Ad Assistant</h2>
+                <div class="card card-ai organizer">
+                    <strong>📣 Ad Targeting Suggestion</strong>
+                    <p>Promote your 'Student Futsal' ad on **Wednesday at 6 PM** for the highest conversion rate,
+                        targeting students in your area.</p>
+                </div>
+
+                <h2 style="margin-top: 2rem;">Your Active Promotions</h2>
+                <div class="card ad-list-item">
+                    <div>
+                        <strong>Student Discount: 30% Off</strong>
+                        <p>Type: Ad (Homepage Slideshow)</p>
+                    </div>
+                    <span class="status-pill paid">Active</span>
+                </div>
+                <div class="card ad-list-item">
+                    <div>
+                        <strong>Weekend Badminton Tournament</strong>
+                        <p>Type: Event</p>
+                    </div>
+                    <span class="status-pill paid">Active</span>
+                </div>
+                <div class="card ad-list-item">
+                    <div>
+                        <strong>New Year's Promo</strong>
+                        <p>Type: Ad (Homepage Slideshow)</p>
+                    </div>
+                    <span class="status-pill pending">In Review</span>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

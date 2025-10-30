@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SportLink Organizer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <!-- Organizer Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="organizer_dashboard.html">Dashboard</a></li>
+            <li><a href="organizer_calendar.html">Calendar</a></li>
+            <li><a href="organizer_bookings.html">Bookings</a></li>
+            <li><a href="organizer_ads.html">Ads & Events</a></li>
+            <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
+            <!-- Set this as the active link -->
+            <li class="active"><a href="organizer_settings.html">Settings</a></li>
+            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <h2>Settings</h2>
+            <span>Manage your facility and courts</span>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-link active" data-tab="profile">Facility Profile</button>
+            <button class="tab-link" data-tab="courts">Manage Courts</button>
+            <button class="tab-link" data-tab="compliance">Compliance (eKYC)</button>
+        </div>
+
+        <!-- Tab Content Wrapper -->
+        <div>
+            <!-- Facility Profile Tab -->
+            <div id="profile" class="tab-content active">
+                <div class="card">
+                    <form class="login-form">
+                        <div class="filter-group">
+                            <label for="facility-name">Facility Name</label>
+                            <input type="text" id="facility-name" class="form-input" value="PowerPlayz Futsal">
+                        </div>
+                        <div class="filter-group">
+                            <label for="facility-address">Address</label>
+                            <input type="text" id="facility-address" class="form-input"
+                                value="123 Futsal Drive, Kota Kinabalu, 88400">
+                        </div>
+                        <div class="filter-group">
+                            <label for="facility-rules">Information & Rules (for users)</label>
+                            <textarea id="facility-rules" class="form-input" rows="5">1. All players must wear non-marking indoor court shoes.
+2. Bookings must be cancelled 24 hours in advance.
+3. No outside food or drink.</textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Manage Courts Tab -->
+            <!-- FIXED: Changed id from "info" to "courts" to match the tab button -->
+            <div id="courts" class="tab-content">
+                <div class="card">
+                    <div class="organizer-header" style="margin-bottom: 1.5rem;">
+                        <h3>Your Courts (3)</h3>
+                        <button class="btn btn-primary">+ Add New Court</button>
+                    </div>
+
+                    <!-- Table of Courts -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Court Name</th>
+                                <th>Sport Type</th>
+                                <th>Base Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Court 1</td>
+                                <td>Futsal</td>
+                                <td>$50.00 / hour</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-small">Edit</button>
+                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Court 2</td>
+                                <td>Futsal</td>
+                                <td>$50.00 / hour</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-small">Edit</button>
+                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Badminton Court A</td>
+                                <td>Badminton</td>
+                                <td>$15.00 / hour</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-small">Edit</button>
+                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Compliance Tab -->
+            <div id="compliance" class="tab-content">
+                <div class="card">
+                    <h3>Compliance (eKYC / SSM)</h3>
+                    <p>Upload your company registration documents (SSM) to get verified. Verified partners receive a
+                        badge and priority support.</p>
+                    <div class="filter-group">
+                        <label for="ssm-upload">Upload SSM Document (PDF)</label>
+                        <input type="file" id="ssm-upload" class="form-input">
+                    </div>
+                    <button class="btn btn-primary">Submit for Verification</button>
+                    <hr style="margin: 1.5rem 0;">
+                    <p><strong>Current Status:</strong> <span class="status-pill pending">Pending</span></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- AI Chatbot Widget -->
+    <div class="ai-chat-widget">
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- We need the tab-switching JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

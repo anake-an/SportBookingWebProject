@@ -1,0 +1,1917 @@
+/* ---
+    SportLink UI Refactor - FINAL (v2 Merged)
+    Table of Contents:
+    1. CSS Variables (Root)
+    2. Global Styles (Body, Typography, Links, Sticky Footer)
+    3. Utility Classes (Container, Buttons, Avatars)
+    4. Component Styles (Navbar, Footer, Forms, Cards, Sidebar)
+    5. Page: Landing Page (Slideshow, 3-Column Grid)
+    6. Page: Booking & Facility Detail (Layout, Calendar, Tabs)
+    7. Responsive Design
+--- */
+
+/* --- 1. CSS Variables (Root) --- */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --light-color: #f8f9fa;
+  --dark-color: #2c3e50;
+  --text-color: #333;
+  --text-color-light: #555;
+  --body-bg: #f4f7f6;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- 2. Global Styles (Sticky Footer) --- */
+body {
+  font-family: var(--font-family);
+  background-color: var(--body-bg);
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+  /* Sticky Footer logic */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Exclude organizer layout from this behavior */
+body.organizer-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- 3. Utility Classes --- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  /* For 'a' tags styled as buttons */
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--light-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: #e2e6ea;
+}
+
+.btn-large {
+  padding: 15px 30px;
+  font-size: 1.2em;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.9em;
+}
+
+.btn-full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-logout {
+  text-decoration: none;
+  color: var(--danger-color);
+  font-weight: 600;
+  font-size: 0.9em;
+  border: 1px solid var(--danger-color);
+  padding: 6px 10px;
+  border-radius: var(--border-radius);
+  margin-left: 16px;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  background-color: #E0E0E0;
+}
+
+/* --- 4. Component Styles --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 5%;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  max-height: 60px;
+}
+
+.logo-img {
+  height: 140px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.nav-links a,
+.nav-links-landing a {
+  margin: 0 16px;
+  text-decoration: none;
+  color: var(--text-color-light);
+  font-weight: 500;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.nav-links a:hover,
+.nav-links-landing a:hover {
+  color: var(--primary-color);
+}
+
+.nav-links a.active-link {
+  color: var(--primary-color);
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 4px;
+}
+
+.nav-auth button,
+.nav-auth .btn {
+  margin-left: 10px;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--card-bg);
+  color: var(--text-color-light);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  /* Sticky footer fix */
+  flex-shrink: 0;
+  /* Sticky footer fix */
+}
+
+.form-container {
+  max-width: 550px;
+  /* Your requested width */
+  margin: 60px auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  flex-grow: 1;
+  /* Sticky footer fix */
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.form-container p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color-light);
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+}
+
+.login-form button,
+.login-form .btn {
+  width: 100%;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.btn-organizer {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-organizer:hover {
+  background-color: #218838;
+}
+
+.form-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.form-link-inline {
+  margin-top: 0;
+  margin-right: 10px;
+  font-size: 14px;
+  color: var(--text-color-light);
+}
+
+.role-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.role-box {
+  border: 2px solid var(--border-color);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  text-align: left;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  /* Your requested style */
+  color: var(--text-color);
+  /* Your requested style */
+  width: 500px;
+  /* Your requested style */
+  box-sizing: border-box;
+  /* Added for safety */
+}
+
+.role-box:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.role-box h2 {
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  text-align: center;
+  /* Your requested style */
+}
+
+.role-box p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-color-light);
+  text-align: center;
+  /* Your requested style */
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background: var(--dark-color);
+  color: var(--light-color);
+  min-height: 100vh;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.sidebar .logo {
+  margin-bottom: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.sidebar-logo-img {
+  height: 150px;
+  overflow: hidden;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 250px);
+}
+
+.sidebar li a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #ecf0f1;
+  border-radius: var(--border-radius);
+  margin-bottom: 5px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar li.active a,
+.sidebar li a:hover {
+  background-color: #34495e;
+}
+
+.sidebar-logout {
+  margin-top: auto;
+  border-top: 1px solid #4a627a;
+  padding-top: 10px;
+}
+
+.sidebar-logout a:hover {
+  background-color: var(--danger-color) !important;
+}
+
+/* --- 5. Page: Landing Page --- */
+.hero-slideshow {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3.5em;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+.feature-section {
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.feature-section h2 {
+  /* Your new style */
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 0;
+  /* margin-bottom: 16px; (Removed as requested) */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-card .card-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+.for-owners-section {
+  background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('../assets/img/for-owners.png');
+  /* Your .png change */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.for-owners-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.for-owners-content h2 {
+  font-size: 2.5em;
+}
+
+.for-owners-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: inline-block;
+  text-align: left;
+}
+
+.for-owners-content li {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* --- 6. Page: Dashboards & Booking --- */
+.dashboard-content {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1;
+  /* Your sticky footer fix */
+}
+
+.organizer-layout {
+  display: flex;
+  flex-direction: row;
+  /* Your override */
+  min-height: 100vh;
+}
+
+.organizer-content {
+  flex-grow: 1;
+  padding: 32px;
+  background-color: var(--body-bg);
+}
+
+.dashboard-header,
+.organizer-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h1,
+.organizer-header h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.dashboard-header p {
+  font-size: 1.2em;
+  color: var(--text-color-light);
+  margin: 4px 0 0 0;
+}
+
+.organizer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  gap: 16px;
+}
+
+.card-ai {
+  min-width: 280px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.card-ai.organizer {
+  border-left-color: var(--success-color);
+}
+
+.card-ai strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.card-ai p {
+  font-size: 0.9em;
+  margin: 8px 0 16px 0;
+  color: var(--text-color-light);
+}
+
+.game-card .game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.game-card h3 {
+  margin: 0;
+  max-width: 70%;
+  font-size: 1.2rem;
+}
+
+.game-card .game-time {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--success-color);
+}
+
+.player-pills {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 16px 0;
+}
+
+.avatar-pill {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px;
+  font-size: 0.8em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-color);
+  color: white;
+  font-weight: 600;
+}
+
+.avatar-pill:first-child {
+  margin-left: 0;
+}
+
+.avatar-pill-plus {
+  background: #e9ecef;
+  color: var(--text-color);
+}
+
+/* Your new classes for colored pills */
+.avatar-pill-green {
+  background-color: var(--success-color);
+}
+
+.avatar-pill-yellow {
+  background-color: var(--warning-color);
+  color: #333;
+}
+
+.avatar-pill-red {
+  background-color: var(--danger-color);
+}
+
+.match-card h3 {
+  /* Your new style */
+  font-size: 1.2rem;
+}
+
+.match-card p {
+  /* Your new style */
+  margin: 0;
+  color: var(--text-color-light);
+}
+
+.match-card .players-needed {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 0.5rem;
+  /* Your change */
+  margin-bottom: 0.5rem;
+  /* Your change */
+}
+
+.player-progress {
+  height: 8px;
+  width: 100%;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+  /* Your change */
+}
+
+.player-progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.kpi-card {
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.kpi-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 1em;
+  color: var(--text-color-light);
+  font-weight: 600;
+}
+
+.kpi-card p {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.dashboard-main-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.upcoming-bookings table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.upcoming-bookings th,
+.upcoming-bookings td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.upcoming-bookings th {
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pill.paid {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-pill.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* --- 6b. Page: Booking (booking.html) --- */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  margin-top: 2rem;
+}
+
+.filter-sidebar {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+
+.filter-sidebar h4 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.price-range-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: var(--text-color-light);
+  margin-top: 5px;
+}
+
+.search-results h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-card {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.result-card-image img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.result-card-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+}
+
+.location-text {
+  color: var(--text-color-light);
+  margin: 0 0 1rem 0;
+  font-size: 0.9em;
+}
+
+.availability-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+}
+
+.avail-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.avail-dot.green {
+  background-color: var(--success-color);
+}
+
+.avail-dot.yellow {
+  background-color: var(--warning-color);
+}
+
+.avail-dot.red {
+  background-color: var(--danger-color);
+}
+
+.price-text {
+  font-size: 1.1rem;
+  color: var(--text-color-light);
+  margin: 0;
+}
+
+.price-text strong {
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+
+.result-card-action {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border-color);
+}
+
+/* --- 6c. Page: Facility Detail (facility_detail.html) --- */
+.facility-header {
+  margin-bottom: 2rem;
+}
+
+.facility-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-color-light);
+}
+
+.back-link:hover {
+  color: var(--primary-color);
+}
+
+.facility-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 250px;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.gallery-main {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.gallery-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.facility-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.facility-main {
+  min-width: 0;
+}
+
+.facility-sidebar .card {
+  position: sticky;
+  top: 20px;
+}
+
+.facility-info {
+  margin-top: 1.5rem;
+}
+
+.facility-info hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 1rem 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tab-link {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color-light);
+  border-bottom: 2px solid transparent;
+  transform: translateY(2px);
+}
+
+.tab-link.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.calendar-container {
+  padding: 0;
+  overflow: hidden;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: 100px repeat(5, 1fr);
+  font-weight: 600;
+  text-align: center;
+  background: var(--light-color);
+}
+
+.calendar-header>div {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+}
+
+.calendar-header .time-header {
+  border-left: none;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: 100px repeat(5, 1fr);
+}
+
+.time-label {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color-light);
+}
+
+.time-slot {
+  border-bottom: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-slot p {
+  margin: 0;
+  padding: 0.75rem 0;
+  border-radius: var(--border-radius);
+}
+
+.time-slot.available p {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.time-slot.available:hover p {
+  background-color: #155724;
+  color: white;
+}
+
+.time-slot.limited p {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.time-slot.limited:hover p {
+  background-color: #856404;
+  color: white;
+}
+
+.time-slot.full {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.time-slot.full p {
+  padding: 0.75rem 0;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.time-slot.selected p {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+#booking-summary .placeholder-text {
+  color: var(--text-color-light);
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+#booking-summary .price-summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+#booking-summary #total-price {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+#book-now-btn:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- 7. Responsive Design --- */
+@media (max-width: 900px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .facility-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .facility-sidebar .card {
+    position: static;
+  }
+
+  .facility-gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 100px 100px;
+  }
+
+  .gallery-thumb {
+    grid-column: span 1;
+  }
+
+  .calendar-header,
+  .calendar-body {
+    grid-template-columns: 80px repeat(5, 1fr);
+  }
+
+  .time-slot {
+    font-size: 0.8em;
+  }
+
+  .dashboard-main-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    max-height: none;
+  }
+
+  .nav-links-landing,
+  .nav-auth {
+    margin-top: 10px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+
+  .dashboard-main-split {
+    grid-template-columns: 1fr;
+  }
+
+  .organizer-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+  }
+
+  .sidebar ul {
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar li a {
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .sidebar-logout {
+    margin-top: 0;
+    border: none;
+  }
+
+  .result-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .result-card-image img {
+    height: 200px;
+  }
+
+  .result-card-action {
+    border: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+
+  .result-card-action .btn {
+    width: 100%;
+  }
+
+  .availability-summary {
+    justify-content: center;
+  }
+
+  .role-box {
+    width: 100%;
+  }
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For matchmaking.html & post_match.html)
+--- */
+
+/* Banner on top of matchmaking page */
+.post-match-banner {
+  background: var(--dark-color);
+  color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-match-banner h3 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: left;
+}
+
+.post-match-banner p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.post-match-banner .btn {
+  white-space: nowrap;
+  /* Prevents button text from wrapping */
+}
+
+/* Full-width Match Card */
+.match-card-full {
+  padding: 1.5rem;
+}
+
+.match-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.match-card-header h3 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.match-time {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--success-color);
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.match-location {
+  font-size: 1rem;
+  color: var(--text-color-light);
+  margin: 0 0 1rem 0;
+}
+
+.match-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* Responsive styles for match page */
+@media (max-width: 768px) {
+  .post-match-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .match-card-header {
+    flex-direction: column;
+  }
+
+  .match-time {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For organizer_settings.html)
+--- */
+
+/* Style for multi-line textareas */
+textarea.form-input {
+  min-height: 120px;
+  font-family: var(--font-family);
+  resize: vertical;
+  /* Allows user to resize vertically */
+}
+
+/* Simple table for Manage Courts */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+thead {
+  background-color: var(--light-color);
+}
+
+th {
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For organizer_calendar.html)
+--- */
+
+/* "Closed" slot style for organizer calendar */
+.time-slot.closed p {
+  background-color: #eee;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.time-slot.closed:hover p {
+  background-color: #ddd;
+}
+
+/* Modal for editing slot */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content p {
+  color: var(--text-color-light);
+  margin-top: -10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For organizer_bookings.html)
+--- */
+
+.booking-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.status-pill.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+  text-decoration: line-through;
+}
+
+/* More specific table styles for this page */
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.card th,
+.card td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.card thead {
+  background-color: var(--light-color);
+}
+
+.card th {
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For organizer_wallet.html)
+--- */
+
+.payout-info {
+  background: var(--light-color);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+
+.payout-info strong {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+.payout-info p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.payout-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.payout-list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.payout-list-item:first-child {
+  padding-top: 0;
+}
+
+.payout-list-item p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.payout-date {
+  font-size: 0.9em;
+  color: var(--text-color-light);
+  font-weight: 500;
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For organizer_ads.html)
+--- */
+
+.ad-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  /* A bit less padding */
+}
+
+.ad-list-item strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ad-list-item p {
+  font-size: 0.9em;
+  color: var(--text-color-light);
+  margin: 0.25rem 0 0 0;
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For Ads Price Calculator)
+--- */
+
+.price-summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: var(--text-color-light);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.price-summary-item span:last-child {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.price-summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  border-top: 2px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.price-summary-total #summary-total-cost {
+  color: var(--success-color);
+  /* Make the final price green */
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For user_profile.html)
+--- */
+
+/* Highlights the active avatar */
+.avatar.active {
+  border-color: var(--success-color);
+  box-shadow: 0 0 8px var(--success-color);
+}
+
+/* Membership Card */
+.price-plan-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  background: var(--light-color);
+  text-align: left;
+}
+
+.price-plan-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 1.5rem 0;
+}
+
+.price-plan-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color-light);
+}
+
+.price-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.price-plan-features li {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* ---
+   NEW STYLES - Add these to the end of your style.css
+   (For Group Chat & AI Chatbot)
+--- */
+
+/* --- Group Chat Layout --- */
+.chat-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  /* Sidebar and main content */
+  gap: 32px;
+  /* Full height minus navbar and footer approx */
+  height: calc(100vh - 200px);
+}
+
+.chat-sidebar {
+  padding: 1.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.chat-main {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Prevents chat bubbles from overflowing */
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--light-color);
+}
+
+/* Chat Message Bubbles */
+.chat-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 80%;
+}
+
+.chat-message .message-content {
+  background: var(--light-color);
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+}
+
+.chat-message .message-content p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.message-sender {
+  font-weight: 700;
+  font-size: 0.9em;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Your own messages */
+.chat-message.self {
+  align-self: flex-end;
+  /* Pushes to the right */
+}
+
+.chat-message.self .message-content {
+  background: var(--primary-color);
+  color: white;
+}
+
+.chat-message.self .message-content p {
+  color: white;
+}
+
+/* System messages (e.g., "User has paid") */
+.chat-message.system {
+  align-self: center;
+  max-width: 100%;
+  text-align: center;
+  color: var(--text-color-light);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* --- AI Chatbot Widget --- */
+.ai-chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.ai-chat-bubble {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-chat-bubble:hover {
+  background: var(--primary-hover);
+  transform: scale(1.1);
+}
+
+.ai-chat-bubble svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ai-chat-window {
+  position: absolute;
+  bottom: 80px;
+  /* 20px above the bubble */
+  right: 0;
+  width: 350px;
+  height: 450px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.ai-chat-window.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.ai-chat-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+.ai-chat-header h3 {
+  color: white;
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.ai-chat-header p {
+  color: white;
+  opacity: 0.9;
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.ai-chat-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ai-chat-message.ai p {
+  background: var(--light-color);
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  margin: 0;
+  max-width: 85%;
+  align-self: flex-start;
+  /* Aligns AI to the left */
+}
+
+.ai-chat-message.user p {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  margin: 0;
+  max-width: 85%;
+  align-self: flex-end;
+  /* Aligns user to the right */
+}
+
+/* Responsive fix for chat layout */
+@media (max-width: 900px) {
+  .chat-layout {
+    grid-template-columns: 1fr;
+    /* Stack sidebar and chat */
+    height: auto;
+  }
+
+  .chat-sidebar {
+    height: auto;
+    order: 1;
+    /* Show sidebar *after* chat on mobile */
+  }
+
+  .chat-main {
+    height: 60vh;
+    /* Give chat a fixed height on mobile */
+    order: 0;
+  }
+}
+
+/* Loading dots for AI */
+.loading-dots {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.loading-dots::after {
+  content: ' .';
+  animation: dots 1.4s infinite;
+  animation-delay: 0s;
+}
+
+@keyframes dots {
+  0% {
+    content: ' .';
+  }
+
+  33% {
+    content: ' ..';
+  }
+
+  66% {
+    content: ' ...';
+  }
+
+  100% {
+    content: ' .';
+  }
+}
