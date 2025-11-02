@@ -1,5 +1,5 @@
 /* ---
-   SportLink main.js (FINAL v12 - Calendar Fix)
+   SportLink main.js (FINAL v15 - Complete Responsive JS)
    Handles all site-wide JavaScript.
 --- */
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bookNowBtn.disabled = true;
         }
 
-        // --- NEW SECTION 14: FACILITY COURT SELECTOR ---
+        // --- SECTION 14: FACILITY COURT SELECTOR (User Side) ---
         const courtSelect = document.getElementById("facility-court-select");
         if (courtSelect) {
             // Simulated data for different courts
@@ -811,6 +811,8 @@ document.addEventListener("DOMContentLoaded", function () {
         aiSlideTimer = setTimeout(autoShowAiSlides, 5000);
     }
 
+    // --- 14. FACILITY COURT SELECTOR (User Side) is within Section 3 ---
+    
     // --- 15. ORGANIZER COURT SELECTOR (NEW) ---
     const orgCourtSelect = document.getElementById("court-select");
     if (orgCourtSelect && organizerCalendarBody) { // Check for organizer calendar
@@ -917,6 +919,55 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // No initial call, so the default HTML is used first
     }
+    
+    // --- 16. USER MATCH HISTORY MODAL (NEW) ---
+    const matchHistoryTable = document.getElementById("match-history-table");
+    const matchDetailModal = document.getElementById("match-detail-modal");
 
+    if (matchHistoryTable && matchDetailModal) {
+        const closeModalBtn = document.getElementById("close-match-modal-btn");
+        const cancelModalBtn = document.getElementById("cancel-match-modal-btn");
 
+        const modalGame = document.getElementById("modal-match-game");
+        const modalDate = document.getElementById("modal-match-date");
+        const modalLocation = document.getElementById("modal-match-location");
+        const modalRolePill = matchDetailModal.querySelector('#modal-match-role .status-pill');
+        const modalStatus = document.getElementById("modal-match-status");
+
+        const openMatchModal = (e) => {
+            const btn = e.target.closest(".btn-match-details");
+            if (!btn) return;
+
+            const data = btn.dataset;
+
+            // 1. Populate details
+            modalGame.textContent = data.game;
+            modalDate.textContent = `Date: ${data.date}`;
+            modalLocation.textContent = data.location;
+            modalStatus.textContent = data.role === 'Cancelled' ? 'Cancelled' : 'Completed';
+            
+            // 2. Populate and style role pill
+            modalRolePill.textContent = data.role;
+            modalRolePill.className = "status-pill"; 
+            if (data.role === 'Joined') {
+                 modalRolePill.classList.add('paid');
+            } else if (data.role === 'Hosted') {
+                 modalRolePill.classList.add('hosted');
+            } else if (data.role === 'Cancelled') {
+                 modalRolePill.classList.add('cancelled');
+            }
+
+            // 3. Show the modal
+            matchDetailModal.classList.add("active");
+        };
+
+        const closeMatchModal = () => {
+            matchDetailModal.classList.remove("active");
+        };
+
+        matchHistoryTable.addEventListener("click", openMatchModal);
+        closeModalBtn.addEventListener("click", closeMatchModal);
+        cancelModalBtn.addEventListener("click", closeMatchModal);
+    }
+    
 }); // --- End of DOMContentLoaded ---

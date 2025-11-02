@@ -1,5 +1,5 @@
 /* ---
-    SportLink UI Refactor - FINAL (v13 - ALL FIXES)
+    SportLink UI Refactor - FINAL (v14 - ALIGNMENT FIX)
     Table of Contents:
     1. CSS Variables (Root)
     2. Global Styles (Body, Typography, Links, Sticky Footer)
@@ -87,8 +87,8 @@ th {
 
 /* --- 3. Utility Classes --- */
 .btn {
-  display: inline-block;
   padding: 10px 20px;
+  display: inline-block;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -252,8 +252,8 @@ textarea.form-input,
 .form-input /* Universal input class */
 {
   width: 100%;
-  padding: 3px;
-  margin-bottom: 0px;
+  padding: 12px;
+  margin-bottom: 16px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-sizing: border-box; 
@@ -356,18 +356,6 @@ textarea.form-input {
   font-size: 14px;
   color: var(--text-color-light);
   text-align: center; 
-}
-.card {
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-  transition: all 0.2s ease;
-}
-.card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
 }
 .card-grid {
   display: grid;
@@ -787,15 +775,21 @@ textarea.form-input {
   color: #721c24;
   text-decoration: line-through;
 }
+/* NEW HOSTED STYLE */
+.status-pill.hosted {
+    background-color: #c9e2ff;
+    color: var(--primary-color);
+}
+
 .booking-filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
-  align-items: end; /* <-- THIS IS THE FIX. */
+  align-items: end; /* This aligns the items to the bottom of the grid row */
 }
-/* ADDED: This aligns the buttons to the bottom edge of the input fields. */
+/* FINAL FIX: This aligns the buttons vertically with the bottom of the input fields */
 .booking-filters .btn {
-    margin-bottom: 16px;
+    margin-bottom: 16px; /* Retain the vertical spacing below the input field */
 }
 
 /* NEW: Styles for the booking detail popup */
@@ -1524,6 +1518,14 @@ textarea.form-input {
 
 /* --- 9. Responsive Design (MOBILE NAV FIXED) --- */
 
+/* Hide/Show classes for responsive tables */
+.desktop-hide {
+    display: none; /* Hidden by default on desktop */
+}
+.mobile-hide {
+    display: table-cell; /* Visible by default on desktop */
+}
+
 /* NEW: Week Navigator */
 .week-navigator {
   display: flex;
@@ -1794,6 +1796,28 @@ textarea.form-input {
 }
 
 @media (max-width: 768px) {
+    
+  /* FIX FOR USER MATCH HISTORY TABLE ON MOBILE */
+  /* Hide columns that aren't Date, Location, or Details */
+  .mobile-hide {
+      display: none !important;
+  }
+  /* Show the Details column that was hidden on desktop */
+  .desktop-hide {
+      display: table-cell !important;
+  }
+  
+  /* Adjust remaining columns to share space */
+  #match-history-table thead tr th:nth-child(1),
+  #match-history-table thead tr th:nth-child(3),
+  #match-history-table thead tr th:nth-child(5), /* Targetting Details */
+  #match-history-table tbody tr td:nth-child(1),
+  #match-history-table tbody tr td:nth-child(3),
+  #match-history-table tbody tr td:nth-child(5) { /* Targetting Details */
+      width: auto !important;
+      max-width: none !important;
+  }
+    
   /* This breakpoint handles the main navbar swap */
   .navbar {
     max-height: 150px; /* Your max-height */
@@ -1959,6 +1983,8 @@ textarea.form-input {
   height: 45px;
   width: 600px;
   margin-bottom: 1rem;
+  /* Invert logo for dark background if needed */
+  /* filter: brightness(0) invert(1); */
 }
 .footer-column.about p {
   line-height: 1.6;

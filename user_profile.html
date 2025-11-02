@@ -9,22 +9,18 @@
 </head>
 
 <body>
-    <!-- User Dashboard Navbar -->
     <nav class="navbar">
         <div class="logo">
             <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
 
-        <!-- Desktop Navigation Links -->
         <div class="nav-links">
             <a href="matchmaking.html">Find a Match</a>
             <a href="booking.html">Book a Court</a>
         </div>
 
-        <!-- Desktop Icons -->
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
-            <!-- Link the avatar to the profile page, add 'active' class -->
             <a href="user_profile.html">
                 <svg class="avatar active" width="40" height="40" viewBox="0 0 100 100" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +36,6 @@
             <button id="sign-out-btn" class="btn-logout">Logout</button>
         </div>
 
-        <!-- Hamburger Menu Button (Visible on mobile) -->
         <button class="hamburger-btn" id="hamburger-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -50,7 +45,6 @@
             </svg>
         </button>
 
-        <!-- Mobile Nav Menu (Hidden by default) -->
         <div class="mobile-nav-menu" id="mobile-nav-menu">
             <a href="matchmaking.html">Find a Match</a>
             <a href="booking.html">Book a Court</a>
@@ -59,13 +53,11 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="dashboard-content">
         <header class="dashboard-header">
             <h1>My Profile & Settings</h1>
         </header>
 
-        <!-- Tab Navigation -->
         <div class="tabs">
             <button class="tab-link active" data-tab="profile">Profile</button>
             <button class="tab-link" data-tab="wallet">Wallet & Points</button>
@@ -73,13 +65,10 @@
             <button class="tab-link" data-tab="membership">Membership</button>
         </div>
 
-        <!-- Tab Content Wrapper -->
         <div class="tab-content-wrapper">
-            <!-- Profile Tab -->
             <div id="profile" class="tab-content active">
                 <div class="card">
                     <h3>Account Information</h3>
-                    <!-- Removed style="max-width: 600px;" for consistency -->
                     <form class="login-form">
                         <div class="filter-group">
                             <label for="name">Full Name</label>
@@ -107,9 +96,7 @@
                 </div>
             </div>
 
-            <!-- Wallet & Points Tab - REFACTORED to be single-column -->
             <div id="wallet" class="tab-content">
-                <!-- Wallet Card -->
                 <div class="card kpi-card" style="border-bottom-color: var(--success-color);">
                     <h4>Wallet Balance</h4>
                     <p>$50.00</p>
@@ -118,7 +105,6 @@
                         <button class="btn btn-secondary">Withdraw</button>
                     </div>
                 </div>
-                <!-- Points Card -->
                 <div class="card kpi-card" style="border-bottom-color: var(--warning-color); margin-top: 2rem;">
                     <h4>Reward Points</h4>
                     <p>1,250 PTS</p>
@@ -156,45 +142,62 @@
                 </div>
             </div>
 
-            <!-- Match History Tab -->
             <div id="history" class="tab-content">
                 <div class="card">
                     <h3>Your Match History</h3>
                     <p>A list of all games you've hosted or joined.</p>
-                    <table>
+                    <table id="match-history-table">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Game</th>
+                                <th class="mobile-hide">Game</th>
                                 <th>Location</th>
-                                <th>Role</th>
+                                <th class="mobile-hide">Role</th>
+                                <th class="desktop-hide">Details</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr data-status="Joined" data-role-style="paid">
                                 <td>Oct 28, 2025</td>
-                                <td><strong>Futsal 5v5</strong></td>
+                                <td class="mobile-hide"><strong>Futsal 5v5</strong></td>
                                 <td>PowerPlayz Futsal</td>
-                                <td><span class="status-pill paid">Joined</span></td>
+                                <td class="mobile-hide"><span class="status-pill paid">Joined</span></td>
+                                <td class="desktop-hide"> <button class="btn btn-secondary btn-small btn-match-details"
+                                        data-game="Futsal 5v5"
+                                        data-location="PowerPlayz Futsal"
+                                        data-role="Joined"
+                                        data-date="Oct 28, 2025">Details</button>
+                                </td>
                             </tr>
-                             <tr>
+                            <tr data-status="Hosted" data-role-style="hosted">
                                 <td>Oct 25, 2025</td>
-                                <td><strong>Badminton Doubles</strong></td>
+                                <td class="mobile-hide"><strong>Badminton Doubles</strong></td>
                                 <td>CourtKing</td>
-                                <td><span classs="status-pill" style="background-color: var(--primary-color-light); color: var(--primary-color);">Hosted</span></td>
+                                <td class="mobile-hide"><span class="status-pill hosted">Hosted</span></td>
+                                <td class="desktop-hide"> <button class="btn btn-secondary btn-small btn-match-details"
+                                        data-game="Badminton Doubles"
+                                        data-location="CourtKing"
+                                        data-role="Hosted"
+                                        data-date="Oct 25, 2025">Details</button>
+                                </td>
                             </tr>
-                             <tr>
+                            <tr data-status="Cancelled" data-role-style="cancelled">
                                 <td>Oct 24, 2025</td>
-                                <td><strong>Basketball 3v3</strong></td>
+                                <td class="mobile-hide"><strong>Basketball 3v3</strong></td>
                                 <td>City Park Court</td>
-                                <td><span class="status-pill cancelled">Cancelled</span></td>
+                                <td class="mobile-hide"><span class="status-pill cancelled">Cancelled</span></td>
+                                <td class="desktop-hide"> <button class="btn btn-secondary btn-small btn-match-details"
+                                        data-game="Basketball 3v3"
+                                        data-location="City Park Court"
+                                        data-role="Cancelled"
+                                        data-date="Oct 24, 2025">Details</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Membership Tab -->
             <div id="membership" class="tab-content">
                 <div class="card" style="text-align: center;">
                     <h2>Your Current Plan: <span style="color: var(--primary-color);">Free Tier</span></h2>
@@ -218,50 +221,42 @@
 
     </main>
 
-    <!-- AI Chatbot Widget -->
-    <div class="ai-chat-widget">
-        <!-- The Popup Window -->
-        <div class="ai-chat-window" id="ai-chat-window">
-            <div class="ai-chat-header">
-                <h3>SportLink AI</h3>
-                <p>Your personal assistant.</p>
-            </div>
-            <div class="ai-chat-body">
-                <div class="ai-chat-message ai">
-                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
-                        questions.</p>
+    <div class="modal-overlay" id="match-detail-modal">
+        <div class="modal-content">
+            <button class="btn-close" id="close-match-modal-btn" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 id="modal-match-game">Match Details</h3>
+            <p id="modal-match-date" style="margin-bottom: 1.5rem;"></p>
+
+            <div class="booking-detail-list">
+                <div class="booking-detail-item">
+                    <span>Location:</span>
+                    <strong id="modal-match-location"></strong>
                 </div>
-                <!-- Messages will be added here by JS -->
+                <div class="booking-detail-item">
+                    <span>Your Role:</span>
+                    <strong id="modal-match-role"><span class="status-pill"></span></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Status:</span>
+                    <strong id="modal-match-status">Completed</strong>
+                </div>
             </div>
-            <div class="chat-input-area">
-                <input type="text" class="form-input" placeholder="Ask me anything...">
-                <button class="btn btn-primary" title="Send">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-match-modal-btn">Close</button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
-        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
-                <path d="M10 14a2 2 0 1 0 2 2"></path>
-            </svg>
-        </button>
     </div>
-
     <footer class="footer">
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
-    <!-- This page needs the main JS file for the chatbot and tabs -->
     <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
-
