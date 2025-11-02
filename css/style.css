@@ -1956,11 +1956,9 @@ textarea.form-input {
   text-decoration: underline;
 }
 .footer-logo {
-  height: 40px;
-  width: auto;
+  height: 45px;
+  width: 600px;
   margin-bottom: 1rem;
-  /* Invert logo for dark background if needed */
-  /* filter: brightness(0) invert(1); */
 }
 .footer-column.about p {
   line-height: 1.6;
