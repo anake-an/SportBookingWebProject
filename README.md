@@ -65,10 +65,11 @@ sportlink-project/
 ├── booking.html
 ├── facility_detail.html
 ├── matchmaking.html
-├── post_match.html
+├── about.html
+├── contact.html
+├── legal.html
 ├── group_chat.html
 ├── user_profile.html
-│
 ├── organizer_dashboard.html
 ├── organizer_calendar.html
 ├── organizer_bookings.html
