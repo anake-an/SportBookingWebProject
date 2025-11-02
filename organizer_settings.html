@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - SportLink Organizer</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
-
-    <!-- Organizer Sidebar -->
-    <aside class="sidebar">
+    
+    <aside class="sidebar" id="organizer-sidebar">
+        
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
@@ -22,29 +26,36 @@
             <li><a href="organizer_bookings.html">Bookings</a></li>
             <li><a href="organizer_ads.html">Ads & Events</a></li>
             <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
-            <!-- Set this as the active link -->
             <li class="active"><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Settings</h2>
-            <span>Manage your facility and courts</span>
+            <div class="organizer-header-left">
+                
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                
+                <h2>Settings</h2>
+            </div>
+            <span class="header-welcome-text">Manage your facility and courts</span>
         </header>
 
-        <!-- Tab Navigation -->
         <div class="tabs">
             <button class="tab-link active" data-tab="profile">Facility Profile</button>
             <button class="tab-link" data-tab="courts">Manage Courts</button>
+            <button class="tab-link" data-tab="templates">Templates</button>
             <button class="tab-link" data-tab="compliance">Compliance (eKYC)</button>
         </div>
 
-        <!-- Tab Content Wrapper -->
-        <div>
-            <!-- Facility Profile Tab -->
+        <div class="tab-content-wrapper">
             <div id="profile" class="tab-content active">
                 <div class="card">
                     <form class="login-form">
@@ -54,8 +65,7 @@
                         </div>
                         <div class="filter-group">
                             <label for="facility-address">Address</label>
-                            <input type="text" id="facility-address" class="form-input"
-                                value="123 Futsal Drive, Kota Kinabalu, 88400">
+                            <input type="text" id="facility-address" class="form-input" value="123 Futsal Drive, Kota Kinabalu, 88400">
                         </div>
                         <div class="filter-group">
                             <label for="facility-rules">Information & Rules (for users)</label>
@@ -68,64 +78,93 @@
                 </div>
             </div>
 
-            <!-- Manage Courts Tab -->
-            <!-- FIXED: Changed id from "info" to "courts" to match the tab button -->
             <div id="courts" class="tab-content">
                 <div class="card">
                     <div class="organizer-header" style="margin-bottom: 1.5rem;">
                         <h3>Your Courts (3)</h3>
                         <button class="btn btn-primary">+ Add New Court</button>
                     </div>
-
-                    <!-- Table of Courts -->
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Court Name</th>
-                                <th>Sport Type</th>
-                                <th>Base Price</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Court 1</td>
-                                <td>Futsal</td>
-                                <td>$50.00 / hour</td>
-                                <td>
-                                    <button class="btn btn-secondary btn-small">Edit</button>
-                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Court 2</td>
-                                <td>Futsal</td>
-                                <td>$50.00 / hour</td>
-                                <td>
-                                    <button class="btn btn-secondary btn-small">Edit</button>
-                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Badminton Court A</td>
-                                <td>Badminton</td>
-                                <td>$15.00 / hour</td>
-                                <td>
-                                    <button class="btn btn-secondary btn-small">Edit</button>
-                                    <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                    <div style="overflow-x: auto;"> <table>
+                            <thead>
+                                <tr>
+                                    <th>Court Name</th>
+                                    <th>Sport Type</th>
+                                    <th>Base Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Court 1</td>
+                                    <td>Futsal</td>
+                                    <td>$50.00 / hour</td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small">Edit</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Court 2</td>
+                                    <td>Futsal</td>
+                                    <td>$50.00 / hour</td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small">Edit</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Badminton Court A</td>
+                                    <td>Badminton</td>
+                                    <td>$15.00 / hour</td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small">Edit</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <!-- Compliance Tab -->
+            <div id="templates" class="tab-content">
+                <div class="card">
+                    <h3>Manage Calendar Templates</h3>
+                    <p style="margin-top: -10px; margin-bottom: 20px; color: var(--text-color-light);">
+                        Set the default prices for different times. "Evening" is 5:00 PM onwards.
+                    </p>
+                    <form class="login-form">
+                        <h4 style="margin-bottom: 1rem;">Weekday Template</h4>
+                        <div class="filter-group">
+                            <label for="weekday-morning-price">Weekday Daytime Price ($) (Before 5 PM)</label>
+                            <input type="number" id="weekday-morning-price" class="form-input" value="40" min="0">
+                        </div>
+                        <div class="filter-group">
+                            <label for="weekday-evening-price">Weekday Evening Price ($) (5 PM onwards)</label>
+                            <input type="number" id="weekday-evening-price" class="form-input" value="50" min="0">
+                        </div>
+                        
+                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+                        <h4 style="margin-bottom: 1rem;">Weekend Template</h4>
+                         <div class="filter-group">
+                            <label for="weekend-morning-price">Weekend Daytime Price ($) (Before 5 PM)</label>
+                            <input type="number" id="weekend-morning-price" class="form-input" value="60" min="0">
+                        </div>
+                        <div class="filter-group">
+                            <label for="weekend-evening-price">Weekend Evening Price ($) (5 PM onwards)</label>
+                            <input type="number" id="weekend-evening-price" class="form-input" value="70" min="0">
+                        </div>
+                        <button type="button" id="save-templates-btn" class="btn btn-primary">Save Templates</button>
+                    </form>
+                </div>
+            </div>
+
             <div id="compliance" class="tab-content">
                 <div class="card">
                     <h3>Compliance (eKYC / SSM)</h3>
-                    <p>Upload your company registration documents (SSM) to get verified. Verified partners receive a
-                        badge and priority support.</p>
+                    <p>Upload your company registration documents (SSM) to get verified. Verified partners receive a badge and priority support.</p>
                     <div class="filter-group">
                         <label for="ssm-upload">Upload SSM Document (PDF)</label>
                         <input type="file" id="ssm-upload" class="form-input">
@@ -139,21 +178,24 @@
         </div>
     </main>
 
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -165,7 +207,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,8 +217,6 @@
         </button>
     </div>
 
-    <!-- We need the tab-switching JavaScript -->
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

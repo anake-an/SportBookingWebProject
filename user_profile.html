@@ -12,29 +12,50 @@
     <!-- User Dashboard Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img"></a>
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+
+        <!-- Desktop Navigation Links -->
         <div class="nav-links">
             <a href="matchmaking.html">Find a Match</a>
             <a href="booking.html">Book a Court</a>
-            <a href="post_match.html">Post a Match</a>
         </div>
+
+        <!-- Desktop Icons -->
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
-            <!-- Link the avatar to the profile page -->
+            <!-- Link the avatar to the profile page, add 'active' class -->
             <a href="user_profile.html">
                 <svg class="avatar active" width="40" height="40" viewBox="0 0 100 100" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="50" fill="#E0E0E0" />
-                    <path d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
+                    <path
+                        d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
                         fill="#BDBDBD" />
                     <path
                         d="M50 56.25C60.3553 56.25 68.75 47.8553 68.75 37.5C68.75 27.1447 60.3553 18.75 50 18.75C39.6447 18.75 31.25 27.1447 31.25 37.5C31.25 47.8553 39.6447 56.25 50 56.25Z"
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <!-- Hamburger Menu Button (Visible on mobile) -->
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
@@ -53,28 +74,28 @@
         </div>
 
         <!-- Tab Content Wrapper -->
-        <div>
+        <div class="tab-content-wrapper">
             <!-- Profile Tab -->
             <div id="profile" class="tab-content active">
                 <div class="card">
                     <h3>Account Information</h3>
-                    <form class="login-form" style="max-width: 600px;">
+                    <!-- Removed style="max-width: 600px;" for consistency -->
+                    <form class="login-form">
                         <div class="filter-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" class="form-input" value="[User Name]">
                         </div>
                         <div class="filter-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-input" value="user@example.com">
+                            <input type="email" id="email" class="form-input" value="user@example.com" readonly>
                         </div>
                         <div class="filter-group">
                             <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" class="form-input" value="+60 12-345 6789">
                         </div>
-
+                        
                         <h4 style="margin-top: 2rem;">Verification (eKYC)</h4>
-                        <p style="margin-bottom: 1rem;">Verify your identity to get a blue checkmark and build trust
-                            with other players.</p>
+                        <p style="margin-bottom: 1rem;">Verify your identity to get a blue checkmark and build trust with other players.</p>
                         <div class="filter-group">
                             <label for="ic-upload">Upload IC / Passport (Front)</label>
                             <input type="file" id="ic-upload" class="form-input">
@@ -86,25 +107,22 @@
                 </div>
             </div>
 
-            <!-- Wallet & Points Tab -->
+            <!-- Wallet & Points Tab - REFACTORED to be single-column -->
             <div id="wallet" class="tab-content">
-                <div class="dashboard-main-split">
-                    <!-- Wallet Card -->
-                    <div class="card kpi-card" style="border-bottom-color: var(--success-color);">
-                        <h4>Wallet Balance</h4>
-                        <p>$50.00</p>
-                        <div style="display: flex; gap: 10px; margin-top: 1rem;">
-                            <button class="btn btn-primary">Top Up</button>
-                            <button class="btn btn-secondary">Withdraw</button>
-                        </div>
+                <!-- Wallet Card -->
+                <div class="card kpi-card" style="border-bottom-color: var(--success-color);">
+                    <h4>Wallet Balance</h4>
+                    <p>$50.00</p>
+                    <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                        <button class="btn btn-primary">Top Up</button>
+                        <button class="btn btn-secondary">Withdraw</button>
                     </div>
-                    <!-- Points Card -->
-                    <div class="card kpi-card" style="border-bottom-color: var(--warning-color);">
-                        <h4>Reward Points</h4>
-                        <p>1,250 PTS</p>
-                        <p style="font-size: 1rem; color: var(--text-color-light); margin: 1rem 0 0 0;">Redeem points
-                            for vouchers and booking discounts!</p>
-                    </div>
+                </div>
+                <!-- Points Card -->
+                <div class="card kpi-card" style="border-bottom-color: var(--warning-color); margin-top: 2rem;">
+                    <h4>Reward Points</h4>
+                    <p>1,250 PTS</p>
+                    <p style="font-size: 1rem; color: var(--text-color-light); margin: 1rem 0 0 0;">Redeem points for vouchers and booking discounts!</p>
                 </div>
 
                 <div class="card" style="margin-top: 2rem;">
@@ -155,21 +173,19 @@
                         <tbody>
                             <tr>
                                 <td>Oct 28, 2025</td>
-                                <strong>Futsal 5v5</strong>
+                                <td><strong>Futsal 5v5</strong></td>
                                 <td>PowerPlayz Futsal</td>
                                 <td><span class="status-pill paid">Joined</span></td>
                             </tr>
-                            <tr>
+                             <tr>
                                 <td>Oct 25, 2025</td>
-                                <strong>Badminton Doubles</strong>
+                                <td><strong>Badminton Doubles</strong></td>
                                 <td>CourtKing</td>
-                                <td><span class="status-pill"
-                                        style="background-color: var(--primary-color-light); color: var(--primary-color);">Hosted</span>
-                                </td>
+                                <td><span classs="status-pill" style="background-color: var(--primary-color-light); color: var(--primary-color);">Hosted</span></td>
                             </tr>
-                            <tr>
-                                T<td>Oct 24, 2025</td>
-                                <strong>Basketball 3v3</strong>
+                             <tr>
+                                <td>Oct 24, 2025</td>
+                                <td><strong>Basketball 3v3</strong></td>
                                 <td>City Park Court</td>
                                 <td><span class="status-pill cancelled">Cancelled</span></td>
                             </tr>
@@ -183,7 +199,7 @@
                 <div class="card" style="text-align: center;">
                     <h2>Your Current Plan: <span style="color: var(--primary-color);">Free Tier</span></h2>
                     <p>Upgrade to Premium to unlock discounts, vouchers, and access to private events!</p>
-
+                    
                     <div class="price-plan-card">
                         <h3>Premium Member</h3>
                         <p class="price-plan-price">$10 <span>/ month</span></p>
@@ -243,8 +259,9 @@
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
-    <!-- We need the tab-switching JavaScript -->
-    <script src="js/main.js"></script>
+    <!-- This page needs the main JS file for the chatbot and tabs -->
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
+

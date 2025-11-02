@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organizer Dashboard - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
-
-    <aside class="sidebar">
+    
+    <aside class="sidebar" id="organizer-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
-            <li class="active"><a href="#">Dashboard</a></li>
+            <li class="active"><a href="organizer_dashboard.html">Dashboard</a></li>
             <li><a href="organizer_calendar.html">Calendar</a></li>
             <li><a href="organizer_bookings.html">Bookings</a></li>
             <li><a href="organizer_ads.html">Ads & Events</a></li>
             <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
             <li><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Dashboard</h2>
-            <span>Welcome, <strong>PowerPlayz Futsal!</strong></span>
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Dashboard</h2>
+            </div>
+            <span class="header-welcome-text">Welcome, <strong id="user-email">PowerPlayz Futsal!</strong></span>
         </header>
-
+        
         <section class="kpi-grid">
             <div class="card kpi-card">
                 <h4>Today's Revenue</h4>
@@ -48,46 +61,44 @@
         </section>
 
         <div class="dashboard-main-split">
-
+            
             <section class="upcoming-bookings">
                 <h2>Upcoming Bookings (Live)</h2>
                 <div class="card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Time</th>
-                                <th>Court</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Alex M.</td>
-                                <td>6:00 PM - 7:00 PM</td>
-                                <td>Court 1 (Futsal)</td>
-                                <td><span class="status-pill paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Maria K. (Group)</td>
-                                <td>6:00 PM - 7:00 PM</td>
-                                <td>Court 2 (Futsal)</td>
-                                <td><span class="status-pill paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Ben's Team</td>
-                                <td>7:00 PM - 8:30 PM</td>
-                                <td>Court 1 (Futsal)</td>
-                                <td><span class="status-pill pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sarah L.</td>
-                                <td>7:00 PM - 8:00 PM</td>
-                                <td>Court 2 (Futsal)</td>
-                                <td><span class="status-pill paid">Paid</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x: auto;">
+                        <table class="status-table-colors">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Time</th>
+                                    <th>Court</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="status-paid">
+                                    <td><strong>Alex M.</strong></td> <td>6:00 PM - 7:00 PM</td>
+                                    <td>Court 1 (Futsal)</td>
+                                    <td><span class="status-pill paid">Paid</span></td>
+                                </tr>
+                                <tr class="status-paid">
+                                    <td><strong>Maria K. (Group)</strong></td> <td>6:00 PM - 7:00 PM</td>
+                                    <td>Court 2 (Futsal)</td>
+                                    <td><span class="status-pill paid">Paid</span></td>
+                                </tr>
+                                <tr class="status-pending">
+                                    <td><strong>Ben's Team</strong></td> <td>7:00 PM - 8:30 PM</td>
+                                    <td>Court 1 (Futsal)</td>
+                                    <td><span class="status-pill pending">Pending</span></td>
+                                </tr>
+                                <tr class="status-paid">
+                                    <td><strong>Sarah L.</strong></td> <td>7:00 PM - 8:00 PM</td>
+                                    <td>Court 2 (Futsal)</td>
+                                    <td><span class="status-pill paid">Paid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
@@ -96,61 +107,57 @@
                 <div class="card card-ai organizer">
                     <strong>📈 Dynamic Pricing</strong>
                     <p>Your 3-5 PM weekday slots are only 20% booked. We suggest a 30% 'Off-Peak' discount.</p>
-                    <!-- FIXED broken class here -->
                     <a href="#" class="btn btn-primary btn-small">Accept</a>
                     <a href="#" class="btn btn-secondary btn-small" style="margin-left: 8px;">Dismiss</a>
                 </div>
                 <div class="card card-ai organizer">
                     <strong>📣 Ad Targeting</strong>
                     <p>Promote your 'Student Futsal' ad on Wednesday at 6 PM for highest conversion.</p>
-                    <a href="#" class="btn btn-primary btn-small">Create Ad</a>
+                    <a href="organizer_ads.html" class="btn btn-primary btn-small">Create Ad</a>
                 </div>
             </section>
         </div>
-
-        <!-- AI Chatbot Widget -->
-        <div class="ai-chat-widget">
-            <!-- The Popup Window -->
-            <div class="ai-chat-window" id="ai-chat-window">
-                <div class="ai-chat-header">
-                    <h3>SportLink AI</h3>
-                    <p>Your personal assistant.</p>
-                </div>
-                <div class="ai-chat-body">
-                    <div class="ai-chat-message ai">
-                        <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
-                            questions.</p>
-                    </div>
-                    <!-- Messages will be added here by JS -->
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" class="form-input" placeholder="Ask me anything...">
-                    <button class="btn btn-primary" title="Send">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <!-- The Toggle Bubble -->
-            <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
-                    <path d="M10 14a2 2 0 1 0 2 2"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Added footer for consistency -->
-        <footer class="footer" style="margin-top: 60px;">
-            <p>&copy; 2025 SportLink. All rights reserved.</p>
-        </footer>
     </main>
 
-</body>
+    <div class="ai-chat-widget">
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
+                <path d="M10 14a2 2 0 1 0 2 2"></path>
+            </svg>
+        </button>
+    </div>
 
+    <script type="module" src="js/main.js"></script>
+</body>
 </html>

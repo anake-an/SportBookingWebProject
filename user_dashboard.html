@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Dashboard - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
+    
     <nav class="navbar">
         <div class="logo">
-            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img"></a>
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+        
         <div class="nav-links">
             <a href="matchmaking.html">Find a Match</a>
             <a href="booking.html">Book a Court</a>
-            <a href="post_match.html">Post a Match</a>
         </div>
+        
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
             <a href="user_profile.html">
                 <svg class="avatar" width="40" height="40" viewBox="0 0 100 100" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="50" fill="#E0E0E0" />
-                    <path d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
+                    <path
+                        d="M50 62.5C63.8071 62.5 75 73.6929 75 87.5V100H25V87.5C25 73.6929 36.1929 62.5 50 62.5Z"
                         fill="#BDBDBD" />
                     <path
                         d="M50 56.25C60.3553 56.25 68.75 47.8553 68.75 37.5C68.75 27.1447 60.3553 18.75 50 18.75C39.6447 18.75 31.25 27.1447 31.25 37.5C31.25 47.8553 39.6447 56.25 50 56.25Z"
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
     <main class="dashboard-content">
         <header class="dashboard-header">
-            <h1>Welcome Back, [User]!</h1>
+            <h1>Welcome Back, <span id="user-email">[User]</span>!</h1>
             <p>Your next game is waiting.</p>
         </header>
-
+        
         <section class="ai-section">
             <h2>For You (AI Suggestions)</h2>
-            <div class="horizontal-scroll-container">
+            
+            <div class="card-grid ai-suggestions">
                 <div class="card card-ai">
                     <strong>🏸 Proactive Matchmaking</strong>
                     <p>An intermediate badminton game near you needs 1 more player. 7PM tonight.</p>
-                    <a href="#" class="btn btn-primary btn-small">View Match</a>
+                    <a href="matchmaking.html" class="btn btn-primary btn-small">View Match</a>
                 </div>
                 <div class="card card-ai">
                     <strong>💡 Habit-Based Booking</strong>
                     <p>You usually play futsal on Tuesdays. Your regular court is free next week.</p>
-                    <a href="#" class="btn btn-primary btn-small">Book Now</a>
+                    <a href="booking.html" class="btn btn-primary btn-small">Book Now</a>
                 </div>
                 <div class="card card-ai">
                     <strong>🏆 New League</strong>
@@ -62,12 +77,36 @@
                     <a href="#" class="btn btn-primary btn-small">Learn More</a>
                 </div>
             </div>
+            
+            <div class="ai-slideshow">
+                <div class="ai-slide card card-ai">
+                    <strong>🏸 Proactive Matchmaking</strong>
+                    <p>An intermediate badminton game near you needs 1 more player. 7PM tonight.</p>
+                    <a href="matchmaking.html" class="btn btn-primary btn-small">View Match</a>
+                </div>
+                <div class="ai-slide card card-ai">
+                    <strong>💡 Habit-Based Booking</strong>
+                    <p>You usually play futsal on Tuesdays. Your regular court is free next week.</p>
+                    <a href="booking.html" class="btn btn-primary btn-small">Book Now</a>
+                </div>
+                <div class="ai-slide card card-ai">
+                    <strong>🏆 New League</strong>
+                    <p>The "City Futsal League" is now open for registration at PowerPlayz.</p>
+                    <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                </div>
+                
+                <div class="ai-slideshow-dots">
+                    <span class="ai-dot"></span>
+                    <span class="ai-dot"></span>
+                    <span class="ai-dot"></span>
+                </div>
+            </div>
+
         </section>
 
         <section>
             <h2>My Active Games</h2>
             <div class="card-grid">
-                <!-- Game Card 1 -->
                 <div class="card game-card">
                     <div class="game-card-header">
                         <h3>⚽ Futsal at PowerPlayz</h3>
@@ -78,11 +117,10 @@
                         <span class="avatar-pill">U</span>
                         <span class="avatar-pill avatar-pill-green">A</span>
                         <span class="avatar-pill avatar-pill-yellow">B</span>
-                        <span class="avatar-pill avatar-pill-plus">+7</span>
+                        <span class="avatar-pill-plus">+7</span>
                     </div>
                     <a href="group_chat.html" class="btn btn-primary btn-full-width">View Details & Group Chat</a>
                 </div>
-                <!-- Game Card 2 -->
                 <div class="card game-card">
                     <div class="game-card-header">
                         <h3>🏸 Badminton at CourtKing</h3>
@@ -101,43 +139,32 @@
         <section>
             <h2>Hot Matches Near You</h2>
             <div class="card-grid">
-                <!-- Match Card 1 -->
                 <div class="card match-card">
                     <h3>🏀 Basketball 5v5</h3>
                     <p>Where: City Park Court</p>
                     <p class="players-needed">Players Needed: 3 / 5</p>
-                    <div class="player-progress">
-                        <div class="player-progress-bar" style="width: 60%;"></div>
-                    </div>
-                    <a href="#" class="btn btn-secondary btn-full-width" style="margin-top: 1rem;">View & Join</a>
+                    <div class="player-progress"><div class="player-progress-bar" style="width: 60%;"></div></div>
+                    <a href="group_chat.html" class="btn btn-secondary btn-full-width">View & Join</a>
                 </div>
-                <!-- Match Card 2 -->
                 <div class="card match-card">
                     <h3>🎾 Tennis Singles</h3>
                     <p>Where: Riverside Tennis Club</p>
                     <p class="players-needed">Players Needed: 1 / 2</p>
-                    <div class="player-progress">
-                        <div class="player-progress-bar" style="width: 50%;"></div>
-                    </div>
-                    <a href="#" class="btn btn-secondary btn-full-width" style="margin-top: 1rem;">View & Join</a>
+                    <div class="player-progress"><div class="player-progress-bar" style="width: 50%;"></div></div>
+                    <a href="group_chat.html" class="btn btn-secondary btn-full-width">View & Join</a>
                 </div>
-                <!-- Match Card 3 -->
                 <div class="card match-card">
                     <h3>⚽ Futsal 5v5</h3>
                     <p>Where: PowerPlayz</p>
                     <p class="players-needed">Players Needed: 8 / 10</p>
-                    <div class="player-progress">
-                        <div class="player-progress-bar" style="width: 80%;"></div>
-                    </div>
-                    <a href="#" class="btn btn-secondary btn-full-width" style="margin-top: 1rem;">View & Join</a>
+                    <div class="player-progress"><div class="player-progress-bar" style="width: 80%;"></div></div>
+                    <a href="group_chat.html" class="btn btn-secondary btn-full-width">View & Join</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
@@ -148,8 +175,7 @@
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -161,7 +187,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,6 +201,6 @@
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

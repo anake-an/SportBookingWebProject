@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a Court - SportLink</title>
+    <title>Book a Court - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
-    <!-- We use the same navbar as the user dashboard -->
+    <!-- User Dashboard Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img"></a>
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+
+        <!-- Desktop Navigation Links -->
         <div class="nav-links">
             <a href="matchmaking.html">Find a Match</a>
-            <a href="booking.html" class="active-link">Book a Court</a> <!-- Mark as active -->
-            <a href="post_match.html">Post a Match</a>
+            <a href="booking.html" class="active-link">Book a Court</a>
         </div>
+
+        <!-- Desktop Icons -->
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
             <a href="user_profile.html">
@@ -34,82 +35,79 @@
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <!-- Hamburger Menu Button (Visible on mobile) -->
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
-    <!-- Main Booking Page Content -->
+    <!-- Main Content -->
     <main class="dashboard-content">
-        <header class="dashboard-header">
-            <h1>Find Your Court</h1>
-            <p>Search by sport, date, location, and more.</p>
-        </header>
-
         <div class="booking-layout">
-
-            <!-- Filter Sidebar -->
+            <!-- Sidebar for Filters -->
             <aside class="filter-sidebar">
-                <h4>Filters</h4>
-
+                <h4>Find a Court</h4>
                 <div class="filter-group">
-                    <label for="sport">Sport</label>
-                    <select id="sport" class="form-input">
-                        <option value="futsal">Futsal</option>
-                        <option value="badminton">Badminton</option>
-                        <option value="basketball">Basketball</option>
-                        <option value="table-tennis">Table Tennis</option>
-                        <option value="pickle ball">Pickle Ball</option>
-                        <option value="squash">Squash</option>
-                        <option value="football">Football</option>
-                        <option value="other">Other</option>
+                    <label for="sport-filter">Sport</label>
+                    <select id="sport-filter" class="form-input">
+                        <option>Futsal</option>
+                        <option>Badminton</option>
+                        <option>Basketball</option>
+                        <option>Tennis</option>
                     </select>
                 </div>
-
                 <div class="filter-group">
-                    <label for="date">Date</label>
-                    <input type="date" id="date" class="form-input" value="2025-10-31">
+                    <label for="location-filter">Location</label>
+                    <input type="text" id="location-filter" class="form-input" placeholder="e.g., Kota Kinabalu">
                 </div>
-
                 <div class="filter-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" class="form-input" placeholder="e.g., 'Kota Kinabalu'">
+                    <label for="date-filter">Date</label>
+                    <input type="date" id="date-filter" class="form-input">
                 </div>
-
                 <div class="filter-group">
-                    <label for="price">Price Range</label>
-                    <input type="range" id="price" min="0" max="200" step="10" style="width: 100%;">
+                    <label for="price-filter">Max Price ($/hour)</label>
+                    <input type="range" id="price-filter" class="form-input" min="0" max="200" step="5" value="200">
                     <div class="price-range-label">
                         <span>$0</span>
-                        <span>$200+</span>
+                        <span>$200</span>
                     </div>
                 </div>
-
-                <button class="btn btn-primary btn-full-width">Apply Filters</button>
             </aside>
 
-            <!-- Search Results -->
+            <!-- Main Content for Facility List -->
             <section class="search-results">
-
-                <h2>Available Facilities</h2>
+                <h2>Available Facilities (2)</h2>
 
                 <!-- Result Card 1 -->
                 <div class="card result-card">
                     <div class="result-card-image">
-                        <!-- Placeholder image, you can add one to assets/img/ -->
-                        <img src="assets/img/ad-placeholder-1.png" alt="PowerPlayz Futsal">
+                        <img src="assets/img/ad-placeholder-1.png" alt="Futsal Court">
                     </div>
                     <div class="result-card-content">
                         <h3>PowerPlayz Futsal</h3>
-                        <p class="location-text">Kota Kinabalu, Sabah</p>
+                        <p class="location-text">Inanam, Kota Kinabalu</p>
                         <div class="availability-summary">
-                            <span class="avail-dot green"></span> Available
-                            <span class="avail-dot yellow"></span> Limited
-                            <span class="avail-dot red"></span> Full
+                            <span class="avail-dot green"></span> Available Today
                         </div>
-                        <p class="price-text">Starting from <strong>$50/hr</strong></p>
+                        <p class="price-text">Starts from <strong>$50.00</strong>/hour</p>
                     </div>
                     <div class="result-card-action">
-                        <!-- This will link to the (un-built) facility detail page -->
                         <a href="facility_detail.html" class="btn btn-primary">View Availability</a>
                     </div>
                 </div>
@@ -117,23 +115,22 @@
                 <!-- Result Card 2 -->
                 <div class="card result-card">
                     <div class="result-card-image">
-                        <img src="assets/img/ad-placeholder-2.png" alt="CourtKing Badminton">
+                        <img src="assets/img/ad-placeholder-2.png" alt="Badminton Court">
                     </div>
                     <div class="result-card-content">
-                        <h3>CourtKing Badminton</h3>
-                        <p class="location-text">Inanam, Sabah</p>
+                        <h3>CourtKing</h3>
+                        <p class="location-text">Penampang, Kota Kinabalu</p>
                         <div class="availability-summary">
-                            <span class="avail-dot yellow"></span> Limited
+                            <span class="avail-dot yellow"></span> Limited Slots
                         </div>
-                        <p class="price-text">Starting from <strong>$15/hr</strong></p>
+                        <p class="price-text">Starts from <strong>$15.00</strong>/hour</p>
                     </div>
                     <div class="result-card-action">
-                        <a href="#" class="btn btn-primary">View Availability</a>
+                        <a href="facility_detail.html" class="btn btn-primary">View Availability</a>
                     </div>
                 </div>
 
             </section>
-
         </div>
     </main>
 
@@ -143,7 +140,7 @@
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
-                <p>Your personal assistant for booking and matchmaking.</p>
+                <p>Your personal assistant.</p>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
@@ -178,6 +175,9 @@
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
+    <!-- Fixed script tag -->
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
+

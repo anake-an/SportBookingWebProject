@@ -1,176 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar - SportLink Organizer</title>
+    <title>Calendar Management - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
+    
+    <aside class="sidebar" id="organizer-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
 
-    <!-- Organizer Sidebar -->
-    <aside class="sidebar">
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
-            <!-- Set this as the active link -->
             <li class="active"><a href="organizer_calendar.html">Calendar</a></li>
             <li><a href="organizer_bookings.html">Bookings</a></li>
             <li><a href="organizer_ads.html">Ads & Events</a></li>
             <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
             <li><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Manage Availability & Pricing</h2>
-            <span>Click on a slot to set its price or mark it as unavailable.</span>
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Calendar Management</h2>
+            </div>
+            <span class="header-welcome-text">Click any slot to set price or close it.</span>
         </header>
 
-        <!-- Bulk Edit Tools -->
-        <div class="card" style="margin-bottom: 1.5rem;">
-            <h4>Bulk Edit Tools</h4>
-            <p style="margin: 0 0 1rem 0; font-size: 0.9em;">Apply a template to all slots for a specific day type.</p>
-            <button class="btn btn-secondary">Set Weekday Template (Mon-Fri)</button>
-            <button class="btn btn-secondary" style="margin-left: 10px;">Set Weekend Template (Sat-Sun)</button>
-        </div>
-
-        <!-- Interactive Calendar Editor -->
-        <div class="card calendar-container">
-            <div class="calendar-header" style="grid-template-columns: 80px repeat(7, 1fr);">
-                <div class="time-header">Time</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div style="background-color: #fcf8e3;">Sat</div>
-                <div style="background-color: #fcf8e3;">Sun</div>
-            </div>
-
-            <!-- This is a simplified grid. A real one would be 9AM to 12AM -->
-            <div class="calendar-body" id="organizer-calendar-body" style="grid-template-columns: 80px repeat(7, 1fr);">
-                <!-- 5:00 PM Row -->
-                <div class="time-label">5:00 PM</div>
-                <div class="time-slot available" data-day="Mon" data-time="5:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Tue" data-time="5:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Wed" data-time="5:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Thu" data-time="5:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Fri" data-time="5:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Sat" data-time="5:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-                <div class="time-slot available" data-day="Sun" data-time="5:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-
-                <!-- 6:00 PM Row -->
-                <div class="time-label">6:00 PM</div>
-                <div class="time-slot full" data-day="Mon" data-time="6:00 PM" data-price="0">
-                    <p>Booked</p>
-                </div>
-                <div class="time-slot available" data-day="Tue" data-time="6:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Wed" data-time="6:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot full" data-day="Thu" data-time="6:00 PM" data-price="0">
-                    <p>Booked</p>
-                </div>
-                <div class="time-slot available" data-day="Fri" data-time="6:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Sat" data-time="6:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-                <div class="time-slot available" data-day="Sun" data-time="6:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-
-                <!-- 7:00 PM Row -->
-                <div class="time-label">7:00 PM</div>
-                <div class="time-slot available" data-day="Mon" data-time="7:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Tue" data-time="7:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Wed" data-time="7:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot available" data-day="Thu" data-time="7:00 PM" data-price="50">
-                    <p>$50</p>
-                </div>
-                <div class="time-slot closed" data-day="Fri" data-time="7:00 PM" data-price="0">
-                    <p>Closed</p>
-                </div>
-                <div class="time-slot available" data-day="Sat" data-time="7:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-                <div class="time-slot available" data-day="Sun" data-time="7:00 PM" data-price="70">
-                    <p>$70</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Edit Slot Modal (Hidden by default) -->
-    <div id="edit-slot-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title">Edit Slot</h3>
-            <p id="modal-subtitle">Mon, 5:00 PM</p>
+        <div class="booking-filters" style="margin-bottom: 1.5rem;">
             <div class="filter-group">
-                <label for="slot-status">Status</label>
-                <select id="slot-status" class="form-input">
-                    <option value="available">Available</option>
-                    <option value="closed">Closed / Unavailable</option>
+                <label for="court-select">Select Court</label>
+                <select id="court-select" class="form-input" style="margin-bottom: 0;">
+                    <option>Court 1 (Futsal)</option>
+                    <option>Court 2 (Futsal)</option>
+                    <option>Badminton Court A</option>
                 </select>
             </div>
-            <div class="filter-group">
-                <label for="slot-price">Price ($)</label>
-                <input type="number" id="slot-price" class="form-input" placeholder="e.g., 50">
+            <button class="btn btn-secondary" id="apply-weekday-template">Apply Weekday Template</button>
+            <button class="btn btn-secondary" id="apply-weekend-template">Apply Weekend Template</button>
+        </div>
+        
+        <div class="week-navigator">
+            <button class="btn btn-secondary" id="prev-week-btn">←</button>
+            <h3 id="current-week-display">Oct 31 - Nov 4, 2025</h3>
+            <button class="btn btn-secondary" id="next-week-btn">→</button>
+        </div>
+
+        <div class="calendar-desktop-grid">
+            <div class="card calendar-container">
+                <div class="calendar-header">
+                    <div class="time-header">Time</div>
+                    <div><strong>Thu 31/10</strong></div>
+                    <div><strong>Fri 01/11</strong></div>
+                    <div><strong>Sat 02/11</strong></div>
+                    <div><strong>Sun 03/11</strong></div>
+                    <div><strong>Mon 04/11</strong></div>
+                </div>
+                <div class="calendar-body" id="organizer-calendar-body">
+                    <div class="time-label">5:00 PM</div>
+                    <div class="time-slot full" data-day="Thu 31/10" data-time="5:00 PM"><p>Booked</p></div>
+                    <div class="time-slot available" data-day="Fri 01/11" data-time="5:00 PM" data-price="50"><p>$50</p></div>
+                    <div class="time-slot available" data-day="Sat 02/11" data-time="5:00 PM" data-price="70"><p>$70</p></div>
+                    <div class="time-slot available" data-day="Sun 03/11" data-time="5:00 PM" data-price="70"><p>$70</p></div>
+                    <div class="time-slot closed" data-day="Mon 04/11" data-time="5:00 PM" data-price="0"><p>Closed</p></div>
+                    <div class="time-label">6:00 PM</div>
+                    <div class="time-slot full" data-day="Thu 31/10" data-time="6:00 PM"><p>Booked</p></div>
+                    <div class="time-slot available" data-day="Fri 01/11" data-time="6:00 PM" data-price="50"><p>$50</p></div>
+                    <div class="time-slot full" data-day="Sat 02/11" data-time="6:00 PM"><p>Booked</p></div>
+                    <div class="time-slot limited" data-day="Sun 03/11" data-time="6:00 PM" data-price="70"><p>$70</p></div>
+                    <div class="time-slot available" data-day="Mon 04/11" data-time="6:00 PM" data-price="50"><p>$50</p></div>
+                    <div class="time-label">7:00 PM</div>
+                    <div class="time-slot available" data-day="Thu 31/10" data-time="7:00 PM" data-price="50"><p>$50</p></div>
+                    <div class="time-slot limited" data-day="Fri 01/11" data-time="7:00 PM" data-price="50"><p>$50</p></div>
+                    <div class="time-slot full" data-day="Sat 02/11" data-time="7:00 PM"><p>Booked</p></div>
+                    <div class="time-slot full" data-day="Sun 03/11" data-time="7:00 PM"><p>Booked</p></div>
+                    <div class="time-slot available" data-day="Mon 04/11" data-time="7:00 PM" data-price="50"><p>$50</p></div>
+                </div>
             </div>
+        </div>
+
+
+        <div class="calendar-mobile-list" id="organizer-calendar-mobile">
+            <div class="day-accordion">
+                <button class="day-accordion-toggle">
+                    <strong>Thursday, Oct 31</strong>
+                    <span>(2 Booked, 1 Available)</span>
+                </button>
+                <div class="day-accordion-content">
+                    <div class="time-slot-row full"><span>5:00 PM</span> <strong>Booked</strong></div>
+                    <div class="time-slot-row full"><span>6:00 PM</span> <strong>Booked</strong></div>
+                    <div class="time-slot-row available" data-day="Thu 31/10" data-time="7:00 PM" data-price="50"><span>7:00 PM</span> <strong>$50</strong></div>
+                </div>
+            </div>
+            <div class="day-accordion">
+                <button class="day-accordion-toggle">
+                    <strong>Friday, Nov 01</strong>
+                    <span>(3 Available)</span>
+                </button>
+                <div class="day-accordion-content">
+                    <div class="time-slot-row available" data-day="Fri 01/11" data-time="5:00 PM" data-price="50"><span>5:00 PM</span> <strong>$50</strong></div>
+                    <div class="time-slot-row available" data-day="Fri 01/11" data-time="6:00 PM" data-price="50"><span>6:00 PM</span> <strong>$50</strong></div>
+                    <div class="time-slot-row limited" data-day="Fri 01/11" data-time="7:00 PM" data-price="50"><span>7:00 PM</span> <strong>$50 (Limited)</strong></div>
+                </div>
+            </div>
+            <div class="day-accordion">
+                <button class="day-accordion-toggle">
+                    <strong>Saturday, Nov 02</strong>
+                    <span>(1 Available, 2 Booked)</span>
+                </button>
+                <div class="day-accordion-content">
+                    <div class="time-slot-row available" data-day="Sat 02/11" data-time="5:00 PM" data-price="70"><span>5:00 PM</span> <strong>$70</strong></div>
+                    <div class="time-slot-row full"><span>6:00 PM</span> <strong>Booked</strong></div>
+                    <div class="time-slot-row full"><span>7:00 PM</span> <strong>Booked</strong></div>
+                </div>
+            </div>
+             <div class="day-accordion">
+                <button class="day-accordion-toggle">
+                    <strong>Sunday, Nov 03</strong>
+                    <span>(2 Available, 1 Booked)</span>
+                </button>
+                <div class="day-accordion-content">
+                    <div class="time-slot-row available" data-day="Sun 03/11" data-time="5:00 PM" data-price="70"><span>5:00 PM</span> <strong>$70</strong></div>
+                    <div class="time-slot-row limited" data-day="Sun 03/11" data-time="6:00 PM" data-price="70"><span>6:00 PM</span> <strong>$70 (Limited)</strong></div>
+                    <div class="time-slot-row full"><span>7:00 PM</span> <strong>Booked</strong></div>
+                </div>
+            </div>
+             <div class="day-accordion">
+                <button class="day-accordion-toggle">
+                    <strong>Monday, Nov 04</strong>
+                    <span>(2 Available, 1 Closed)</span>
+                </button>
+                <div class="day-accordion-content">
+                    <div class="time-slot-row closed" data-day="Mon 04/11" data-time="5:00 PM" data-price="0"><span>5:00 PM</span> <strong>Closed</strong></div>
+                    <div class="time-slot-row available" data-day="Mon 04/11" data-time="6:00 PM" data-price="50"><span>6:00 PM</span> <strong>$50</strong></div>
+                    <div class="time-slot-row available" data-day="Mon 04/11" data-time="7:00 PM" data-price="50"><span>7:00 PM</span> <strong>$50</strong></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="modal-overlay" id="edit-slot-modal">
+        <div class="modal-content">
+            <button class="btn-close" id="close-modal-btn" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 id="modal-title">Edit Slot</h3>
+            <p id="modal-subtitle">Day, Time</p>
+
+            <form class="login-form">
+                <div class="filter-group">
+                    <label for="slot-status">Status</label>
+                    <select id="slot-status" class="form-input">
+                        <option value="available">Available</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="slot-price">Price ($)</label>
+                    <input type="number" id="slot-price" class="form-input" value="50" min="0">
+                </div>
+            </form>
+
             <div class="modal-actions">
-                <button id="close-modal-btn" class="btn btn-secondary">Cancel</button>
-                <button id="save-slot-btn" class="btn btn-primary">Save Changes</button>
+                <button class="btn btn-secondary" id="cancel-modal-btn">Cancel</button>
+                <button class="btn btn-primary" id="save-slot-btn">Save Changes</button>
             </div>
         </div>
     </div>
-
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
-                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
-                        questions.</p>
+                    <p>Hi there! How can I help you today?</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -182,7 +217,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -193,7 +227,6 @@
         </button>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

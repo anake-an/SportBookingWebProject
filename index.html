@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportLink - Book Courts, Find Players, Connect</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="landing-page">
-
+    
     <nav class="navbar">
         <div class="logo">
             <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+        
         <div class="nav-links-landing">
-            <a href="#features">For Players</a>
+            <a href="#features">Features</a>
             <a href="#for-owners">For Owners</a>
         </div>
+        
         <div class="nav-auth">
             <button class="btn btn-secondary" onclick="window.location.href='login.html'">Login</button>
             <button class="btn btn-primary" onclick="window.location.href='register.html'">Register</button>
         </div>
+
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="#features">Features</a>
+            <a href="#for-owners">For Owners</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
     </nav>
 
-    <!-- NEW SLIDESHOW HERO SECTION -->
     <header class="hero-slideshow">
-        <!-- Slide 1: Welcome Message -->
         <div class="slide" style="background-image: url('assets/img/landing-hero.png');">
             <div class="hero-content">
                 <h1>Book, Play, Connect.</h1>
                 <p>Your one-stop platform to book sports facilities and find teammates for your next game.</p>
-                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Get
-                    Started</button>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Get Started</button>
             </div>
         </div>
-        <!-- Slide 2: Ad from Organizer -->
+
         <div class="slide" style="background-image: url('assets/img/ad-placeholder-1.png');">
             <div class="hero-content">
                 <h1>PowerPlayz Futsal</h1>
                 <p>Student Discount: 30% off all weekday bookings before 5 PM!</p>
-                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Book
-                    Now</button>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Book Now</button>
             </div>
         </div>
-        <!-- Slide 3: Another Ad -->
+
         <div class="slide" style="background-image: url('assets/img/ad-placeholder-2.png');">
             <div class="hero-content">
                 <h1>CourtKing Badminton</h1>
                 <p>New weekend tournament. Sign up your team today!</p>
-                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Learn
-                    More</button>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='register.html'">Learn More</button>
             </div>
         </div>
-        <!-- Slideshow Dots -->
+
         <div class="slideshow-dots">
             <span class="dot"></span>
             <span class="dot"></span>
@@ -63,10 +73,9 @@
 
     <section id="features" class="feature-section">
         <h2>Built for Players</h2>
-
-        <!-- FIXED 3-COLUMN GRID -->
+        
         <div class="feature-grid">
-
+            
             <div class="card feature-card">
                 <img src="assets/img/feature-booking.png" alt="Easy Court Booking" class="feature-img">
                 <div class="card-content">
@@ -74,7 +83,7 @@
                     <p>Search, filter, and book your favorite courts in real-time with our live calendar.</p>
                 </div>
             </div>
-
+            
             <div class="card feature-card">
                 <img src="assets/img/feature-matchmaking.png" alt="AI Matchmaking" class="feature-img">
                 <div class="card-content">
@@ -82,7 +91,7 @@
                     <p>Post a game or join one. Our AI helps you find players of a similar skill level.</p>
                 </div>
             </div>
-
+            
             <div class="card feature-card">
                 <img src="assets/img/feature-wallet.png" alt="Group Wallet System" class="feature-img">
                 <div class="card-content">
@@ -90,14 +99,14 @@
                     <p>Split payments easily. Our system handles the costs and ensures everyone pays on time.</p>
                 </div>
             </div>
+
         </div>
     </section>
 
     <section id="for-owners" class="for-owners-section">
         <div class="for-owners-content">
             <h2>Are you a Facility Owner?</h2>
-            <p>Stop worrying about empty slots and manual bookings. Join SportLink to maximize your revenue, manage your
-                schedule, and reach thousands of new players.</p>
+            <p>Stop worrying about empty slots and manual bookings. Join SportLink to maximize your revenue, manage your schedule, and reach thousands of new players.</p>
             <ul>
                 <li>✓ AI Dynamic Pricing Suggestions</li>
                 <li>✓ Powerful Booking Dashboard</li>
@@ -107,20 +116,23 @@
         </div>
     </section>
 
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
-                <p>Your personal assistant for booking and matchmaking.</p>
+                <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
             </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
@@ -133,7 +145,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -144,13 +155,38 @@
         </button>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    <footer class="footer-enhanced">
+        <div class="footer-grid">
+            <div class="footer-column about">
+                <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img footer-logo" style="height: 65px;">
+                <p>Book, Play, Connect. Your one-stop platform for sports facilities and matchmaking.</p>
+                <p><strong>HQ Location:</strong><br>
+                123 SportLink Tower, <br>
+                Kota Kinabalu, Sabah</p>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="about.html#about-us">About Us</a>
+                <a href="about.html#careers">Careers</a>
+                <a href="about.html#press">Press</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="support.html#help-center">Help Center</a>
+                <a href="support.html#contact-us">Contact Us</a>
+                <a href="support.html#faq">FAQ</a>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <a href="legal.html#terms">Terms of Service</a>
+                <a href="legal.html#privacy">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SportLink. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- Script tag is at the bottom -->
-    <script src="js/main.js"></script>
-
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

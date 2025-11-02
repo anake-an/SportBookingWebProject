@@ -12,13 +12,16 @@
     <!-- User Dashboard Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+
+        <!-- Desktop Navigation Links -->
         <div class="nav-links">
             <a href="matchmaking.html" class="active-link">Find a Match</a>
             <a href="booking.html">Book a Court</a>
-            <a href="post_match.html">Post a Match</a>
         </div>
+
+        <!-- Desktop Icons -->
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
             <a href="user_profile.html">
@@ -32,124 +35,167 @@
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <!-- Hamburger Menu Button (Visible on mobile) -->
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
-    <!-- Main Chat Layout -->
+    <!-- Main Content -->
     <main class="dashboard-content">
+        <div class="facility-header">
+            <a href="matchmaking.html" class="back-link">← Back to Matches</a>
+            <h1>🏀 Basketball 5v5 (Intermediate)</h1>
+        </div>
+
+        <!-- Chat Layout -->
         <div class="chat-layout">
-
-            <!-- Sidebar: Match Details -->
+            <!-- Chat Sidebar -->
             <aside class="chat-sidebar card">
-                <h3>Match Details</h3>
-                <p class="match-location" style="margin-bottom: 1.5rem;">Host: <strong>Alex M.</strong></p>
-
-                <h4>⚽ Futsal at PowerPlayz</h4>
-                <p class="match-time" style="color: var(--text-color-light); font-weight: 500;">Sat, Nov 2 @ 8:00 PM</p>
-
-                <hr>
-
-                <h4>Players (8/10)</h4>
-                <div class="player-pills" style="margin-bottom: 1rem;">
-                    <span class="avatar-pill avatar-pill-green" title="Alex (Host)">A</span>
-                    <span class="avatar-pill avatar-pill-yellow" title="Ben">B</span>
-                    <span class="avatar-pill" title="You">U</span>
-                    <span class="avatar-pill" title="Maria">M</span>
-                    <span class="avatar-pill" title="Sarah">S</span>
-                    <span class="avatar-pill" title="Ken">K</span>
-                    <span class="avatar-pill" title="Ravi">R</span>
-                    <span class="avatar-pill avatar-pill-plus" title="David">+1</span>
+                <h4>Match Details</h4>
+                <div class="filter-group">
+                    <label>Location</label>
+                    <p class="form-input" style="background: #f9f9f9;">City Park Court, Kota Kinabalu</p>
                 </div>
+                <div class="filter-group">
+                    <label>Time</label>
+                    <p class="form-input" style="background: #f9f9f9;">Sat, Nov 2 @ 8:00 PM</p>
+                </div>
+                <div class="filter-group">
+                    <label>Host</label>
+                    <p class="form-input" style="background: #f9f9f9;">Alex M.</p>
+                </div>
+                
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
 
-                <hr>
-
-                <h4>Group Wallet</h4>
-                <p>Booking will be confirmed once all 10 players have paid their share.</p>
-                <p class="players-needed">Payment Status: 7 / 10 Paid</p>
-                <div class="player-progress" style="margin-top: 0.5rem;">
+                <h4>Group Wallet & Booking</h4>
+                <p><strong>Status:</strong> <span style="color: var(--warning-color); font-weight: 600;">Pending Payment</span></p>
+                <p>All players must pay 12 hours before the match.</p>
+                
+                <p class="players-needed" style="margin-top: 1.5rem;">Paid: 7 / 10 Players</p>
+                <div class="player-progress">
                     <div class="player-progress-bar" style="width: 70%;"></div>
                 </div>
 
-                <!-- This button is for the HOST only -->
-                <button class="btn btn-primary btn-full-width"
-                    style="margin-top: 1.5rem; background-color: var(--success-color);">
-                    Confirm & Book Facility
-                </button>
-                <!-- This button is for normal players -->
-                <button class="btn btn-primary btn-full-width" style="margin-top: 1rem;">
-                    Pay Your Share ($10.00)
-                </button>
+                <ul class="player-payment-list">
+                    <li><span class="avatar-pill avatar-pill-green">A</span> Alex M. (Host) - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">B</span> Ben S. - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">S</span> Sarah L. - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">M</span> Maria K. - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">R</span> Ron W. - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">K</span> Kevin H. - Paid</li>
+                    <li><span class="avatar-pill avatar-pill-green">U</span> You - Paid</li>
+                    <li><span class="avatar-pill" style="background: #eee; color: #777;">?</span> (Waiting)</li>
+                    <li><span class="avatar-pill" style="background: #eee; color: #777;">?</span> (Waiting)</li>
+                    <li><span class="avatar-pill" style="background: #eee; color: #777;">?</span> (Waiting)</li>
+                </ul>
+
+                <button class="btn btn-primary btn-full-width">Pay Your Share ($8.00)</button>
+                <button class="btn btn-secondary btn-full-width" style="margin-top: 10px;">Leave Match</button>
+
             </aside>
 
-            <!-- Main Content: Chat Area -->
-            <section class="chat-main card">
+            <!-- Main Chat Area -->
+            <div class="chat-main card">
+                <!-- Chat Messages -->
                 <div class="chat-messages">
-                    <!-- System Message -->
                     <div class="chat-message system">
-                        <strong>Alex (Host)</strong> has suggested <strong>PowerPlayz Futsal</strong> at <strong>8:00
-                            PM</strong>.
+                        <p>Alex M. created the match. Booking is not confirmed yet.</p>
                     </div>
 
-                    <!-- Other User's Message -->
                     <div class="chat-message">
-                        <span class="avatar-pill avatar-pill-yellow" title="Ben">B</span>
+                        <span class="avatar-pill avatar-pill-green">A</span>
                         <div class="message-content">
-                            <strong class="message-sender">Ben</strong>
-                            <p>8 PM works for me! Is everyone okay with PowerPlayz?</p>
+                            <span class="message-sender">Alex M. (Host)</span>
+                            <p>Hey everyone, welcome! Is everyone good with City Park Court at 8 PM?</p>
                         </div>
                     </div>
 
-                    <!-- Your Message -->
+                    <div class="chat-message">
+                        <span class="avatar-pill avatar-pill-yellow">B</span>
+                        <div class="message-content">
+                            <span class="message-sender">Ben S.</span>
+                            <p>Sounds good to me! Just paid my share.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message system">
+                        <p>Ben S. has paid their share.</p>
+                    </div>
+
                     <div class="chat-message self">
+                        <span class="avatar-pill">U</span>
                         <div class="message-content">
-                            <p>Sounds good to me. Just paid my share.</p>
+                            <span class="message-sender">You</span>
+                            <p>Awesome, count me in. I've paid as well.</p>
                         </div>
                     </div>
 
-                    <!-- System Payment Message -->
                     <div class="chat-message system">
-                        <strong>You</strong> have paid your <strong>$10.00</strong> share.
+                        <p>You have paid your share.</p>
                     </div>
-
-                    <!-- Other User's Message -->
-                    <div class="chat-message">
-                        <span class="avatar-pill" title="Sarah">S</span>
-                        <div class="message-content">
-                            <strong class="message-sender">Sarah</strong>
-                            <p>I might be 15 mins late, is that okay?</p>
-                        </div>
-                    </div>
-
-                    <!-- Other User's Message -->
-                    <div class="chat-message">
-                        <span class="avatar-pill avatar-pill-green" title="Alex (Host)">A</span>
-                        <div class="message-content">
-                            <strong class="message-sender">Alex (Host)</strong>
-                            <p>@Sarah No worries, see you then!</p>
-                            <p>@All - We're just waiting on 3 more payments. Please pay up before 12 hours to go!</p>
-                        </div>
-                    </div>
-
-                    <!-- System Payment Message -->
-                    <div class="chat-message system">
-                        <strong>Ben</strong> has paid his <strong>$10.00</strong> share.
-                    </div>
-
                 </div>
+
+                <!-- Chat Input -->
                 <div class="chat-input-area">
                     <input type="text" class="form-input" placeholder="Type your message...">
-                    <button class="btn btn-primary">Send</button>
+                    <button class="btn btn-primary" title="Send">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
                 </div>
-            </section>
-
+            </div>
         </div>
+
     </main>
 
-    <!-- AI Chatbot -->
+    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <button id="ai-chat-toggle" class="ai-chat-bubble">
-            <!-- Icon for the chatbot -->
+        <!-- The Popup Window -->
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h3>SportLink AI</h3>
+                <p>Your personal assistant.</p>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-chat-message ai">
+                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
+                        questions.</p>
+                </div>
+                <!-- Messages will be added here by JS -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="form-input" placeholder="Ask me anything...">
+                <button class="btn btn-primary" title="Send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- The Toggle Bubble -->
+        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -157,29 +203,15 @@
                 <path d="M10 14a2 2 0 1 0 2 2"></path>
             </svg>
         </button>
-        <div id="ai-chat-window" class="ai-chat-window">
-            <div class="ai-chat-header">
-                <h3>SportLink AI Assistant</h3>
-                <p>I can help you find a match, book a court, or answer questions.</p>
-            </div>
-            <div class="ai-chat-body">
-                <div class="ai-chat-message ai">
-                    <p>Hi! How can I help you today?</p>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="form-input" placeholder="Ask me anything...">
-                <button class="btn btn-primary">Send</button>
-            </div>
-        </div>
     </div>
 
     <footer class="footer">
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
-    <!-- Load the main.js script as a module -->
+    <!-- Fixed script tag -->
     <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
+

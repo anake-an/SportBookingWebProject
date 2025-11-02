@@ -1,153 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet - SportLink Organizer</title>
+    <title>Wallet & Payouts - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
+    
+    <aside class="sidebar" id="organizer-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
 
-    <!-- Organizer Sidebar -->
-    <aside class="sidebar">
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
             <li><a href="organizer_calendar.html">Calendar</a></li>
             <li><a href="organizer_bookings.html">Bookings</a></li>
             <li><a href="organizer_ads.html">Ads & Events</a></li>
-            <!-- Set this as the active link -->
             <li class="active"><a href="organizer_wallet.html">Wallet & Payouts</a></li>
             <li><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Wallet & Payouts</h2>
-            <span>View your revenue and manage withdrawals.</span>
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Wallet & Payouts</h2>
+            </div>
+            <span class="header-welcome-text">View your earnings and manage payouts</span>
         </header>
 
-        <!-- Wallet & Payout Section -->
         <div class="dashboard-main-split">
-            <!-- Left Side: Balance & Actions -->
+            
             <section>
-                <!-- Current Balance -->
                 <div class="card kpi-card" style="border-bottom-color: var(--success-color);">
                     <h4>Available for Payout</h4>
                     <p>$1,350.00</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Withdraw to Bank</button>
                 </div>
 
-                <!-- Payout Details -->
-                <div class="card" style="margin-top: 1.5rem;">
-                    <h3>Withdraw Funds</h3>
-                    <p style="color: var(--text-color-light); font-size: 0.9em; margin-bottom: 1.5rem;">Payouts are
-                        processed within 3-5 business days.</p>
-
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Bank Account Details</h3>
                     <div class="payout-info">
-                        <strong>Linked Bank Account:</strong>
-                        <p>Maybank - **** **** **** 1234</p>
+                        <strong>Bank Name</strong>
+                        <p>Maybank</p>
                     </div>
-
-                    <button class="btn btn-primary btn-large btn-full-width">Withdraw All Funds ($1,350.00)</button>
-                    <a href="#" style="display: block; text-align: center; margin-top: 1rem; font-size: 0.9em;">Manage
-                        Payout Methods</a>
+                    <div class="payout-info">
+                        <strong>Account Number</strong>
+                        <p>**** **** **** 1234</p>
+                    </div>
+                    <button class="btn btn-secondary">Edit Bank Details</button>
                 </div>
             </section>
 
-            <!-- Right Side: Recent Payouts (simplified) -->
-            <section class="ai-assistant">
-                <h2>Recent Payouts</h2>
+            <section>
                 <div class="card">
-                    <div class="payout-list-item">
-                        <p>$500.00 <span class="status-pill paid" style="margin-left: 10px;">Paid</span></p>
-                        <span class="payout-date">Oct 28, 2025</span>
+                    <div class="organizer-header" style="margin-bottom: 1.5rem;">
+                        <h3>Transaction History</h3>
+                        <button class="btn btn-secondary btn-small">Export CSV</button>
                     </div>
-                    <div class="payout-list-item">
-                        <p>$750.00 <span class="status-pill paid" style="margin-left: 10px;">Paid</span></p>
-                        <span class="payout-date">Oct 21, 2025</span>
+                    
+                    <div style="overflow-x: auto;">
+                        <table id="transaction-table"> <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 1, 2025</td>
+                                    <td><p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $500.00</p></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small btn-details"
+                                            data-desc="Payout to Maybank"
+                                            data-date="Nov 1, 2025, 9:05 AM" data-type="Payout"
+                                            data-amount="- $500.00">
+                                            Details
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 31, 2025</td>
+                                    <td><p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00</p></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small btn-details"
+                                            data-desc="Booking: Alex M. (Court 1)"
+                                            data-date="Oct 31, 2025, 7:02 PM" data-type="Booking Revenue"
+                                            data-amount="+ $50.00">
+                                            Details
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 31, 2025</td>
+                                    <td><p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00</p></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small btn-details"
+                                            data-desc="Booking: Maria K. (Group)"
+                                            data-date="Oct 31, 2025, 6:01 PM" data-type="Booking Revenue"
+                                            data-amount="+ $50.00">
+                                            Details
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 30, 2025</td>
+                                    <td><p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $70.00</p></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-small btn-details"
+                                            data-desc="Ad Purchase: Student Discount (7 Days)"
+                                            data-date="Oct 30, 2025, 10:15 AM" data-type="Ad Purchase"
+                                            data-amount="- $70.00">
+                                            Details
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="payout-list-item">
-                        <p>$450.00 <span class="status-pill pending" style="margin-left: 10px;">Processing</span></p>
-                        <span class="payout-date">Oct 30, 2025</span>
-                    </div>
+
                 </div>
             </section>
-        </div>
-
-        <!-- Transaction History -->
-        <div class="card" style="margin-top: 1.5rem;">
-            <div class="organizer-header" style="margin-bottom: 1.5rem;">
-                <h3>Transaction History</h3>
-                <button class="btn btn-secondary">Export as .CSV</button>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Details</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Oct 30, 2025</td>
-                        <td><span class="status-pill pending">Payout</span></td>
-                        <td>Withdrawal to Maybank (**** 1234)</td>
-                        <td style="color: var(--danger-color); font-weight: 600;">-$450.00</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 29, 2025</td>
-                        <td><span class="status-pill paid">Booking</span></td>
-                        <td>Booking #1045 - Maria K. (Group)</td>
-                        <td style="color: var(--success-color); font-weight: 600;">+$70.00</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 29, 2025</td>
-                        <td><span class="status-pill paid">Booking</span></td>
-                        <td>Booking #1044 - Alex M.</td>
-                        <td style="color: var(--success-color); font-weight: 600;">+$70.00</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 28, 2025</td>
-                        <td><span class="status-pill paid">Payout</span></td>
-                        <td>Withdrawal to Maybank (**** 1234)</td>
-                        <td style="color: var(--danger-color); font-weight: 600;">-$500.00</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 27, 2025</td>
-                        <td><span class="status-pill cancelled">Refund</span></td>
-                        <td>Booking #1021 - David C. (Cancelled)</td>
-                        <td style="color: var(--danger-color); font-weight: 600;">-$15.00</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </main>
 
-    <!-- AI Chatbot Widget -->
+    <div class="modal-overlay" id="transaction-detail-modal">
+        <div class="modal-content">
+            <button class="btn-close" id="close-txn-modal-btn" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3>Transaction Details</h3>
+            
+            <div class="booking-detail-list" style="margin-top: 1.5rem;">
+                <div class="booking-detail-item">
+                    <span>Description:</span>
+                    <strong id="modal-txn-desc"></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Date & Time:</span>
+                    <strong id="modal-txn-date"></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Type:</span>
+                    <strong id="modal-txn-type"></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Amount:</span>
+                    <strong id="modal-txn-amount"></strong>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-txn-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -159,7 +204,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -170,7 +214,6 @@
         </button>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

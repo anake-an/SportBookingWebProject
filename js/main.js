@@ -1,32 +1,41 @@
-// Wait for the entire page to be fully loaded
+/* ---
+   SportLink main.js (FINAL v12 - Calendar Fix)
+   Handles all site-wide JavaScript.
+--- */
+
+// Main function to run when the page is loaded
 document.addEventListener("DOMContentLoaded", function () {
 
-    // --- 1. SLIDESHOW CODE (for index.html) ---
-    const slideshow = document.querySelector(".hero-slideshow");
+    // --- 1. AUTHENTICATION LOGIC (Placeholder) ---
+    const signOutBtns = document.querySelectorAll('#sign-out-btn, #sign-out-btn-mobile, #sign-out-btn-organizer');
+    const handleSignOut = (e) => {
+        e.preventDefault();
+        console.log("Signing out...");
+        window.location.href = 'login.html';
+    };
+    signOutBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', handleSignOut);
+    });
+    
 
-    // Only run this code if the slideshow element exists on the page
+    // --- 2. SLIDESHOW CODE (for index.html) ---
+    const slideshow = document.querySelector(".hero-slideshow");
     if (slideshow) {
         const slides = document.getElementsByClassName("slide");
         const dots = document.getElementsByClassName("dot");
         let slideIndex = 0;
-        let slideTimer; // To hold the timer
+        let slideTimer; 
 
         function showSlide(n) {
-            // Hide all slides
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.opacity = "0";
             }
-            // Remove active from all dots
             for (let i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-
-            // Handle index looping
             if (n > slides.length) { slideIndex = 1; }
             else if (n < 1) { slideIndex = slides.length; }
             else { slideIndex = n; }
-
-            // Display the correct slide and dot
             if (slides[slideIndex - 1]) {
                 slides[slideIndex - 1].style.opacity = "1";
             }
@@ -34,47 +43,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 dots[slideIndex - 1].className += " active";
             }
         }
-
-        // Auto-advance function
         function autoShowSlides() {
             slideIndex++;
             showSlide(slideIndex);
-            slideTimer = setTimeout(autoShowSlides, 5000); // Change slide every 5 seconds
+            slideTimer = setTimeout(autoShowSlides, 5000); 
         }
-
-        // Add click events to dots
         for (let i = 0; i < dots.length; i++) {
             dots[i].addEventListener("click", function () {
-                clearTimeout(slideTimer); // Stop the auto-timer
-                showSlide(i + 1); // Show the clicked slide
+                clearTimeout(slideTimer); 
+                showSlide(i + 1); 
             });
         }
-
-        // Show the first slide and start the timer
         showSlide(1);
         slideTimer = setTimeout(autoShowSlides, 5000);
     }
 
 
-    // --- 2. FACILITY CALENDAR (for facility_detail.html) ---
-    const calendar = document.querySelector(".calendar-body");
-
-    // Only run this code if the calendar element exists on the page
-    if (calendar) {
+    // --- 3. FACILITY CALENDAR (for facility_detail.html) ---
+    // This section is now MODIFIED to work with the new court selector
+    const userCalendarBody = document.getElementById("user-calendar-body");
+    if (userCalendarBody) {
         const summarySlot = document.getElementById("slot-details");
         const priceDetails = document.getElementById("price-details");
         const totalPriceEl = document.getElementById("total-price");
         const bookNowBtn = document.getElementById("book-now-btn");
         let selectedSlot = null;
 
-        calendar.addEventListener("click", function (e) {
+        // Event delegation for dynamically added slots
+        userCalendarBody.addEventListener("click", function (e) {
             const targetSlot = e.target.closest(".time-slot");
-            if (!targetSlot || targetSlot.classList.contains("full")) {
-                return;
-            }
-            if (selectedSlot) {
-                selectedSlot.classList.remove("selected");
-            }
+            if (!targetSlot || targetSlot.classList.contains("full") || targetSlot.classList.contains("closed")) return;
+            
+            if (selectedSlot) selectedSlot.classList.remove("selected");
+            
             if (selectedSlot === targetSlot) {
                 selectedSlot = null;
                 resetSummary();
@@ -95,23 +96,92 @@ document.addEventListener("DOMContentLoaded", function () {
             priceDetails.style.display = "flex";
             bookNowBtn.disabled = false;
         }
-
+        
+        // This function is now also called by the new court selector
         function resetSummary() {
+            if (selectedSlot) selectedSlot.classList.remove("selected");
+            selectedSlot = null;
             summarySlot.textContent = "Please select an available time slot from the calendar.";
             summarySlot.classList.add("placeholder-text");
             priceDetails.style.display = "none";
             bookNowBtn.disabled = true;
         }
+
+        // --- NEW SECTION 14: FACILITY COURT SELECTOR ---
+        const courtSelect = document.getElementById("facility-court-select");
+        if (courtSelect) {
+            // Simulated data for different courts
+            const courtData = {
+                "court1": [ // Default: 5pm-Full, 6pm-Full, 7pm-Available
+                    { time: "5:00 PM", status: "full", price: 50 },
+                    { time: "6:00 PM", status: "full", price: 50 },
+                    { time: "7:00 PM", status: "available", price: 50 }
+                ],
+                "court2": [ // All available
+                    { time: "5:00 PM", status: "available", price: 50 },
+                    { time: "6:00 PM", status: "available", price: 50 },
+                    { time: "7:00 PM", status: "available", price: 50 }
+                ],
+                "badminton": [ // All closed
+                    { time: "5:00 PM", status: "closed", price: 0 },
+                    { time: "6:00 PM", status: "closed", price: 0 },
+                    { time: "7:00 PM", status: "closed", price: 0 }
+                ]
+            };
+            const days = ["Thu 31/10", "Fri 01/11", "Sat 02/11", "Sun 03/11", "Mon 04/11"];
+            const prices = { "Thu 31/10": 50, "Fri 01/11": 50, "Sat 02/11": 70, "Sun 03/11": 70, "Mon 04/11": 50 };
+
+            const generateCalendarHTML = (courtKey) => {
+                let html = "";
+                const data = courtData[courtKey] || courtData["court1"];
+
+                data.forEach(slot => {
+                    html += `<div class="time-label">${slot.time}</div>`;
+                    days.forEach(day => {
+                        // Use court-specific status, but day-specific price
+                        const price = prices[day];
+                        html += `
+                            <div class="time-slot ${slot.status}" data-day="${day}" data-time="${slot.time}" data-price="${price}">
+                                <p>${slot.status === 'closed' ? 'Closed' : '$' + price}</p>
+                            </div>
+                        `;
+                    });
+                });
+                userCalendarBody.innerHTML = html;
+                resetSummary(); // Reset selection when calendar changes
+            };
+
+            // Add listener to the dropdown
+            courtSelect.addEventListener("change", (e) => {
+                generateCalendarHTML(e.target.value);
+            });
+
+            // Initial load (to match the hardcoded HTML)
+            generateCalendarHTML('court1');
+        }
     }
 
 
-    // --- 3. TAB SWITCHING (for facility_detail.html) ---
-    const tabContainer = document.querySelector(".tabs");
-
-    // Only run this code if the tabs element exists on the page
-    if (tabContainer) {
+    // --- 4. TAB SWITCHING (for facility_detail.html, user_profile.html, etc.) ---
+    const tabContainers = document.querySelectorAll(".tabs");
+    tabContainers.forEach(tabContainer => {
         const tabLinks = tabContainer.querySelectorAll(".tab-link");
-        const tabContents = document.querySelectorAll(".tab-content");
+        let tabContentWrapper = tabContainer.nextElementSibling;
+        while (tabContentWrapper && !tabContentWrapper.querySelector(".tab-content")) {
+            tabContentWrapper = tabContentWrapper.nextElementSibling;
+        }
+        if (!tabContentWrapper) return; 
+        const tabContents = tabContentWrapper.querySelectorAll(".tab-content");
+        
+        const activeTab = tabContainer.querySelector(".tab-link.active");
+        if (activeTab) {
+            const activeTabId = activeTab.dataset.tab;
+            const activeContent = tabContentWrapper.querySelector(`#${activeTabId}`);
+            if (activeContent) activeContent.classList.add("active");
+        } else {
+            if(tabLinks[0]) tabLinks[0].classList.add("active");
+            if(tabContents[0]) tabContents[0].classList.add("active");
+        }
 
         tabContainer.addEventListener("click", function (e) {
             const clickedTab = e.target.closest(".tab-link");
@@ -121,45 +191,39 @@ document.addEventListener("DOMContentLoaded", function () {
             tabContents.forEach(content => content.classList.remove("active"));
 
             clickedTab.classList.add("active");
-
             const tabId = clickedTab.dataset.tab;
-            const correspondingContent = document.getElementById(tabId);
+            const correspondingContent = tabContentWrapper.querySelector(`#${tabId}`);
             if (correspondingContent) {
                 correspondingContent.classList.add("active");
             }
         });
-    }
+    });
 
-    // ---
-    // NEW CODE FOR ORGANIZER CALENDAR
-    // Add this inside the DOMContentLoaded listener in js/main.js
-    // ---
 
-    const organizerCalendar = document.getElementById("organizer-calendar-body");
+    // --- 5. ORGANIZER CALENDAR MODAL (for organizer_calendar.html) ---
+    const organizerCalendarBody = document.getElementById("organizer-calendar-body");
+    const organizerCalendarMobile = document.getElementById("organizer-calendar-mobile");
     const editModal = document.getElementById("edit-slot-modal");
 
-    // Check if we are on the organizer calendar page
-    if (organizerCalendar && editModal) {
+    if (editModal && (organizerCalendarBody || organizerCalendarMobile)) {
+        
+        // Modal elements
         const closeModalBtn = document.getElementById("close-modal-btn");
+        const cancelModalBtn = document.getElementById("cancel-modal-btn"); // Added this
         const saveSlotBtn = document.getElementById("save-slot-btn");
         const modalTitle = document.getElementById("modal-title");
         const modalSubtitle = document.getElementById("modal-subtitle");
         const slotStatusInput = document.getElementById("slot-status");
         const slotPriceInput = document.getElementById("slot-price");
-
         let currentEditingSlot = null;
 
-        // Listen for clicks on the calendar grid
-        organizerCalendar.addEventListener("click", function (e) {
-            const targetSlot = e.target.closest(".time-slot");
-
-            // Ignore clicks on "Booked" slots
-            if (!targetSlot || targetSlot.classList.contains("full")) {
-                return;
-            }
-
+        // Function to OPEN the modal
+        const openEditModal = (targetSlot) => {
+            // Check if the slot is valid (not booked/full)
+            if (!targetSlot || targetSlot.classList.contains("full")) return;
+            
             currentEditingSlot = targetSlot; // Store the slot being edited
-
+            
             // Get data from the clicked slot
             const day = targetSlot.dataset.day;
             const time = targetSlot.dataset.time;
@@ -170,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modalTitle.textContent = `Edit Slot`;
             modalSubtitle.textContent = `${day}, ${time}`;
             slotPriceInput.value = price;
-
+            
             if (isClosed) {
                 slotStatusInput.value = "closed";
                 slotPriceInput.disabled = true;
@@ -178,162 +242,170 @@ document.addEventListener("DOMContentLoaded", function () {
                 slotStatusInput.value = "available";
                 slotPriceInput.disabled = false;
             }
-
+            
             // Show the modal
             editModal.classList.add("active");
-        });
+        };
 
-        // Toggle price input based on status
-        slotStatusInput.addEventListener("change", function () {
-            if (slotStatusInput.value === "closed") {
-                slotPriceInput.disabled = true;
-                slotPriceInput.value = 0;
-            } else {
-                slotPriceInput.disabled = false;
-            }
-        });
-
-        // Close modal button
-        closeModalBtn.addEventListener("click", function () {
+        // Function to CLOSE the modal
+        const closeEditModal = () => {
             editModal.classList.remove("active");
             currentEditingSlot = null;
+        };
+
+        // --- Listen for clicks on the DESKTOP grid ---
+        if (organizerCalendarBody) {
+            organizerCalendarBody.addEventListener("click", (e) => {
+                const targetSlot = e.target.closest(".time-slot");
+                openEditModal(targetSlot);
+            });
+        }
+
+        // --- Listen for clicks on the NEW MOBILE list ---
+        if (organizerCalendarMobile) {
+            organizerCalendarMobile.addEventListener("click", (e) => {
+                // Check if we clicked a slot to edit
+                const targetRow = e.target.closest(".time-slot-row");
+                if (targetRow) {
+                    openEditModal(targetRow);
+                }
+
+                // Handle accordion toggle
+                const toggleBtn = e.target.closest(".day-accordion-toggle");
+                if (toggleBtn) {
+                    toggleBtn.nextElementSibling.classList.toggle("active");
+                }
+            });
+        }
+
+        // Status change logic
+        slotStatusInput.addEventListener("change", function () {
+            slotPriceInput.disabled = (this.value === "closed");
+            if (this.value === "closed") slotPriceInput.value = 0;
         });
 
-        // Save changes button
+        // Button listeners for closing the modal
+        closeModalBtn.addEventListener("click", closeEditModal);
+        if(cancelModalBtn) cancelModalBtn.addEventListener("click", closeEditModal); 
+
+        // Save button listener
         saveSlotBtn.addEventListener("click", function () {
             if (!currentEditingSlot) return;
-
+            
             const newStatus = slotStatusInput.value;
             const newPrice = slotPriceInput.value;
-            const slotP = currentEditingSlot.querySelector("p");
 
-            // Update the slot's data attributes (for next time)
+            // Update data attributes
             currentEditingSlot.dataset.price = newPrice;
+            currentEditingSlot.classList.remove("available", "closed", "limited");
 
-            // Update the slot's appearance
-            currentEditingSlot.classList.remove("available", "closed");
-
-            if (newStatus === "closed") {
-                currentEditingSlot.classList.add("closed");
-                slotP.textContent = "Closed";
-            } else {
-                currentEditingSlot.classList.add("available");
-                slotP.textContent = `$${newPrice}`;
+            // --- Update UI ---
+            // Check if it's the desktop grid or mobile list
+            if (currentEditingSlot.classList.contains("time-slot")) {
+                // 1. Update Desktop Grid
+                const slotP = currentEditingSlot.querySelector("p");
+                if (newStatus === "closed") {
+                    currentEditingSlot.classList.add("closed");
+                    slotP.textContent = "Closed";
+                } else {
+                    currentEditingSlot.classList.add("available");
+                    slotP.textContent = `$${newPrice}`;
+                }
+            } else if (currentEditingSlot.classList.contains("time-slot-row")) {
+                // 2. Update Mobile List
+                const slotStrong = currentEditingSlot.querySelector("strong");
+                 if (newStatus === "closed") {
+                    currentEditingSlot.classList.add("closed");
+                    slotStrong.textContent = "Closed";
+                } else {
+                    currentEditingSlot.classList.add("available");
+                    slotStrong.textContent = `$${newPrice}`;
+                }
             }
-
-            // Close the modal
-            editModal.classList.remove("active");
-            currentEditingSlot = null;
+            
+            closeEditModal();
         });
     }
 
-    // ---
-    // NEW CODE FOR AD PRICE CALCULATOR
-    // Add this inside the DOMContentLoaded listener in js/main.js
-    // ---
 
-    // Find all the elements for the ad calculator
+    // --- 6. AD PRICE CALCULATOR (for organizer_ads.html) ---
     const adTypeInput = document.getElementById("ad-type");
     const adDurationInput = document.getElementById("ad-duration");
-    const summaryBasePrice = document.getElementById("summary-base-price");
-    const summaryDuration = document.getElementById("summary-duration");
-    const summaryTotalCost = document.getElementById("summary-total-cost");
-    const submitAdBtn = document.getElementById("submit-ad-btn");
-
-    // Check if we are on the ads page
+    
     if (adTypeInput && adDurationInput) {
-
-        // Define our prices (in dollars)
-        const adPrices = {
-            "ad": 10,     // $10 / day for a Homepage Ad
-            "event": 5    // $5 / day for an Event Promotion
-        };
+        const summaryBasePrice = document.getElementById("summary-base-price");
+        const summaryDuration = document.getElementById("summary-duration");
+        const summaryTotalCost = document.getElementById("summary-total-cost");
+        const submitAdBtn = document.getElementById("submit-ad-btn");
+        const adPrices = { "ad": 10, "event": 5 };
 
         function calculateAdPrice() {
             const adType = adTypeInput.value;
             const duration = parseInt(adDurationInput.value, 10);
             const basePrice = adPrices[adType];
+            let totalCost = (duration > 0) ? (basePrice * duration) : 0;
 
-            let totalCost = 0;
-
-            if (duration > 0) {
-                totalCost = basePrice * duration;
-            }
-
-            // Update the summary box
             summaryBasePrice.textContent = `$${basePrice.toFixed(2)} / day`;
             summaryDuration.textContent = `${duration} days`;
             summaryTotalCost.textContent = `$${totalCost.toFixed(2)}`;
-
-            // Enable or disable the button
-            if (totalCost > 0) {
-                submitAdBtn.disabled = false;
-                submitAdBtn.textContent = `Pay & Submit ($${totalCost.toFixed(2)})`;
-            } else {
-                submitAdBtn.disabled = true;
-                submitAdBtn.textContent = "Please select a duration";
-            }
+            submitAdBtn.disabled = (totalCost <= 0);
+            submitAdBtn.textContent = (totalCost > 0) ? `Pay & Submit ($${totalCost.toFixed(2)})` : "Please select a duration";
         }
-
-        // Add event listeners to update on change
         adTypeInput.addEventListener("change", calculateAdPrice);
         adDurationInput.addEventListener("change", calculateAdPrice);
-
-        // Run once on page load to set the initial state
         calculateAdPrice();
     }
 
- // --- 7. AI CHATBOT LOGIC (NEW!) ---
+
+    // --- 7. AI CHATBOT LOGIC (Site-wide) ---
     const chatWindow = document.getElementById("ai-chat-window");
     const chatToggle = document.getElementById("ai-chat-toggle");
+    const chatCloseBtn = document.getElementById("ai-chat-close-btn"); 
     
     if (chatToggle && chatWindow) {
         const chatBody = chatWindow.querySelector(".ai-chat-body");
         const chatInput = chatWindow.querySelector(".chat-input-area input");
         const chatSendBtn = chatWindow.querySelector(".chat-input-area button");
+
+        const openChat = () => {
+            chatWindow.classList.add("active");
+            chatToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+        };
+
+        const closeChat = () => {
+             chatWindow.classList.remove("active");
+             chatToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M13.6 10.6a2 2 0 1 0-2-2"></path><path d="M10 14a2 2 0 1 0 2 2"></path></svg>`;
+        };
         
-        // --- Toggle Chat Window ---
-        chatToggle.addEventListener("click", function() {
-            chatWindow.classList.toggle("active");
+        chatToggle.addEventListener("click", () => {
             if (chatWindow.classList.contains("active")) {
-                chatToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+                closeChat();
             } else {
-                chatToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M13.6 10.6a2 2 0 1 0-2-2"></path><path d="M10 14a2 2 0 1 0 2 2"></path></svg>`;
+                openChat();
             }
         });
 
-        // --- Send Message on Button Click ---
+        if (chatCloseBtn) {
+            chatCloseBtn.addEventListener("click", closeChat);
+        }
+
         chatSendBtn.addEventListener("click", sendMessage);
-        
-        // --- Send Message on "Enter" key ---
         chatInput.addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
+            if (event.key === "Enter") { sendMessage(); }
         });
 
         async function sendMessage() {
             const userQuery = chatInput.value.trim();
             if (userQuery === "") return;
-
-            // 1. Display user's message
             addMessage(userQuery, "user");
             chatInput.value = "";
+            addMessage("...", "ai", true); 
 
-            // 2. Show loading indicator
-            addMessage("...", "ai", true); // 'true' for loading
-
-            // 3. Call Gemini API
             try {
                 const aiResponse = await callGeminiApi(userQuery);
-                
-                // 4. Remove loading indicator
                 removeLoadingMessage();
-                
-                // 5. Display AI's response
                 addMessage(aiResponse, "ai");
             } catch (error) {
-                // Handle errors
                 removeLoadingMessage();
                 addMessage("Sorry, I'm having trouble connecting. Please try again.", "ai");
                 console.error("Gemini API Error:", error);
@@ -343,32 +415,23 @@ document.addEventListener("DOMContentLoaded", function () {
         function addMessage(text, type, isLoading = false) {
             const messageDiv = document.createElement("div");
             messageDiv.className = `ai-chat-message ${type}`;
-            
             const p = document.createElement("p");
             p.textContent = text;
-            
             if (isLoading) {
                 messageDiv.id = "loading-indicator";
                 p.classList.add("loading-dots");
             }
-            
             messageDiv.appendChild(p);
             chatBody.appendChild(messageDiv);
-            
-            // Scroll to bottom
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         function removeLoadingMessage() {
             const loading = document.getElementById("loading-indicator");
-            if (loading) {
-                loading.remove();
-            }
+            if (loading) { loading.remove(); }
         }
 
-        // --- Gemini API Call Function ---
         async function callGeminiApi(userQuery) {
-            // This is the persona for your bot
             const systemPrompt = `
                 You are SportLink AI, a friendly and helpful assistant for a sports facility booking website.
                 Your job is to help users find facilities, find teammates, or get suggestions.
@@ -377,19 +440,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 - Use Google Search to answer real-time questions (e.g., "weather in Kota Kinabalu", "nearby badminton courts").
                 - Be concise and friendly.
             `;
-            
             const apiKey = ""; // API key is handled by the platform
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
-                tools: [{ "google_search": {} }], // Enable Google Search
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                },
+                tools: [{ "google_search": {} }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
             };
 
-            // Simple retry logic
             let response;
             try {
                  response = await fetch(apiUrl, {
@@ -398,7 +457,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     body: JSON.stringify(payload)
                 });
             } catch (e) {
-                // Initial fetch failed, wait 1s and retry once
                 await new Promise(resolve => setTimeout(resolve, 1000));
                  response = await fetch(apiUrl, {
                     method: 'POST',
@@ -415,7 +473,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const candidate = result.candidates?.[0];
             
             if (candidate && candidate.content?.parts?.[0]?.text) {
-                // We're not showing citations for this simple bot
                 return candidate.content.parts[0].text;
             } else if (result.promptFeedback) {
                 console.warn("Prompt was blocked:", result.promptFeedback);
@@ -426,4 +483,440 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-}); // End of DOMContentLoaded
+    // --- 8. POST A MATCH MODAL (for matchmaking.html) ---
+    const postMatchModal = document.getElementById("post-match-modal");
+    
+    if (postMatchModal) {
+        const openModalBtn = document.getElementById("open-post-modal-btn");
+        const navOpenModalBtn = document.getElementById("nav-post-match-btn"); 
+        const navOpenModalBtnMobile = document.getElementById("nav-post-match-btn-mobile"); 
+        const closeModalBtn = document.getElementById("close-post-modal-btn");
+        const cancelModalBtn = document.getElementById("cancel-post-modal-btn");
+
+        const openModal = (e) => {
+            if(e) e.preventDefault(); 
+            postMatchModal.classList.add("active");
+        };
+        const closeModal = () => postMatchModal.classList.remove("active");
+
+        if (openModalBtn) openModalBtn.addEventListener("click", openModal);
+        if (navOpenModalBtn) navOpenModalBtn.addEventListener("click", openModal);
+        if (navOpenModalBtnMobile) navOpenModalBtnMobile.addEventListener("click", openModal);
+        if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+        if (cancelModalBtn) cancelModalBtn.addEventListener("click", closeModal);
+
+        if (window.location.hash === "#post") {
+            openModal();
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+    }
+    
+    // --- 9. MOBILE HAMBURGER MENU (Site-wide) ---
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const mobileNavMenu = document.getElementById("mobile-nav-menu");
+    const organizerSidebar = document.getElementById("organizer-sidebar"); 
+    const closeSidebarBtn = document.getElementById("close-sidebar-btn"); 
+
+    if (hamburgerBtn && mobileNavMenu) { // For user pages and landing page
+        hamburgerBtn.addEventListener("click", () => {
+            mobileNavMenu.classList.toggle("active");
+        });
+    }
+    
+    // THIS IS THE NEW, FIXED LOGIC FOR THE ORGANIZER SIDEBAR
+    if (hamburgerBtn && organizerSidebar) { // For organizer pages
+        // Open sidebar
+        hamburgerBtn.addEventListener("click", () => {
+            organizerSidebar.classList.add("active"); 
+        });
+    }
+    
+    if (closeSidebarBtn && organizerSidebar) { // For organizer close button
+        // Close sidebar
+        closeSidebarBtn.addEventListener("click", () => {
+            organizerSidebar.classList.remove("active");
+        });
+    }
+
+    // --- 10. BOOKING DETAIL MODAL (for organizer_bookings.html) ---
+    const bookingsTable = document.getElementById("bookings-table");
+    const bookingModal = document.getElementById("booking-detail-modal");
+
+    if (bookingsTable && bookingModal) {
+        const closeModalBtn = document.getElementById("close-booking-modal-btn");
+        const cancelModalBtn = document.getElementById("cancel-booking-modal-btn");
+
+        // Modal fields
+        const modalUser = document.getElementById("modal-booking-user");
+        const modalContact = document.getElementById("modal-booking-contact");
+        const modalStatus = document.getElementById("modal-booking-status");
+        const modalDateTime = document.getElementById("modal-booking-datetime");
+        const modalCourt = document.getElementById("modal-booking-court");
+        const modalAmount = document.getElementById("modal-booking-amount");
+
+        const openBookingModal = (e) => {
+            const btn = e.target.closest(".btn-details");
+            if (!btn) return; // Didn't click a details button
+
+            // 1. Get data from the button's data- attributes
+            const data = btn.dataset;
+
+            // 2. Populate the modal
+            modalUser.textContent = data.user;
+            modalContact.textContent = data.contact;
+            modalDateTime.textContent = data.datetime;
+            modalCourt.textContent = data.court;
+            modalAmount.textContent = data.amount;
+
+            // 3. Populate the status pill
+            const statusPill = modalStatus.querySelector("span");
+            statusPill.textContent = data.status;
+            statusPill.className = "status-pill"; // Reset classes
+            if (data.status === "Paid") {
+                statusPill.classList.add("paid");
+            } else if (data.status === "Pending") {
+                statusPill.classList.add("pending");
+            } else if (data.status === "Cancelled") {
+                statusPill.classList.add("cancelled");
+            }
+
+            // 4. Show the modal
+            bookingModal.classList.add("active");
+        };
+
+        const closeBookingModal = () => {
+            bookingModal.classList.remove("active");
+        };
+
+        // Add listeners
+        bookingsTable.addEventListener("click", openBookingModal);
+        closeModalBtn.addEventListener("click", closeBookingModal);
+        cancelModalBtn.addEventListener("click", closeBookingModal);
+    }
+
+    // --- 11. CALENDAR TEMPLATE LOGIC (MODIFIED) ---
+
+    // --- On organizer_settings.html ---
+    const saveTemplatesBtn = document.getElementById("save-templates-btn");
+    if (saveTemplatesBtn) {
+        // Find all the new input fields
+        const weekdayMornInput = document.getElementById("weekday-morning-price");
+        const weekdayEveInput = document.getElementById("weekday-evening-price");
+        const weekendMornInput = document.getElementById("weekend-morning-price");
+        const weekendEveInput = document.getElementById("weekend-evening-price");
+
+        // Load saved values on page load
+        weekdayMornInput.value = localStorage.getItem('weekdayMorningPrice') || "40";
+        weekdayEveInput.value = localStorage.getItem('weekdayEveningPrice') || "50";
+        weekendMornInput.value = localStorage.getItem('weekendMorningPrice') || "60";
+        weekendEveInput.value = localStorage.getItem('weekendEveningPrice') || "70";
+
+        // Save all four values to localStorage
+        saveTemplatesBtn.addEventListener("click", () => {
+            localStorage.setItem('weekdayMorningPrice', weekdayMornInput.value);
+            localStorage.setItem('weekdayEveningPrice', weekdayEveInput.value);
+            localStorage.setItem('weekendMorningPrice', weekendMornInput.value);
+            localStorage.setItem('weekendEveningPrice', weekendEveInput.value);
+
+            saveTemplatesBtn.textContent = "Saved!";
+            saveTemplatesBtn.classList.remove("btn-primary");
+            saveTemplatesBtn.classList.add("btn-secondary");
+
+            setTimeout(() => {
+                saveTemplatesBtn.textContent = "Save Templates";
+                saveTemplatesBtn.classList.add("btn-primary");
+                saveTemplatesBtn.classList.remove("btn-secondary");
+            }, 2000);
+        });
+    }
+
+    // --- On organizer_calendar.html ---
+    const applyWeekdayBtn = document.getElementById("apply-weekday-template");
+    const applyWeekendBtn = document.getElementById("apply-weekend-template");
+    // MODIFIED: Selector is now specific to the organizer page
+    const organizerSlots = document.querySelectorAll("#organizer-calendar-body .time-slot, #organizer-calendar-mobile .time-slot-row");
+
+    // Helper function to update a single slot's UI
+    const updateSlotUI = (slot, price) => {
+        // Don't update slots that are already booked
+        if (slot.classList.contains("full")) return;
+
+        slot.dataset.price = price;
+        slot.classList.remove("closed", "available", "limited");
+        slot.classList.add("available");
+
+        if (slot.classList.contains("time-slot")) { // Desktop view
+            slot.querySelector("p").textContent = `$${price}`;
+        } else if (slot.classList.contains("time-slot-row")) { // Mobile view
+            slot.querySelector("strong").textContent = `$${price}`;
+        }
+    };
+
+    // Helper function to get the hour from a time string (e.g., "5:00 PM" -> 17)
+    const getHour = (timeString) => {
+        const parts = timeString.match(/(\d+):(\d+) (AM|PM)/);
+        let hour = parseInt(parts[1], 10);
+        if (parts[3] === "PM" && hour !== 12) hour += 12;
+        if (parts[3] === "AM" && hour === 12) hour = 0;
+        return hour;
+    };
+
+    // Apply Weekday Template
+    if (applyWeekdayBtn) {
+        applyWeekdayBtn.addEventListener("click", () => {
+            const mornPrice = localStorage.getItem('weekdayMorningPrice');
+            const evePrice = localStorage.getItem('weekdayEveningPrice');
+            if (!mornPrice || !evePrice) {
+                alert("Please set weekday template prices in Settings > Templates first.");
+                return;
+            }
+            
+            organizerSlots.forEach(slot => { // Use organizerSlots
+                const day = slot.dataset.day;
+                if (day.includes("Mon") || day.includes("Thu") || day.includes("Fri")) {
+                    const hour = getHour(slot.dataset.time);
+                    if (hour < 17) { // 17 is 5:00 PM
+                        updateSlotUI(slot, mornPrice); // Apply morning price
+                    } else {
+                        updateSlotUI(slot, evePrice); // Apply evening price
+                    }
+                }
+            });
+        });
+    }
+
+    // Apply Weekend Template
+    if (applyWeekendBtn) {
+        applyWeekendBtn.addEventListener("click", () => {
+            const mornPrice = localStorage.getItem('weekendMorningPrice');
+            const evePrice = localStorage.getItem('weekendEveningPrice');
+            if (!mornPrice || !evePrice) {
+                alert("Please set weekend template prices in Settings > Templates first.");
+                return;
+            }
+
+            organizerSlots.forEach(slot => { // Use organizerSlots
+                const day = slot.dataset.day;
+                if (day.includes("Sat") || day.includes("Sun")) {
+                    const hour = getHour(slot.dataset.time);
+                    if (hour < 17) { // 17 is 5:00 PM
+                        updateSlotUI(slot, mornPrice); // Apply morning price
+                    } else {
+                        updateSlotUI(slot, evePrice); // Apply evening price
+                    }
+                }
+            });
+        });
+    }
+
+
+    // --- 12. TRANSACTION DETAIL MODAL (NEW) ---
+    const transactionTable = document.getElementById("transaction-table");
+    const transactionModal = document.getElementById("transaction-detail-modal");
+
+    if (transactionTable && transactionModal) {
+        const closeModalBtn = document.getElementById("close-txn-modal-btn");
+        const cancelModalBtn = document.getElementById("cancel-txn-modal-btn");
+
+        // Modal fields
+        const modalDesc = document.getElementById("modal-txn-desc");
+        const modalDate = document.getElementById("modal-txn-date");
+        const modalType = document.getElementById("modal-txn-type");
+        const modalAmount = document.getElementById("modal-txn-amount");
+
+        const openTransactionModal = (e) => {
+            const btn = e.target.closest(".btn-details");
+            if (!btn) return; // Didn't click a details button
+
+            const data = btn.dataset;
+
+            // Populate the modal
+            modalDesc.textContent = data.desc;
+            modalDate.textContent = data.date;
+            modalType.textContent = data.type;
+            modalAmount.textContent = data.amount;
+
+            // Style the amount
+            if (data.amount.startsWith("-")) {
+                modalAmount.style.color = "var(--danger-color)";
+            } else {
+                modalAmount.style.color = "var(--success-color)";
+            }
+            
+            // Show the modal
+            transactionModal.classList.add("active");
+        };
+
+        const closeTransactionModal = () => {
+            transactionModal.classList.remove("active");
+        };
+
+        // Add listeners
+        transactionTable.addEventListener("click", openTransactionModal);
+        closeModalBtn.addEventListener("click", closeTransactionModal);
+        cancelModalBtn.addEventListener("click", closeTransactionModal);
+    }
+    
+    
+    // --- 13. AI SUGGESTION SLIDESHOW (NEW for user_dashboard.html) ---
+    const aiSlideshow = document.querySelector(".ai-slideshow");
+    if (aiSlideshow) {
+        const aiSlides = aiSlideshow.getElementsByClassName("ai-slide");
+        const aiDots = aiSlideshow.getElementsByClassName("ai-dot");
+        let aiSlideIndex = 0;
+        let aiSlideTimer; 
+
+        function showAiSlide(n) {
+            // Hide all slides
+            for (let i = 0; i < aiSlides.length; i++) {
+                aiSlides[i].style.opacity = "0";
+            }
+            // Deactivate all dots
+            for (let i = 0; i < aiDots.length; i++) {
+                aiDots[i].className = aiDots[i].className.replace(" active", "");
+            }
+            
+            // Handle looping
+            if (n > aiSlides.length) { aiSlideIndex = 1; }
+            else if (n < 1) { aiSlideIndex = aiSlides.length; }
+            else { aiSlideIndex = n; }
+            
+            // Show the correct slide
+            if (aiSlides[aiSlideIndex - 1]) {
+                aiSlides[aiSlideIndex - 1].style.opacity = "1";
+            }
+            // Activate the correct dot
+            if (aiDots[aiSlideIndex - 1]) {
+                aiDots[aiSlideIndex - 1].className += " active";
+            }
+        }
+
+        // Auto-play function
+        function autoShowAiSlides() {
+            aiSlideIndex++;
+            showAiSlide(aiSlideIndex);
+            aiSlideTimer = setTimeout(autoShowAiSlides, 5000); // Change slide every 5 seconds
+        }
+
+        // Add click event to dots
+        for (let i = 0; i < aiDots.length; i++) {
+            aiDots[i].addEventListener("click", function () {
+                clearTimeout(aiSlideTimer); // Stop auto-play
+                showAiSlide(i + 1); // Show the clicked slide
+            });
+        }
+
+        // Start the slideshow
+        showAiSlide(1);
+        aiSlideTimer = setTimeout(autoShowAiSlides, 5000);
+    }
+
+    // --- 15. ORGANIZER COURT SELECTOR (NEW) ---
+    const orgCourtSelect = document.getElementById("court-select");
+    if (orgCourtSelect && organizerCalendarBody) { // Check for organizer calendar
+        
+        // Simulated data for the ORGANIZER'S calendar
+        const orgCourtData = {
+            "Court 1 (Futsal)": { // This is the default view in the HTML
+                "Thu 31/10": [ {time: "5:00 PM", status: "full", price: 0}, {time: "6:00 PM", status: "full", price: 0}, {time: "7:00 PM", status: "available", price: 50} ],
+                "Fri 01/11": [ {time: "5:00 PM", status: "available", price: 50}, {time: "6:00 PM", status: "available", price: 50}, {time: "7:00 PM", status: "limited", price: 50} ],
+                "Sat 02/11": [ {time: "5:00 PM", status: "available", price: 70}, {time: "6:00 PM", status: "full", price: 0}, {time: "7:00 PM", status: "full", price: 0} ],
+                "Sun 03/11": [ {time: "5:00 PM", status: "available", price: 70}, {time: "6:00 PM", status: "limited", price: 70}, {time: "7:00 PM", status: "full", price: 0} ],
+                "Mon 04/11": [ {time: "5:00 PM", status: "closed", price: 0}, {time: "6:00 PM", status: "available", price: 50}, {time: "7:00 PM", status: "available", price: 50} ]
+            },
+            "Court 2 (Futsal)": { // All available at different prices
+                "Thu 31/10": [ {time: "5:00 PM", status: "available", price: 45}, {time: "6:00 PM", status: "available", price: 45}, {time: "7:00 PM", status: "available", price: 45} ],
+                "Fri 01/11": [ {time: "5:00 PM", status: "available", price: 45}, {time: "6:00 PM", status: "available", price: 45}, {time: "7:00 PM", status: "available", price: 45} ],
+                "Sat 02/11": [ {time: "5:00 PM", status: "available", price: 65}, {time: "6:00 PM", status: "available", price: 65}, {time: "7:00 PM", status: "available", price: 65} ],
+                "Sun 03/11": [ {time: "5:00 PM", status: "available", price: 65}, {time: "6:00 PM", status: "available", price: 65}, {time: "7:00 PM", status: "available", price: 65} ],
+                "Mon 04/11": [ {time: "5:00 PM", status: "available", price: 45}, {time: "6:00 PM", status: "available", price: 45}, {time: "7:00 PM", status: "available", price: 45} ]
+            },
+            "Badminton Court A": { // Cheaper and mostly closed
+                "Thu 31/10": [ {time: "5:00 PM", status: "closed", price: 0}, {time: "6:00 PM", status: "closed", price: 0}, {time: "7:00 PM", status: "available", price: 15} ],
+                "Fri 01/11": [ {time: "5:00 PM", status: "closed", price: 0}, {time: "6:00 PM", status: "available", price: 15}, {time: "7:00 PM", status: "available", price: 15} ],
+                "Sat 02/11": [ {time: "5:00 PM", status: "available", price: 20}, {time: "6:00 PM", status: "available", price: 20}, {time: "7:00 PM", status: "full", price: 0} ],
+                "Sun 03/11": [ {time: "5:00 PM", status: "available", price: 20}, {time: "6:00 PM", status: "limited", price: 20}, {time: "7:00 PM", status: "full", price: 0} ],
+                "Mon 04/11": [ {time: "5:00 PM", status: "closed", price: 0}, {time: "6:00 PM", status: "closed", price: 0}, {time: "7:00 PM", status: "closed", price: 0} ]
+            }
+        };
+        const orgDays = ["Thu 31/10", "Fri 01/11", "Sat 02/11", "Sun 03/11", "Mon 04/11"];
+        const orgTimes = ["5:00 PM", "6:00 PM", "7:00 PM"];
+
+        const generateOrgCalendar = (courtKey) => {
+            const data = orgCourtData[courtKey];
+            if (!data) return; // No data for this court
+
+            // 1. Update Desktop Calendar
+            let desktopHTML = "";
+            orgTimes.forEach(time => {
+                desktopHTML += `<div class="time-label">${time}</div>`;
+                orgDays.forEach(day => {
+                    const slot = data[day].find(s => s.time === time);
+                    let text = slot.status === 'closed' ? 'Closed' : (slot.status === 'full' ? 'Booked' : `$${slot.price}`);
+                    desktopHTML += `
+                        <div class="time-slot ${slot.status}" data-day="${day}" data-time="${slot.time}" data-price="${slot.price}">
+                            <p>${text}</p>
+                        </div>
+                    `;
+                });
+            });
+            organizerCalendarBody.innerHTML = desktopHTML;
+
+            // 2. Update Mobile Accordion
+            let mobileHTML = "";
+            orgDays.forEach(day => {
+                const daySlots = data[day];
+                let booked = 0, available = 0, closed = 0;
+                let dayContentHTML = "";
+
+                daySlots.forEach(slot => {
+                    let text = "";
+                    if (slot.status === 'full') {
+                        booked++;
+                        text = "<strong>Booked</strong>";
+                    } else if (slot.status === 'closed') {
+                        closed++;
+                        text = "<strong>Closed</strong>";
+                    } else {
+                        available++;
+                        text = `<strong>$${slot.price}</strong>${slot.status === 'limited' ? ' (Limited)' : ''}`;
+                    }
+                    
+                    dayContentHTML += `
+                        <div class="time-slot-row ${slot.status}" data-day="${day}" data-time="${slot.time}" data-price="${slot.price}">
+                            <span>${slot.time}</span> ${text}
+                        </div>
+                    `;
+                });
+
+                // Create summary text
+                let summary = [];
+                if (available > 0) summary.push(`${available} Available`);
+                if (booked > 0) summary.push(`${booked} Booked`);
+                if (closed > 0) summary.push(`${closed} Closed`);
+
+                mobileHTML += `
+                    <div class="day-accordion">
+                        <button class="day-accordion-toggle">
+                            <strong>${day.replace(" ", ", ")}</strong>
+                            <span>(${summary.join(', ')})</span>
+                        </button>
+                        <div class="day-accordion-content">
+                            ${dayContentHTML}
+                        </div>
+                    </div>
+                `;
+            });
+            organizerCalendarMobile.innerHTML = mobileHTML;
+        };
+
+        // Add listener to the dropdown
+        orgCourtSelect.addEventListener("change", (e) => {
+            generateOrgCalendar(e.target.value);
+        });
+        
+        // No initial call, so the default HTML is used first
+    }
+
+
+}); // --- End of DOMContentLoaded ---

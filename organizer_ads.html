@@ -1,141 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ads & Events - SportLink Organizer</title>
+    <title>Ads & Events - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
-
+    
     <!-- Organizer Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="organizer-sidebar">
+        <!-- NEW: Close button for mobile -->
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
             <li><a href="organizer_calendar.html">Calendar</a></li>
             <li><a href="organizer_bookings.html">Bookings</a></li>
-            <!-- Set this as the active link -->
             <li class="active"><a href="organizer_ads.html">Ads & Events</a></li>
             <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
             <li><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
     <!-- Main Content -->
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Ads & Events Manager</h2>
-            <span>Promote your facility to thousands of users.</span>
+            <div class="organizer-header-left">
+                <!-- MOVED: Hamburger button is now on the left -->
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Ads & Events</h2>
+            </div>
+            <!-- This span will now stack below the header on mobile -->
+            <span class="header-welcome-text">Promote your facility and events</span>
         </header>
 
+        <!-- Page Layout: 2 Columns -->
         <div class="dashboard-main-split">
-            <!-- Left Side: Create Ad/Event -->
+            
+            <!-- Column 1: Create New Promotion -->
             <section>
                 <div class="card">
                     <h3>Create a New Promotion</h3>
+                    <p style="margin-top: -10px; margin-bottom: 20px; color: var(--text-color-light);">Your ad will be shown on the homepage slideshow.</p>
+                    
                     <form class="login-form">
+                        <div class="filter-group">
+                            <label for="ad-headline">Headline</label>
+                            <input type="text" id="ad-headline" class="form-input" placeholder="e.g., Student Discount!">
+                        </div>
+                        <div class="filter-group">
+                            <label for="ad-text">Sub-text</label>
+                            <input type="text" id="ad-text" class="form-input" placeholder="e.g., 30% off all weekday bookings">
+                        </div>
+                        <div class="filter-group">
+                            <label for="ad-image">Background Image (1500x600)</label>
+                            <input type="file" id="ad-image" class="form-input">
+                        </div>
                         <div class="filter-group">
                             <label for="ad-type">Promotion Type</label>
                             <select id="ad-type" class="form-input">
-                                <option value="ad">Ad (Homepage Slideshow) - $10/day</option>
-                                <option value="event">Event (Coming Soon) - $5/day</option>
+                                <option value="ad">Homepage Ad ($10/day)</option>
+                                <option value="event">Event Promotion ($5/day)</option>
                             </select>
                         </div>
-                        <div class="filter-group">
-                            <label for="ad-title">Title / Headline</label>
-                            <input type="text" id="ad-title" class="form-input"
-                                placeholder="e.g., Student Discount: 30% Off">
-                        </div>
-                        <div class="filter-group">
-                            <label for="ad-subtitle">Subtitle / Description</label>
-                            <input type="text" id="ad-subtitle" class="form-input"
-                                placeholder="e.g., All weekday bookings before 5 PM!">
-                        </div>
-                        <div class="filter-group">
-                            <label for="ad-image">Background Image (for slideshow)</label>
-                            <input type="file" id="ad-image" class="form-input">
-                        </div>
-
-                        <!-- NEW DURATION & DATE FIELDS -->
-                        <div class="booking-filters" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem;">
+                        
+                        <div class="booking-filters" style="gap: 16px;"> <!-- Re-using this class for a 2-col grid -->
                             <div class="filter-group" style="margin-bottom: 0;">
                                 <label for="ad-start-date">Start Date</label>
-                                <input type="date" id="ad-start-date" class="form-input">
+                                <input type="date" id="ad-start-date" class="form-input" style="margin-bottom: 0;">
                             </div>
-                            <div class="filter-group" style="margin-bottom: 0;">
+                             <div class="filter-group" style="margin-bottom: 0;">
                                 <label for="ad-duration">Duration</label>
-                                <select id="ad-duration" class="form-input">
-                                    <option value="0">Select duration...</option>
+                                <select id="ad-duration" class="form-input" style="margin-bottom: 0;">
+                                    <option value="0">Select duration</option>
                                     <option value="7">7 Days</option>
                                     <option value="14">14 Days</option>
                                     <option value="30">30 Days</option>
                                 </select>
                             </div>
                         </div>
-
-                        <!-- NEW PRICE SUMMARY -->
-                        <div class="card" style="background-color: var(--light-color); margin-bottom: 1.5rem;">
-                            <strong>Price Summary</strong>
-                            <div class="price-summary-item">
-                                <span>Base Price:</span>
-                                <span id="summary-base-price">$0.00 / day</span>
-                            </div>
-                            <div class="price-summary-item">
-                                <span>Duration:</span>
-                                <span id="summary-duration">0 days</span>
-                            </div>
-                            <div class="price-summary-total">
-                                <span>Total Cost:</span>
-                                <span id="summary-total-cost">$0.00</span>
-                            </div>
-                        </div>
-
-                        <button type="button" id="submit-ad-btn" class="btn btn-primary btn-full-width" disabled>
-                            Please select a duration
-                        </button>
                     </form>
+                </div>
+
+                <!-- Price Summary Card -->
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Price Summary</h3>
+                    <div class="price-summary-item">
+                        <span>Base Price:</span>
+                        <span id="summary-base-price">$0.00 / day</span>
+                    </div>
+                    <div class="price-summary-item">
+                        <span>Duration:</span>
+                        <span id="summary-duration">0 days</span>
+                    </div>
+                    <hr>
+                    <div class="price-summary-total">
+                        <span>Total Cost:</span>
+                        <span id="summary-total-cost">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary btn-full-width" id="submit-ad-btn" style="margin-top: 1.5rem;" disabled>
+                        Please select a duration
+                    </button>
                 </div>
             </section>
 
-            <!-- Right Side: AI Suggestions & Active Ads -->
-            <section class="ai-assistant">
-                <h2>AI Ad Assistant</h2>
-                <div class="card card-ai organizer">
-                    <strong>📣 Ad Targeting Suggestion</strong>
-                    <p>Promote your 'Student Futsal' ad on **Wednesday at 6 PM** for the highest conversion rate,
-                        targeting students in your area.</p>
+            <!-- Column 2: Active Promotions -->
+            <section>
+                <div class="card">
+                    <h3>Your Active Promotions</h3>
+                    
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Homepage Ad: Student Discount!</strong>
+                            <p>Runs for 7 days (Ends: Nov 8)</p>
+                        </div>
+                        <span class="status-pill paid">Active</span>
+                    </div>
+
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Event: Weekend Tournament</strong>
+                            <p>Runs for 14 days (Ends: Nov 15)</p>
+                        </div>
+                        <span class="status-pill paid">Active</span>
+                    </div>
+
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Homepage Ad: Old Promotion</strong>
+                            <p>Ran for 7 days (Ended: Oct 20)</p>
+                        </div>
+                        <span class="status-pill cancelled">Expired</span>
+                    </div>
+
                 </div>
 
-                <h2 style="margin-top: 2rem;">Your Active Promotions</h2>
-                <div class="card ad-list-item">
-                    <div>
-                        <strong>Student Discount: 30% Off</strong>
-                        <p>Type: Ad (Homepage Slideshow)</p>
-                    </div>
-                    <span class="status-pill paid">Active</span>
+                <div class="card card-ai organizer" style="margin-top: 2rem;">
+                    <strong>📣 AI Ad Targeting</strong>
+                    <p>Promote your 'Student Futsal' ad on Wednesday at 6 PM for the highest conversion rate among university students.</p>
+                    <a href="#" class="btn btn-primary btn-small">Accept Suggestion</a>
                 </div>
-                <div class="card ad-list-item">
-                    <div>
-                        <strong>Weekend Badminton Tournament</strong>
-                        <p>Type: Event</p>
-                    </div>
-                    <span class="status-pill paid">Active</span>
-                </div>
-                <div class="card ad-list-item">
-                    <div>
-                        <strong>New Year's Promo</strong>
-                        <p>Type: Ad (Homepage Slideshow)</p>
-                    </div>
-                    <span class="status-pill pending">In Review</span>
-                </div>
-
             </section>
         </div>
     </main>
@@ -147,6 +167,12 @@
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
@@ -177,7 +203,7 @@
         </button>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Load the main.js script as a module -->
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

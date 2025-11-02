@@ -9,18 +9,16 @@
 </head>
 
 <body>
-    <!-- User Dashboard Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img"></a>
+            <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
+
         <div class="nav-links">
-            <!-- Set this as the active link -->
             <a href="matchmaking.html" class="active-link">Find a Match</a>
             <a href="booking.html">Book a Court</a>
-            <a href="post_match.html">Post a Match</a>
         </div>
+
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
             <a href="user_profile.html">
@@ -34,14 +32,28 @@
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="dashboard-content">
         <div class="booking-layout">
-            <!-- Sidebar for Filters -->
             <aside class="filter-sidebar">
                 <h4>Filter Matches</h4>
                 <div class="filter-group">
@@ -72,19 +84,14 @@
                 </div>
             </aside>
 
-            <!-- Main Content for Match List -->
             <section class="search-results">
-                <!-- Big Button to Post a Match -->
                 <div class="post-match-banner">
                     <h3>Can't find a game?</h3>
                     <p>Be the host! Post your own match and have others join you.</p>
-                    <button class="btn btn-primary btn-medium" onclick="window.location.href='post_match.html'">+ Post
-                        a Match</button>
+                    <button class="btn btn-primary btn-medium" id="open-post-modal-btn">+ Post a New Match</button>
                 </div>
-
-                <h2>Open Matches (3)</h2>
-
-                <!-- Match Card 1 -->
+                <br>
+                    <h2>Open Matches (3)</h2>
                 <div class="card match-card-full">
                     <div class="match-card-header">
                         <h3>🏀 Basketball 5v5 (Intermediate)</h3>
@@ -109,7 +116,6 @@
                     </div>
                 </div>
 
-                <!-- Match Card 2 -->
                 <div class="card match-card-full">
                     <div class="match-card-header">
                         <h3>🏸 Badminton Doubles (All Levels)</h3>
@@ -130,7 +136,6 @@
                     </div>
                 </div>
 
-                <!-- Match Card 3 -->
                 <div class="card match-card-full">
                     <div class="match-card-header">
                         <h3>⚽ Futsal 5v5 (Beginner)</h3>
@@ -154,9 +159,7 @@
         </div>
     </main>
 
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
@@ -167,8 +170,7 @@
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -180,7 +182,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -191,9 +192,64 @@
         </button>
     </div>
 
+    <div class="modal-overlay" id="post-match-modal">
+        <div class="modal-content modal-large">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin-bottom: 0;">Post a New Match</h3>
+                <button class="btn-close" id="close-post-modal-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <p>Fill in the details for your game. Other players will be able to join.</p>
+
+            <form class="login-form modal-compact-form">
+                <div class="filter-group">
+                    <label for="sport-modal">What sport are you playing?</label>
+                    <select id="sport-modal" class="form-input">
+                        <option>Futsal</option>
+                        <option>Badminton</option>
+                        <option>Basketball</option>
+                        <option>Tennis</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="skill-modal">What's the skill level?</label>
+                    <select id="skill-modal" class="form-input">
+                        <option>All Levels</option>
+                        <option>Beginner (Just for fun)</option>
+                        <option>Intermediate (Know the rules, play often)</option>
+                        <option>Advanced (Competitive)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="venue-modal">Suggested Venue (Optional)</label>
+                    <input type="text" id="venue-modal" class="form-input" placeholder="e.g., PowerPlayz Futsal">
+                </div>
+                <div class="filter-group">
+                    <label for="date-modal">When do you want to play?</label>
+                    <input type="datetime-local" id="date-modal" class="form-input">
+                </div>
+                <div class="filter-group">
+                    <label for="players-modal">Total Players Needed (including you)</label>
+                    <input type="number" id="players-modal" class="form-input" value="10" min="2">
+                </div>
+
+                <div class="modal-actions" style="margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" id="cancel-post-modal-btn">Cancel</button>
+                    <button type="button" class="btn btn-primary">Find Players & Create Match</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <footer class="footer">
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
+
+    <script type(="module" src="js/main.js"></script>
 </body>
 
 </html>

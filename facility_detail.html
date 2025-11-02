@@ -9,18 +9,17 @@
 </head>
 
 <body>
-
-    <!-- We use the same navbar as the user dashboard -->
     <nav class="navbar">
         <div class="logo">
             <a href="user_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
                     class="logo-img"></a>
         </div>
+
         <div class="nav-links">
-            <a href="user_dashboard.html">Find a Match</a>
+            <a href="matchmaking.html">Find a Match</a>
             <a href="booking.html" class="active-link">Book a Court</a>
-            <a href="post_match.html">Post a Match</a>
         </div>
+
         <div class="nav-icons">
             <span>Wallet: $50.00</span>
             <a href="user_profile.html">
@@ -34,206 +33,196 @@
                         fill="#BDBDBD" />
                 </svg>
             </a>
-            <a href="index.html" class="btn-logout">Logout</a>
+            <button id="sign-out-btn" class="btn-logout">Logout</button>
+        </div>
+
+        <button class="hamburger-btn" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="mobile-nav-menu" id="mobile-nav-menu">
+            <a href="matchmaking.html">Find a Match</a>
+            <a href="booking.html">Book a Court</a>
+            <a href="user_profile.html">My Profile</a>
+            <a href="#" id="sign-out-btn-mobile">Logout</a>
         </div>
     </nav>
 
-    <!-- Main Facility Page Content -->
     <main class="dashboard-content">
 
-        <!-- Page Header -->
         <div class="facility-header">
-            <a href="booking.html" class="back-link">&larr; Back to Search Results</a>
+            <a href="booking.html" class="back-link">← Back to Search Results</a>
             <h1>PowerPlayz Futsal</h1>
-            <p class="location-text">Kota Kinabalu, Sabah</p>
-
-            <!-- Image Gallery -->
-            <div class="facility-gallery">
-                <img src="assets/img/ad-placeholder-1.png" alt="Futsal court 1" class="gallery-main">
-                <img src="assets/img/facility-thumb-1.png" alt="Futsal court 2" class="gallery-thumb">
-                <img src="assets/img/facility-thumb-2.png" alt="Futsal court 3" class="gallery-thumb">
-            </div>
+            <p class="location-text" style="font-size: 1.1rem; margin: 0;">Inanam, Kota Kinabalu</p>
         </div>
 
-        <!-- Two-column layout for details and booking -->
-        <div class="facility-layout">
+        <div class="facility-gallery">
+            <img src="assets/img/ad-placeholder-1.png" alt="Futsal court main" class="gallery-main">
+            <img src="assets/img/facility-thumb-1.png" alt="Futsal court 2" class="gallery-thumb">
+            <img src="assets/img/facility-thumb-2.png" alt="Locker room" class="gallery-thumb">
+        </div>
 
-            <!-- Left Column: Details & Calendar -->
+        <div class="facility-layout">
             <div class="facility-main">
-                <!-- Tabs for Info/Rules -->
-                <div class="tabs">
-                    <button class="tab-link active">Booking Calendar</button>
-                    <button class="tab-link">Information & Rules</button>
+
+                <div class="filter-group" style="margin-top: 1.5rem;">
+                    <label for="facility-court-select" style="font-size: 1.2rem;">Select Court</label>
+                    <select id="facility-court-select" class="form-input">
+                        <option value="court1">Court 1 (Futsal)</option>
+                        <option value="court2">Court 2 (Futsal)</option>
+                        <option value="badminton">Badminton Court A</option>
+                    </select>
                 </div>
 
-                <!-- Booking Calendar -->
-                <div class="card calendar-container">
-                    <div class="calendar-header">
-                        <div class="time-header">Time</div>
-                        <div>Thu 31/10</div>
-                        <div>Fri 01/11</div>
-                        <div>Sat 02/11</div>
-                        <div>Sun 03/11</div>
-                        <div>Mon 04/11</div>
+                <div class="tabs">
+                    <button class="tab-link active" data-tab="calendar">Booking Calendar</button>
+                    <button class="tab-link" data-tab="info">Information & Rules</button>
+                </div>
+
+                <div>
+                    <div id="calendar" class="tab-content active">
+                        <div class="card calendar-container">
+                            <div class="calendar-header">
+                                <div class="time-header">Time</div>
+                                <div><strong>Thu 31/10</strong></div>
+                                <div><strong>Fri 01/11</strong></div>
+                                <div><strong>Sat 02/11</strong></div>
+                                <div><strong>Sun 03/11</strong></div>
+                                <div><strong>Mon 04/11</strong></div>
+                            </div>
+                            <div class="calendar-body" id="user-calendar-body">
+                                <div class="time-label">5:00 PM</div>
+                                <div class="time-slot full" data-day="Thu 31/10" data-time="5:00 PM">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot available" data-day="Fri 01/11" data-time="5:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot available" data-day="Sat 02/11" data-time="5:00 PM"
+                                    data-price="70">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot available" data-day="Sun 03/11" data-time="5:00 PM"
+                                    data-price="70">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot available" data-day="Mon 04/11" data-time="5:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-label">6:00 PM</div>
+                                <div class="time-slot full" data-day="Thu 31/10" data-time="6:00 PM">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot available" data-day="Fri 01/11" data-time="6:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot full" data-day="Sat 02/11" data-time="6:00 PM">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot limited" data-day="Sun 03/11" data-time="6:00 PM" data-price="70">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot available" data-day="Mon 04/11" data-time="6:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-label">7:00 PM</div>
+                                <div class="time-slot available" data-day="Thu 31/10" data-time="7:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot limited" data-day="Fri 01/11" data-time="7:00 PM" data-price="50">
+                                    <p>$50</p>
+                                </div>
+                                <div class="time-slot full" data-day="Sat 02/11" data-time="7:00 PM">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot full" data-day="Sun 03/11" data-time="7:00 PM">
+                                    <p>$70</p>
+                                </div>
+                                <div class="time-slot available" data-day="Mon 04/11" data-time="7:00 PM"
+                                    data-price="50">
+                                    <p>$50</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="calendar-body">
-                        <!-- 5:00 PM -->
-                        <div class="time-label">5:00 PM</div>
-                        <div class="time-slot full">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot available" data-day="Fri 01/11" data-time="5:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot available" data-day="Sat 02/11" data-time="5:00 PM" data-price="70">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot limited" data-day="Sun 03/11" data-time="5:00 PM" data-price="70">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot available" data-day="Mon 04/11" data-time="5:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <!-- 6:00 PM -->
-                        <div class="time-label">6:00 PM</div>
-                        <div class="time-slot full">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot available" data-day="Fri 01/11" data-time="6:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot limited" data-day="Sun 03/11" data-time="6:00 PM" data-price="70">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot available" data-day="Mon 04/11" data-time="6:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <!-- 7:00 PM -->
-                        <div class="time-label">7:00 PM</div>
-                        <div class="time-slot available" data-day="Thu 31/10" data-time="7:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot limited" data-day="Fri 01/11" data-time="7:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot available" data-day="Mon 04/11" data-time="7:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <!-- 8:00 PM -->
-                        <div class="time-label">8:00 PM</div>
-                        <div class="time-slot available" data-day="Thu 31/10" data-time="8:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot limited" data-day="Mon 04/11" data-time="8:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <!-- 9:00 PM -->
-                        <div class="time-label">9:00 PM</div>
-                        <div class="time-slot available" data-day="Thu 31/10" data-time="9:00 PM" data-price="50">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$50</p>
-                        </div>
-                        <div class="time-slot available" data-day="Sat 02/11" data-time="9:00 PM" data-price="70">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$70</p>
-                        </div>
-                        <div class="time-slot full">
-                            <p>$50</p>
+
+                    <div id="info" class="tab-content">
+                        <div class="card">
+                            <h3>Facility Information</h3>
+                            <p>PowerPlayz Futsal is the premier indoor soccer facility in Kota Kinabalu, featuring 4
+                                state-of-the-art FIFA-approved turf courts.</p>
+
+                            <h4 style="margin-top: 1.5rem;">Amenities</h4>
+                            <ul>
+                                <li>✓ Air-conditioned courts</li>
+                                <li>✓ Men's & Women's showers</li>
+                                <li>✓ Public prayer room (surau)</li>
+                                <li>✓ Free high-speed WiFi</li>
+                                <li>✓ Vending machines</li>
+                            </ul>
+
+                            <h4 style="margin-top: 1.5rem;">Rules & Regulations</h4>
+                            <ol>
+                                <li>All players must wear non-marking indoor court shoes. No studs allowed.</li>
+                                <li>Bookings must be cancelled at least 24 hours in advance for a full refund.</li>
+                                <li>No outside food or drink allowed (water bottles are okay).</li>
+                                <li>Smoking is strictly prohibited on the premises.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Booking Summary -->
             <aside class="facility-sidebar">
                 <div class="card" id="booking-summary">
-                    <h4>Booking Summary</h4>
+                    <h3>Booking Summary</h3>
+                    <hr>
                     <p id="slot-details" class="placeholder-text">Please select an available time slot from the
                         calendar.</p>
-                    <div id="price-details" class="price-summary" style="display: none;">
-                        <span>Total Price:</span>
-                        <strong id="total-price">$0</strong>
+
+                    <div id="price-details" style="display: none;">
+                        <div class="price-summary-item">
+                            <span>Court Rental</span>
+                            <span id="total-price">$0.00</span>
+                        </div>
                     </div>
-                    <button class="btn btn-primary btn-full-width" id="book-now-btn" disabled>Book Now</button>
+
+                    <button id="book-now-btn" class="btn btn-primary btn-full-width" disabled>Book Now</button>
                 </div>
 
                 <div class="card facility-info">
                     <h4>Location & Hours</h4>
-                    <p>123 Futsal Drive, Kota Kinabalu, 88400</p>
                     <hr>
-                    <p><strong>Weekdays:</strong> 9:00 AM - 10:00 PM</p>
-                    <p><strong>Weekends:</strong> 9:00 AM - 12:00 AM</p>
+                    <p style="font-weight: 600; margin-bottom: 0.5rem;">123 Futsal Drive, Kota Kinabalu, 88400</p>
+                    <p style="color: var(--text-color-light); margin: 0;">(Beside Inanam Taipan)</p>
+                    <hr>
+                    <p style="font-weight: 600; margin-bottom: 0.5rem;">Weekdays:</p>
+                    <p style="color: var(--text-color-light); margin: 0;">9:00 AM – 10:00 PM</p>
+                    <p style="font-weight: 600; margin: 1rem 0 0.5rem 0;">Weekends:</p>
+                    <p style="color: var(--text-color-light); margin: 0;">9:00 AM – 12:00 AM</p>
                 </div>
             </aside>
-
         </div>
     </main>
 
-    <!-- AI Chatbot Widget -->
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
-        <div class="ai-chat-window" id="ai-chat-window">
-            <div class="ai-chat-header">
-                <h3>SportLink AI</h3>
-                <p>Your personal assistant.</p>
-            </div>
-            <div class="ai-chat-body">
-                <div class="ai-chat-message ai">
-                    <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
-                        questions.</p>
-                </div>
-                <!-- Messages will be added here by JS -->
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="form-input" placeholder="Ask me anything...">
-                <button class="btn btn-primary" title="Send">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
-            </div>
         </div>
-        <!-- The Toggle Bubble -->
-        <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                <path d="M13.6 10.6a2 2 0 1 0-2-2"></path>
-                <path d="M10 14a2 2 0 1 0 2 2"></path>
-            </svg>
-        </button>
-    </div>
 
     <footer class="footer">
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
-    <!-- This script tag must be at the bottom -->
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

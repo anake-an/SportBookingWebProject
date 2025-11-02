@@ -1,147 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookings - SportLink Organizer</title>
+    <title>Bookings Dashboard - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="organizer-layout">
+    
+    <aside class="sidebar" id="organizer-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
 
-    <!-- Organizer Sidebar -->
-    <aside class="sidebar">
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
-                    class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
             <li><a href="organizer_calendar.html">Calendar</a></li>
-            <!-- Set this as the active link -->
             <li class="active"><a href="organizer_bookings.html">Bookings</a></li>
             <li><a href="organizer_ads.html">Ads & Events</a></li>
             <li><a href="organizer_wallet.html">Wallet & Payouts</a></li>
             <li><a href="organizer_settings.html">Settings</a></li>
-            <li class="sidebar-logout"><a href="index.html">Sign Out</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-organizer">Sign Out</a></li>
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="organizer-content">
         <header class="organizer-header">
-            <h2>Bookings Dashboard</h2>
-            <span>View and manage all your bookings.</span>
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Manage Bookings</h2>
+            </div>
+            <span class="header-welcome-text">View and manage all bookings</span>
         </header>
 
-        <!-- Filters -->
         <div class="card">
             <div class="booking-filters">
                 <div class="filter-group">
-                    <label for="filter-date">Date</label>
-                    <input type="date" id="filter-date" class="form-input">
+                    <label for="date-filter">Date</label>
+                    <input type="date" id="date-filter" class="form-input">
                 </div>
                 <div class="filter-group">
-                    <label for="filter-status">Status</label>
-                    <select id="filter-status" class="form-input">
+                    <label for="status-filter">Status</label>
+                    <select id="status-filter" class="form-input">
                         <option>All</option>
                         <option>Confirmed (Paid)</option>
-                        <option>Booked (Pending)</option>
+                        <option>Pending (Unpaid)</option>
                         <option>Cancelled</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="filter-court">Court</label>
-                    <select id="filter-court" class="form-input">
+                    <label for="court-filter">Court</label>
+                    <select id="court-filter" class="form-input">
                         <option>All Courts</option>
-                        <option>Court 1</option>
-                        <option>Court 2</option>
+                        <option>Court 1 (Futsal)</option>
+                        <option>Court 2 (Futsal)</option>
                         <option>Badminton Court A</option>
                     </select>
                 </div>
+                <button class="btn btn-primary">Filter</button>
             </div>
         </div>
 
-        <!-- Bookings Table -->
-        <div class="card" style="margin-top: 1.5rem;">
-            <table>
+        <div class="card" style="margin-top: 2rem; overflow-x: auto;">
+            <table id="bookings-table" class="status-table-colors"> 
                 <thead>
                     <tr>
                         <th>User</th>
-                        <th>Date & Time</th>
-                        <th>Court</th>
-                        <th>Amount</th>
-                        <th>Status</th>
+                        <th>Contact</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Alex M.</strong><br><span
-                                style="font-size: 0.9em; color: var(--text-color-light);">alex@gmail.com</span></td>
-                        <td>Sat, Nov 2 @ 6:00 PM</td>
-                        <td>Court 1 (Futsal)</td>
-                        <td>$70.00</td>
-                        <td><span class="status-pill paid">Confirmed</span></td>
-                        <td><button class="btn btn-secondary btn-small">Details</button></td>
+                    <tr class="status-paid">
+                        <td><strong>Alex M.</strong></td>
+                        <td>alex@example.com</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small btn-details"
+                                data-user="Alex M."
+                                data-contact="alex@example.com"
+                                data-datetime="Nov 1, 6:00 PM"
+                                data-court="Court 1 (Futsal)"
+                                data-status="Paid"
+                                data-amount="$50.00">
+                                Details
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><strong>Maria K. (Group)</strong><br><span
-                                style="font-size: 0.9em; color: var(--text-color-light);">maria@gmail.com</span></td>
-                        <td>Sat, Nov 2 @ 6:00 PM</td>
-                        <td>Court 2 (Futsal)</td>
-                        <td>$70.00</td>
-                        <td><span class="status-pill paid">Confirmed</span></td>
-                        <td><button class="btn btn-secondary btn-small">Details</button></td>
+                    <tr class="status-paid">
+                        <td><strong>Maria K. (Group)</strong></td>
+                        <td>maria@example.com</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small btn-details"
+                                data-user="Maria K. (Group)"
+                                data-contact="maria@example.com"
+                                data-datetime="Nov 1, 6:00 PM"
+                                data-court="Court 2 (Futsal)"
+                                data-status="Paid"
+                                data-amount="$50.00">
+                                Details
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><strong>Ben's Team</strong><br><span
-                                style="font-size: 0.9em; color: var(--text-color-light);">ben@gmail.com</span></td>
-                        <td>Sat, Nov 2 @ 7:00 PM</td>
-                        <td>Court 1 (Futsal)</td>
-                        <td>$70.00</td>
-                        <td><span class="status-pill pending">Booked</span></td>
-                        <td><button class="btn btn-secondary btn-small">Details</button></td>
+                    <tr class="status-pending">
+                        <td><strong>Ben's Team</strong></td>
+                        <td>ben@example.com</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small btn-details"
+                                data-user="Ben's Team"
+                                data-contact="ben@example.com"
+                                data-datetime="Nov 1, 7:00 PM"
+                                data-court="Court 1 (Futsal)"
+                                data-status="Pending"
+                                data-amount="$60.00">
+                                Details
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><strong>Sarah L.</strong><br><span
-                                style="font-size: 0.9em; color: var(--text-color-light);">sarah@gmail.com</span></td>
-                        <td>Sat, Nov 2 @ 7:00 PM</td>
-                        <td>Court 2 (Futsal)</td>
-                        <td>$70.00</td>
-                        <td><span class="status-pill paid">Confirmed</span></td>
-                        <td><button class="btn btn-secondary btn-small">Details</button></td>
+                    <tr class="status-paid">
+                        <td><strong>Sarah L.</strong></td>
+                        <td>sarah@example.com</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small btn-details"
+                                data-user="Sarah L."
+                                data-contact="sarah@example.com"
+                                data-datetime="Nov 1, 7:00 PM"
+                                data-court="Court 2 (Futsal)"
+                                data-status="Paid"
+                                data-amount="$50.00">
+                                Details
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><strong>David C.</strong><br><span
-                                style="font-size: 0.9em; color: var(--text-color-light);">david@gmail.com</span></td>
-                        <td>Fri, Nov 1 @ 8:00 PM</td>
-                        <td>Badminton Court A</td>
-                        <td>$15.00</td>
-                        <td><span class="status-pill cancelled">Cancelled</span></td>
-                        <td><button class="btn btn-secondary btn-small">Details</button></td>
+                    <tr class="status-cancelled">
+                        <td><strong>Mikey</strong></td>
+                        <td>mikey@example.com</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small btn-details"
+                                data-user="Mikey"
+                                data-contact="mikey@example.com"
+                                data-datetime="Oct 30, 8:00 PM"
+                                data-court="Badminton Court A"
+                                data-status="Cancelled"
+                                data-amount="$15.00">
+                                Details
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
 
-    <!-- AI Chatbot Widget -->
+    <div class="modal-overlay" id="booking-detail-modal">
+        <div class="modal-content">
+            <button class="btn-close" id="close-booking-modal-btn" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 id="modal-booking-user">Booking Details</h3>
+            <p id="modal-booking-contact" style="margin-bottom: 1.5rem;"></p>
+
+            <div class="booking-detail-list">
+                <div class="booking-detail-item">
+                    <span>Status:</span>
+                    <strong id="modal-booking-status"><span class="status-pill"></span></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Date & Time:</span>
+                    <strong id="modal-booking-datetime"></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Court:</span>
+                    <strong id="modal-booking-court"></strong>
+                </div>
+                <div class="booking-detail-item">
+                    <span>Amount:</span>
+                    <strong id="modal-booking-amount"></strong>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-booking-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
     <div class="ai-chat-widget">
-        <!-- The Popup Window -->
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
+                <button class="btn-close" id="ai-chat-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="ai-chat-body">
                 <div class="ai-chat-message ai">
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                <!-- Messages will be added here by JS -->
-            </div>
+                </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -153,7 +227,6 @@
                 </button>
             </div>
         </div>
-        <!-- The Toggle Bubble -->
         <button class="ai-chat-bubble" id="ai-chat-toggle" title="Toggle AI Chat">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -164,7 +237,6 @@
         </button>
     </div>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
-
 </html>
