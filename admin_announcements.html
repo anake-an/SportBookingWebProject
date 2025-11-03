@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Announcements - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li class="active"><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Global Announcement Management</h2>
+            </div>
+            <span class="header-welcome-text">Push immediate alerts or promotions to the homepage.</span>
+        </header>
+
+        <div class="dashboard-main-split">
+            <section>
+                <div class="card">
+                    <h3>Create New Announcement Slide</h3>
+                    <form class="login-form">
+                        <div class="filter-group">
+                            <label for="slide-headline">Headline (H1)</label>
+                            <input type="text" id="slide-headline" class="form-input"
+                                placeholder="e.g., Server Maintenance Tonight!">
+                        </div>
+                        <div class="filter-group">
+                            <label for="slide-text">Sub-text (P)</label>
+                            <input type="text" id="slide-text" class="form-input"
+                                placeholder="e.g., All services offline from 10 PM - 12 AM.">
+                        </div>
+                        <div class="filter-group">
+                            <label for="slide-cta-link">CTA Button Link (Optional)</label>
+                            <input type="url" id="slide-cta-link" class="form-input" placeholder="e.g., /support.html">
+                        </div>
+                        <div class="filter-group">
+                            <label for="slide-image">Background Image URL (1500x600)</label>
+                            <input type="text" id="slide-image" class="form-input"
+                                placeholder="e.g., assets/img/alert-background.png">
+                        </div>
+                        <div class="booking-filters" style="gap: 16px;">
+                            <div class="filter-group" style="margin-bottom: 0;">
+                                <label for="slide-start-date">Start Date & Time</label>
+                                <input type="datetime-local" id="slide-start-date" class="form-input">
+                            </div>
+                            <div class="filter-group" style="margin-bottom: 0;">
+                                <label for="slide-end-date">End Date & Time</label>
+                                <input type="datetime-local" id="slide-end-date" class="form-input">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-full-width" style="margin-top: 20px;">
+                            Publish Announcement
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <section>
+                <div class="card">
+                    <h3>Active & Scheduled Slides</h3>
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Maintenance Alert</strong>
+                            <p>Active until: Nov 3, 12:00 AM</p>
+                        </div>
+                        <span class="status-pill pending">Active</span>
+                    </div>
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>New Year Promo</strong>
+                            <p>Scheduled: Starts Dec 25, 2025</p>
+                        </div>
+                        <span class="status-pill paid">Scheduled</span>
+                    </div>
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Old System Shutdown</strong>
+                            <p>Expired: Sep 1, 2025</p>
+                        </div>
+                        <span class="status-pill cancelled">Expired</span>
+                    </div>
+                </div>
+                <div class="card card-ai organizer" style="margin-top: 2rem;">
+                    <strong>💡 Best Practice Reminder</strong>
+                    <p>It is recommended to set a clear end date for time-sensitive announcements.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

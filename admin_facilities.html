@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facility Management - Super Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li class="active"><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Facility Management</h2>
+            </div>
+            <span class="header-welcome-text">Review, adjust, and moderate all facility partners.</span>
+        </header>
+
+        <div class="card">
+            <div class="booking-filters">
+                <div class="filter-group">
+                    <label for="search-facility">Search Name/Owner</label>
+                    <input type="text" id="search-facility" class="form-input" placeholder="PowerPlayz">
+                </div>
+                <div class="filter-group">
+                    <label for="status-filter">Status</label>
+                    <select id="status-filter" class="form-input">
+                        <option>Active</option>
+                        <option>Pending Review (3)</option>
+                        <option>Banned</option>
+                        <option>Maintenance Mode</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sport-filter">Sport Type</label>
+                    <select id="sport-filter" class="form-input">
+                        <option>All Sports</option>
+                        <option>Futsal</option>
+                        <option>Badminton</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem; overflow-x: auto;">
+            <table id="facility-table" class="status-table-colors">
+                <thead>
+                    <tr>
+                        <th>Facility</th>
+                        <th>Owner Email</th>
+                        <th>Status</th>
+                        <th>Commission</th>
+                        <th>Last Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="status-paid">
+                        <td><strong>PowerPlayz Futsal</strong></td>
+                        <td>owner@ppfutsal.com</td>
+                        <td><span class="status-pill paid">Active</span></td>
+                        <td>10%</td>
+                        <td>5 min ago</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small">Edit</button>
+                            <button class="btn-logout btn-small" style="margin-left: 8px;">Ban</button>
+                        </td>
+                    </tr>
+                    <tr class="status-pending">
+                        <td><strong>CourtKing Badminton</strong></td>
+                        <td>king@court.com</td>
+                        <td><span class="status-pill pending">Pending Review</span></td>
+                        <td>10%</td>
+                        <td>1 day ago</td>
+                        <td>
+                            <button class="btn btn-primary btn-small">Approve</button>
+                            <button class="btn-logout btn-small" style="margin-left: 8px;">Reject</button>
+                        </td>
+                    </tr>
+                    <tr class="status-cancelled">
+                        <td><strong>City Park Courts</strong></td>
+                        <td>city@park.org</td>
+                        <td><span class="status-pill cancelled">Banned</span></td>
+                        <td>15%</td>
+                        <td>3 weeks ago</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small">Audit</button>
+                            <button class="btn btn-primary btn-small" style="margin-left: 8px;">Unban</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

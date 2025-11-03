@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li class="active"><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Super Admin Dashboard</h2>
+            </div>
+            <span class="header-welcome-text">Full control over the SportLink ecosystem.</span>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="card kpi-card kpi-revenue">
+                <h4>Platform Revenue (30 Days)</h4>
+                <p>$18,500</p>
+            </div>
+            <div class="card kpi-card kpi-facilities">
+                <h4>New Facilities Pending</h4>
+                <p>3</p>
+            </div>
+            <div class="card kpi-card kpi-users">
+                <h4>Active Users (Today)</h4>
+                <p>942</p>
+            </div>
+            <div class="card kpi-card kpi-payouts">
+                <h4>Payouts Pending Approval</h4>
+                <p>$3,200</p>
+            </div>
+        </section>
+
+        <div class="dashboard-main-split">
+
+            <section>
+                <h2>Action Center</h2>
+                <div class="card">
+                    <h3>Pending Verifications</h3>
+                    <div style="overflow-x: auto;">
+                        <table class="status-table-colors">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="status-pending">
+                                    <td>Facility (eKYC)</td>
+                                    <td>PowerPlayz Futsal</td>
+                                    <td><span class="status-pill pending">SSM Upload</span></td>
+                                    <td><button class="btn btn-primary btn-small">Review</button></td>
+                                </tr>
+                                <tr class="status-paid">
+                                    <td>Player (ID)</td>
+                                    <td>Alex M.</td>
+                                    <td><span class="status-pill pending">IC Upload</span></td>
+                                    <td><button class="btn btn-primary btn-small">Review</button></td>
+                                </tr>
+                                <tr class="status-pending">
+                                    <td>Facility (New)</td>
+                                    <td>CourtKing Badminton</td>
+                                    <td><span class="status-pill pending">New Listing</span></td>
+                                    <td><button class="btn btn-primary btn-small">Approve</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>System Alerts</h3>
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Low Server Disk Space</strong>
+                            <p>Storage is 90% full. Requires immediate attention.</p>
+                        </div>
+                        <span class="status-pill cancelled">Urgent</span>
+                    </div>
+                    <div class="ad-list-item">
+                        <div>
+                            <strong>Failed Payout (Maybank)</strong>
+                            <p>Payout to 'Badminton World' failed on 29/10.</p>
+                        </div>
+                        <span class="status-pill pending">Pending</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Global Tools</h2>
+                <div class="card">
+                    <form class="login-form">
+                        <h3>Site Maintenance</h3>
+                        <div class="filter-group">
+                            <label for="maintenance-mode">Toggle Site Status</label>
+                            <select id="maintenance-mode" class="form-input">
+                                <option>Live</option>
+                                <option>Maintenance Mode (2 hours)</option>
+                                <option>Emergency Shutdown</option>
+                            </select>
+                        </div>
+
+                        <h3>Global Fee Control</h3>
+                        <div class="filter-group">
+                            <label for="platform-fee">Platform Fee (%)</label>
+                            <input type="number" id="platform-fee" class="form-input" value="10" min="0" max="100">
+                        </div>
+
+                        <button type="button" class="btn btn-danger btn-full-width">Apply Global Changes</button>
+                    </form>
+                </div>
+
+                <div class="card card-ai organizer" style="margin-top: 2rem;">
+                    <strong>🤖 System AI Audit</strong>
+                    <p>3,500 new user profiles have been flagged as 'Beginner'. Recommend pushing more Beginner Futsal
+                        matches.</p>
+                    <a href="#" class="btn btn-primary btn-small">Execute Match Push</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="ai-chat-widget">
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

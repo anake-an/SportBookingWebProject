@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ads & Events - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="organizer-layout">
-    
+
     <!-- Organizer Sidebar -->
     <aside class="sidebar" id="organizer-sidebar">
         <!-- NEW: Close button for mobile -->
         <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
 
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
@@ -38,7 +42,8 @@
             <div class="organizer-header-left">
                 <!-- MOVED: Hamburger button is now on the left -->
                 <button class="hamburger-btn" id="hamburger-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -52,21 +57,24 @@
 
         <!-- Page Layout: 2 Columns -->
         <div class="dashboard-main-split">
-            
+
             <!-- Column 1: Create New Promotion -->
             <section>
                 <div class="card">
                     <h3>Create a New Promotion</h3>
-                    <p style="margin-top: -10px; margin-bottom: 20px; color: var(--text-color-light);">Your ad will be shown on the homepage slideshow.</p>
-                    
+                    <p style="margin-top: -10px; margin-bottom: 20px; color: var(--text-color-light);">Your ad will be
+                        shown on the homepage slideshow.</p>
+
                     <form class="login-form">
                         <div class="filter-group">
                             <label for="ad-headline">Headline</label>
-                            <input type="text" id="ad-headline" class="form-input" placeholder="e.g., Student Discount!">
+                            <input type="text" id="ad-headline" class="form-input"
+                                placeholder="e.g., Student Discount!">
                         </div>
                         <div class="filter-group">
                             <label for="ad-text">Sub-text</label>
-                            <input type="text" id="ad-text" class="form-input" placeholder="e.g., 30% off all weekday bookings">
+                            <input type="text" id="ad-text" class="form-input"
+                                placeholder="e.g., 30% off all weekday bookings">
                         </div>
                         <div class="filter-group">
                             <label for="ad-image">Background Image (1500x600)</label>
@@ -79,13 +87,13 @@
                                 <option value="event">Event Promotion ($5/day)</option>
                             </select>
                         </div>
-                        
+
                         <div class="booking-filters" style="gap: 16px;"> <!-- Re-using this class for a 2-col grid -->
                             <div class="filter-group" style="margin-bottom: 0;">
                                 <label for="ad-start-date">Start Date</label>
                                 <input type="date" id="ad-start-date" class="form-input" style="margin-bottom: 0;">
                             </div>
-                             <div class="filter-group" style="margin-bottom: 0;">
+                            <div class="filter-group" style="margin-bottom: 0;">
                                 <label for="ad-duration">Duration</label>
                                 <select id="ad-duration" class="form-input" style="margin-bottom: 0;">
                                     <option value="0">Select duration</option>
@@ -114,7 +122,8 @@
                         <span>Total Cost:</span>
                         <span id="summary-total-cost">$0.00</span>
                     </div>
-                    <button class="btn btn-primary btn-full-width" id="submit-ad-btn" style="margin-top: 1.5rem;" disabled>
+                    <button class="btn btn-primary btn-full-width" id="submit-ad-btn" style="margin-top: 1.5rem;"
+                        disabled>
                         Please select a duration
                     </button>
                 </div>
@@ -124,7 +133,7 @@
             <section>
                 <div class="card">
                     <h3>Your Active Promotions</h3>
-                    
+
                     <div class="ad-list-item">
                         <div>
                             <strong>Homepage Ad: Student Discount!</strong>
@@ -153,7 +162,8 @@
 
                 <div class="card card-ai organizer" style="margin-top: 2rem;">
                     <strong>📣 AI Ad Targeting</strong>
-                    <p>Promote your 'Student Futsal' ad on Wednesday at 6 PM for the highest conversion rate among university students.</p>
+                    <p>Promote your 'Student Futsal' ad on Wednesday at 6 PM for the highest conversion rate among
+                        university students.</p>
                     <a href="#" class="btn btn-primary btn-small">Accept Suggestion</a>
                 </div>
             </section>
@@ -168,7 +178,8 @@
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
                 <button class="btn-close" id="ai-chat-close-btn" title="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -206,4 +217,5 @@
     <!-- Load the main.js script as a module -->
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

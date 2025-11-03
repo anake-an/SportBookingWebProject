@@ -43,44 +43,59 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden; /* Stops horizontal scrollbar */
+  overflow-x: hidden;
+  /* Stops horizontal scrollbar */
 }
+
 /* Exclude organizer layout from this behavior */
 body.organizer-layout {
   display: flex;
   flex-direction: row;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 1rem 0;
   font-weight: 600;
   line-height: 1.3;
   margin-top: 10px;
 }
+
 p {
   margin: 0 0 1rem 0;
 }
+
 a {
   color: var(--primary-color);
   text-decoration: none;
 }
+
 img {
   max-width: 100%;
   height: auto;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+
+th,
+td {
   padding: 12px 8px;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
 }
+
 thead {
   background-color: var(--light-color);
 }
+
 th {
   font-size: 0.9em;
   color: var(--text-color-light);
@@ -99,6 +114,7 @@ th {
   transition: all 0.2s ease;
   text-decoration: none;
 }
+
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
@@ -106,9 +122,11 @@ th {
   justify-content: center;
   margin-bottom: 10px;
 }
+
 .btn-primary:hover {
   background-color: var(--primary-hover);
 }
+
 .btn-secondary {
   background-color: var(--light-color);
   color: var(--text-color);
@@ -116,22 +134,27 @@ th {
   justify-content: center;
   margin-bottom: 10px;
 }
+
 .btn-secondary:hover {
   background-color: #e2e6ea;
 }
+
 .btn-large {
   padding: 15px 30px;
   font-size: 1.2em;
 }
+
 .btn-small {
   padding: 6px 12px;
   font-size: 0.9em;
   margin-left: 2px;
 }
+
 .btn-full-width {
   width: 100%;
   box-sizing: border-box;
 }
+
 .btn-logout {
   text-decoration: none;
   color: var(--danger-color);
@@ -142,12 +165,15 @@ th {
   border-radius: var(--border-radius);
   margin-left: 16px;
   transition: all 0.2s ease;
-  background: none; /* Ensure it's a button, not a link */
+  background: none;
+  /* Ensure it's a button, not a link */
 }
+
 .btn-logout:hover {
   background-color: var(--danger-color);
   color: #fff;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -155,7 +181,9 @@ th {
   border: 2px solid var(--primary-color);
   background-color: #E0E0E0;
 }
-.avatar.active { /* For user_profile.html */
+
+.avatar.active {
+  /* For user_profile.html */
   border-color: var(--success-color);
   box-shadow: 0 0 8px var(--success-color);
 }
@@ -165,25 +193,32 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 5%; /* Your padding */
+  padding: 10px 5%;
+  /* Your padding */
   background-color: var(--card-bg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
-  max-height: 150px; /* Your max-height */
-  position: relative; 
-  z-index: 1001; 
+  max-height: 150px;
+  /* Your max-height */
+  position: relative;
+  z-index: 1001;
 }
+
 .logo-img {
-  height: 50px; /* YOUR 50px LOGO HEIGHT */
+  height: 50px;
+  /* YOUR 50px LOGO HEIGHT */
   vertical-align: middle;
-  overflow: hidden; 
+  overflow: hidden;
 }
+
 .nav-links {
   display: flex;
 }
+
 .nav-links-landing {
   display: flex;
 }
+
 .nav-links a,
 .nav-links-landing a {
   margin: 0 16px;
@@ -191,108 +226,129 @@ th {
   color: var(--text-color-light);
   font-weight: 500;
   transition: color 0.2s ease;
-  text-align: center; 
+  text-align: center;
 }
+
 .nav-links a:hover,
 .nav-links-landing a:hover {
   color: var(--primary-color);
 }
-.nav-links a.active-link { 
+
+.nav-links a.active-link {
   color: var(--primary-color);
   font-weight: 700;
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 4px;
 }
+
 .nav-auth {
   display: flex;
   align-items: center;
 }
+
 .nav-auth button,
 .nav-auth .btn {
   margin-left: 10px;
 }
+
 .nav-icons {
   display: flex;
   align-items: center;
   gap: 16px;
   font-weight: 600;
 }
+
 /* MODIFIED: This is now the simple footer for app pages */
 .footer {
   text-align: center;
-  padding: 20px; /* Reduced padding */
+  padding: 20px;
+  /* Reduced padding */
   background-color: var(--card-bg);
   color: var(--text-color-light);
   border-top: 1px solid var(--border-color);
-  margin-top: auto; 
-  flex-shrink: 0; 
+  margin-top: auto;
+  flex-shrink: 0;
   font-size: 0.9em;
 }
+
 .form-container {
-  max-width: 550px; 
+  max-width: 550px;
   margin: 60px auto;
   padding: 2rem;
   background: var(--card-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  flex-grow: 1; 
+  flex-grow: 1;
 }
+
 .form-container h1 {
   text-align: center;
   margin-bottom: 0.5rem;
 }
+
 .form-container p {
   text-align: center;
   margin-bottom: 2rem;
   color: var(--text-color-light);
 }
+
 .login-form label {
   display: block;
   margin-bottom: 5px;
   font-weight: 600;
 }
+
 .login-form input,
 textarea.form-input,
 .login-form select,
-.form-input /* Universal input class */
-{
+.form-input
+
+/* Universal input class */
+  {
   width: 100%;
   padding: 12px;
   margin-bottom: 16px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  box-sizing: border-box; 
+  box-sizing: border-box;
   font-family: var(--font-family);
   font-size: 1rem;
 }
+
 textarea.form-input {
   min-height: 120px;
   resize: vertical;
 }
+
 .login-form button,
 .login-form .btn {
   width: 100%;
   margin-top: 10px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
+
 .btn-organizer {
   background-color: var(--success-color);
   color: white;
 }
+
 .btn-organizer:hover {
   background-color: #218838;
 }
+
 .form-link {
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
   font-size: 14px;
 }
-.form-link-inline { 
+
+.form-link-inline {
   margin-top: 0;
   margin-right: 10px;
   font-size: 14px;
   color: var(--text-color-light);
 }
+
 .role-radio-group {
   display: flex;
   align-items: center;
@@ -302,20 +358,24 @@ textarea.form-input {
   margin-bottom: 10px;
   cursor: pointer;
 }
+
 .role-radio-group:has(input:checked) {
   border-color: var(--primary-color);
   background-color: #f0f8ff;
 }
+
 .role-radio-group input[type="radio"] {
   margin-right: 12px;
   width: 1.2em;
   height: 1.2em;
 }
+
 .role-radio-group label {
   margin: 0;
   font-weight: 500;
   cursor: pointer;
 }
+
 .error-box {
   color: var(--danger-color);
   background-color: #f8d7da;
@@ -324,49 +384,57 @@ textarea.form-input {
   border-radius: var(--border-radius);
   margin-top: 1rem;
   font-weight: 500;
-  min-height: 1.5em; 
+  min-height: 1.5em;
 }
+
 .error-box:empty {
-   display: none;
+  display: none;
 }
+
 .form-container .role-selection {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 24px;
 }
+
 .role-selection .role-box {
   border: 2px solid var(--border-color);
   padding: 24px;
   border-radius: var(--border-radius);
   text-align: left;
   transition: all 0.2s ease;
-  text-decoration: none; 
-  color: var(--text-color); 
-  width: 500px; 
-  box-sizing: border-box; 
+  text-decoration: none;
+  color: var(--text-color);
+  width: 500px;
+  box-sizing: border-box;
 }
+
 .role-selection .role-box:hover {
   border-color: var(--primary-color);
   box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
   transform: translateY(-2px);
 }
+
 .role-selection .role-box h2 {
   margin: 0 0 5px 0;
   color: var(--primary-color);
-  text-align: center; 
+  text-align: center;
 }
+
 .role-selection .role-box p {
   margin: 0;
   font-size: 14px;
   color: var(--text-color-light);
-  text-align: center; 
+  text-align: center;
 }
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
+
 .sidebar {
   width: 250px;
   background: var(--dark-color);
@@ -375,28 +443,35 @@ textarea.form-input {
   padding: 1.5rem;
   box-sizing: border-box;
   flex-shrink: 0;
-  position: relative; /* For mobile */
+  position: relative;
+  /* For mobile */
   z-index: 1000;
   /* transition: transform 0.3s ease; <-- REMOVED this */
   transform: translateX(0);
 }
+
 .sidebar .logo {
   margin-bottom: 2rem;
   text-align: center;
   overflow: hidden;
 }
+
 .sidebar-logo-img {
-  height: 50px; /* YOUR 50px LOGO HEIGHT */
-  overflow: hidden; 
+  height: 50px;
+  /* YOUR 50px LOGO HEIGHT */
+  overflow: hidden;
 }
+
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 150px); /* Adjusted for your logo */
+  height: calc(100vh - 150px);
+  /* Adjusted for your logo */
 }
+
 .sidebar li a {
   display: block;
   padding: 12px 16px;
@@ -407,22 +482,30 @@ textarea.form-input {
   font-weight: 500;
   transition: background-color 0.2s ease;
 }
+
 .sidebar li.active a,
 .sidebar li a:hover {
   background-color: #34495e;
 }
+
 .sidebar-logout {
-  margin-top: auto; 
-  border-top: 0px solid #4a627a; /* Your style */
-  padding-top: 0px; /* Your style */
+  margin-top: auto;
+  border-top: 0px solid #4a627a;
+  /* Your style */
+  padding-top: 0px;
+  /* Your style */
 }
+
 .sidebar-logout a:hover {
   background-color: var(--danger-color) !important;
-  color: white !important; /* Your style (implicit) */
+  color: white !important;
+  /* Your style (implicit) */
 }
+
 /* Close button for sidebar */
 .btn-close-sidebar {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   position: absolute;
   top: 1rem;
   right: 1.5rem;
@@ -440,6 +523,7 @@ textarea.form-input {
   overflow: hidden;
   background-color: #333;
 }
+
 .slide {
   position: absolute;
   top: 0;
@@ -456,6 +540,7 @@ textarea.form-input {
   text-align: center;
   color: white;
 }
+
 .slide::before {
   content: "";
   position: absolute;
@@ -466,20 +551,24 @@ textarea.form-input {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   z-index: 1;
 }
+
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 600px;
   margin: 0 auto;
 }
+
 .hero-content h1 {
   font-size: 3.5em;
   margin-bottom: 10px;
 }
+
 .hero-content p {
   font-size: 1.2em;
   margin-bottom: 30px;
 }
+
 .slideshow-dots {
   position: absolute;
   bottom: 20px;
@@ -489,6 +578,7 @@ textarea.form-input {
   display: flex;
   gap: 10px;
 }
+
 .dot {
   height: 12px;
   width: 12px;
@@ -498,70 +588,84 @@ textarea.form-input {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .dot.active {
   background-color: white;
 }
+
 .feature-section {
   padding: 60px 5%;
   text-align: center;
 }
-.feature-section h2 { 
+
+.feature-section h2 {
   font-size: 2.5rem;
   margin-bottom: 40px;
 }
+
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 40px;
 }
+
 .feature-card {
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   padding: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
+
 .feature-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
   display: block;
 }
+
 .feature-card .card-content {
   padding: 24px;
   text-align: center;
 }
+
 .feature-card h3 {
   margin: 0 0 10px 0;
   font-size: 1.4rem;
 }
+
 .feature-card p {
   font-size: 1rem;
   color: #555;
   margin: 0;
 }
+
 .for-owners-section {
-  background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('../assets/img/for-owners.png'); 
+  background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('../assets/img/for-owners.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   color: white;
   padding: 80px 5%;
   text-align: center;
 }
+
 .for-owners-content {
   max-width: 700px;
   margin: 0 auto;
 }
+
 .for-owners-content h2 {
   font-size: 2.5em;
 }
+
 .for-owners-content ul {
   list-style: none;
   padding: 0;
@@ -569,6 +673,7 @@ textarea.form-input {
   display: inline-block;
   text-align: left;
 }
+
 .for-owners-content li {
   font-size: 1.1em;
   margin-bottom: 10px;
@@ -577,44 +682,58 @@ textarea.form-input {
 
 /* --- 6. Page: Dashboards & Booking --- */
 .dashboard-content {
-  padding: 32px 5%; /* Use % padding to match navbar */
-  max-width: none;  /* Remove max-width for full-width */
+  padding: 32px 5%;
+  /* Use % padding to match navbar */
+  max-width: none;
+  /* Remove max-width for full-width */
   margin: 0;
-  flex-grow: 1; 
-  overflow-x: hidden; /* THE "SHRINK" FIX */
+  flex-grow: 1;
+  overflow-x: hidden;
+  /* THE "SHRINK" FIX */
 }
+
 .organizer-content {
   flex-grow: 1;
-  padding: 32px 5%; /* Use % padding to match navbar */
+  padding: 32px 5%;
+  /* Use % padding to match navbar */
   background-color: var(--body-bg);
-  overflow-x: hidden; /* THE "SHRINK" FIX */
-  position: relative; /* For hamburger */
+  overflow-x: hidden;
+  /* THE "SHRINK" FIX */
+  position: relative;
+  /* For hamburger */
 }
+
 .dashboard-header,
 .organizer-header {
   margin-bottom: 24px;
 }
+
 .dashboard-header h1,
 .organizer-header h2 {
   margin: 0;
   font-size: 2rem;
 }
+
 .dashboard-header p {
   font-size: 1.2em;
   color: var(--text-color-light);
   margin: 4px 0 0 0;
 }
+
 .organizer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allows stacking on mobile */
+  flex-wrap: wrap;
+  /* Allows stacking on mobile */
 }
+
 .organizer-header-left {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .header-welcome-text {
   font-size: 0.9em;
   color: var(--text-color-light);
@@ -626,43 +745,53 @@ textarea.form-input {
   padding-bottom: 16px;
   gap: 16px;
 }
+
 .card-ai {
-  /* min-width: 280px; */ /* REMOVED */
+  /* min-width: 280px; */
+  /* REMOVED */
   border-left: 4px solid var(--primary-color);
 }
+
 .card-ai.organizer {
   border-left-color: var(--success-color);
 }
+
 .card-ai strong {
   display: block;
   margin-bottom: 8px;
 }
+
 .card-ai p {
   font-size: 0.9em;
   margin: 8px 0 16px 0;
   color: var(--text-color-light);
   margin-left: 3px;
 }
+
 .game-card .game-card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
+
 .game-card h3 {
   margin: 0;
   max-width: 70%;
   font-size: 1.2rem;
 }
+
 .game-card .game-time {
   font-size: 0.9em;
   font-weight: 600;
   color: var(--success-color);
 }
+
 .player-pills {
   display: flex;
   align-items: center;
   margin: 8px 0 16px 0;
 }
+
 .avatar-pill {
   width: 30px;
   height: 30px;
@@ -676,80 +805,114 @@ textarea.form-input {
   background: var(--secondary-color);
   color: white;
   font-weight: 600;
+  flex-shrink: 0;
 }
+
 .avatar-pill:first-child {
   margin-left: 0;
 }
+
 .avatar-pill-plus {
   background: #e9ecef;
   color: var(--text-color);
 }
-.avatar-pill-green { 
+
+.avatar-pill-green {
   background-color: var(--success-color);
 }
+
 .avatar-pill-yellow {
   background-color: var(--warning-color);
   color: #333;
 }
+
 .avatar-pill-red {
   background-color: var(--danger-color);
 }
-.match-card h3 { 
+
+.match-card h3 {
   font-size: 1.2rem;
 }
-.match-card p { 
+
+.match-card p {
   margin: 0;
   color: var(--text-color-light);
 }
+
 .match-card .players-needed {
   font-size: 1em;
   font-weight: 600;
   color: var(--primary-color);
-  margin-top: 0.5rem; 
-  margin-bottom: 0.5rem; 
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
+
 .player-progress {
   height: 8px;
   width: 100%;
   background-color: var(--border-color);
   border-radius: 4px;
   overflow: hidden;
-  margin: 8px 0; 
+  margin: 8px 0;
 }
+
 .player-progress-bar {
   height: 100%;
   background-color: var(--primary-color);
   border-radius: 4px;
 }
+
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
 }
+
 .kpi-card {
   border-bottom: 4px solid var(--primary-color);
 }
+
+.kpi-card.kpi-revenue {
+  border-bottom-color: var(--primary-hover);
+}
+
+.kpi-card.kpi-facilities {
+  border-bottom-color: var(--success-color);
+}
+
+.kpi-card.kpi-users {
+  border-bottom-color: var(--warning-color);
+}
+
+.kpi-card.kpi-payouts {
+  border-bottom-color: var(--danger-color);
+}
+
 .kpi-card h4 {
   margin: 0 0 8px 0;
   font-size: 1em;
   color: var(--text-color-light);
   font-weight: 600;
 }
+
 .kpi-card p {
   margin: 0;
   font-size: 2.2em;
   font-weight: 700;
 }
+
 .dashboard-main-split {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
   margin-top: 24px;
 }
+
 .upcoming-bookings table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .upcoming-bookings th,
 .upcoming-bookings td {
   padding: 12px 8px;
@@ -757,10 +920,12 @@ textarea.form-input {
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
 }
+
 .upcoming-bookings th {
   font-size: 0.9em;
   color: var(--text-color-light);
 }
+
 .status-pill {
   padding: 4px 10px;
   border-radius: 12px;
@@ -768,34 +933,41 @@ textarea.form-input {
   font-weight: 600;
   text-transform: uppercase;
 }
+
 .status-pill.paid {
   background-color: #d4edda;
   color: #155724;
 }
+
 .status-pill.pending {
   background-color: #fff3cd;
   color: #856404;
 }
+
 .status-pill.cancelled {
   background-color: #f8d7da;
   color: #721c24;
   text-decoration: line-through;
 }
+
 /* NEW HOSTED STYLE */
 .status-pill.hosted {
-    background-color: #c9e2ff;
-    color: var(--primary-color);
+  background-color: #c9e2ff;
+  color: var(--primary-color);
 }
 
 .booking-filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
-  align-items: end; /* This aligns the items to the bottom of the grid row */
+  align-items: end;
+  /* This aligns the items to the bottom of the grid row */
 }
+
 /* FINAL FIX: This aligns the buttons vertically with the bottom of the input fields */
 .booking-filters .btn {
-    margin-bottom: 16px; /* Retain the vertical spacing below the input field */
+  margin-bottom: 16px;
+  /* Retain the vertical spacing below the input field */
 }
 
 /* NEW: Styles for the booking detail popup */
@@ -804,24 +976,30 @@ textarea.form-input {
   padding: 0;
   margin: 0;
 }
+
 .booking-detail-item {
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
   border-bottom: 1px solid var(--border-color);
 }
+
 .booking-detail-item:first-of-type {
   padding-top: 0;
 }
+
 .booking-detail-item span {
   color: var(--text-color-light);
 }
+
 .booking-detail-item strong {
   color: var(--text-color);
 }
+
 .booking-detail-item strong .status-pill {
   font-size: 0.9em;
 }
+
 /* End of new styles */
 
 .payout-info {
@@ -831,16 +1009,19 @@ textarea.form-input {
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
 }
+
 .payout-info strong {
   display: block;
   font-size: 0.9em;
   color: var(--text-color-light);
 }
+
 .payout-info p {
   font-weight: 600;
   font-size: 1.1rem;
   margin: 0.25rem 0 0 0;
 }
+
 .payout-list-item {
   display: flex;
   justify-content: space-between;
@@ -848,38 +1029,46 @@ textarea.form-input {
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border-color);
 }
+
 .payout-list-item:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
+
 .payout-list-item:first-child {
   padding-top: 0;
 }
+
 .payout-list-item p {
   margin: 0;
   font-weight: 600;
   font-size: 1.1rem;
 }
+
 .payout-date {
   font-size: 0.9em;
   color: var(--text-color-light);
   font-weight: 500;
 }
+
 .ad-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
 }
+
 .ad-list-item strong {
   font-size: 1.1rem;
   font-weight: 600;
 }
+
 .ad-list-item p {
   font-size: 0.9em;
   color: var(--text-color-light);
   margin: 0.25rem 0 0 0;
 }
+
 .price-summary-item {
   display: flex;
   justify-content: space-between;
@@ -888,10 +1077,12 @@ textarea.form-input {
   margin-bottom: 0.5rem;
   padding: 0.5rem 0;
 }
+
 .price-summary-item span:last-child {
   font-weight: 600;
   color: var(--text-color);
 }
+
 .price-summary-total {
   display: flex;
   justify-content: space-between;
@@ -902,6 +1093,7 @@ textarea.form-input {
   padding-top: 1rem;
   margin-top: 1rem;
 }
+
 .price-summary-total #summary-total-cost {
   color: var(--success-color);
 }
@@ -913,6 +1105,7 @@ textarea.form-input {
   gap: 32px;
   margin-top: 2rem;
 }
+
 .filter-sidebar {
   background: var(--card-bg);
   padding: 1.5rem;
@@ -920,21 +1113,25 @@ textarea.form-input {
   box-shadow: var(--shadow);
   height: fit-content;
 }
+
 .filter-sidebar h4 {
   margin: 0 0 1.5rem 0;
   font-size: 1.3rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
 }
+
 .filter-group {
   margin-bottom: 1.5rem;
 }
+
 .filter-group label {
   display: block;
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 0.9em;
 }
+
 .price-range-label {
   display: flex;
   justify-content: space-between;
@@ -942,10 +1139,12 @@ textarea.form-input {
   color: var(--text-color-light);
   margin-top: 5px;
 }
+
 .search-results h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
+
 .result-card {
   display: grid;
   grid-template-columns: 200px 1fr auto;
@@ -958,28 +1157,34 @@ textarea.form-input {
   box-shadow: var(--shadow);
   transition: all 0.2s ease;
 }
+
 .result-card:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
+
 .result-card-image img {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
+
 .result-card-content {
-  padding: 1.5rem; 
+  padding: 1.5rem;
 }
+
 .result-card-content h3 {
   margin: 0 0 5px 0;
   font-size: 1.4rem;
 }
+
 .location-text {
   color: var(--text-color-light);
   margin: 0 0 1rem 0;
   font-size: 0.9em;
 }
+
 .availability-summary {
   display: flex;
   align-items: center;
@@ -987,25 +1192,38 @@ textarea.form-input {
   font-size: 0.9em;
   margin-bottom: 1rem;
 }
+
 .avail-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
-.avail-dot.green { background-color: var(--success-color); }
-.avail-dot.yellow { background-color: var(--warning-color); }
-.avail-dot.red { background-color: var(--danger-color); }
+
+.avail-dot.green {
+  background-color: var(--success-color);
+}
+
+.avail-dot.yellow {
+  background-color: var(--warning-color);
+}
+
+.avail-dot.red {
+  background-color: var(--danger-color);
+}
+
 .price-text {
   font-size: 1.1rem;
   color: var(--text-color-light);
   margin: 0;
 }
+
 .price-text strong {
   color: var(--text-color);
   font-size: 1.2rem;
 }
+
 .result-card-action {
-  padding: 1.5rem; 
+  padding: 1.5rem;
   border-left: 1px solid var(--border-color);
 }
 
@@ -1013,19 +1231,23 @@ textarea.form-input {
 .facility-header {
   margin-bottom: 2rem;
 }
+
 .facility-header h1 {
   font-size: 2.5rem;
   margin: 0;
 }
+
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
   font-weight: 600;
   color: var(--text-color-light);
 }
+
 .back-link:hover {
   color: var(--primary-color);
 }
+
 .facility-gallery {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -1033,6 +1255,7 @@ textarea.form-input {
   gap: 10px;
   margin-top: 1.5rem;
 }
+
 .gallery-main {
   grid-row: 1 / 2;
   grid-column: 1 / 2;
@@ -1041,40 +1264,50 @@ textarea.form-input {
   object-fit: cover;
   border-radius: var(--border-radius);
 }
+
 .gallery-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius);
 }
+
 .facility-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 32px;
 }
+
 .facility-main {
-  min-width: 0; 
+  min-width: 0;
 }
+
 .facility-sidebar .card {
   position: sticky;
   top: 20px;
 }
+
 .facility-info {
   margin-top: 1.5rem;
 }
+
 .facility-info hr {
   border: 0;
   border-top: 1px solid var(--border-color);
   margin: 1rem 0;
 }
+
 .tabs {
   display: flex;
   gap: 10px;
   margin-bottom: 1.5rem;
   border-bottom: 2px solid var(--border-color);
-  justify-content: center; /* <-- THIS IS THE CHANGE (Line 780) */
-  flex-wrap: wrap; /* <-- THIS IS THE CHANGE (Line 781) */
+  justify-content: center;
+  /* <-- THIS IS THE CHANGE (Line 780) */
+  flex-wrap: wrap;
+  /* <-- THIS IS THE CHANGE (Line 781) */
 }
+
 .tab-link {
   padding: 10px 20px;
   cursor: pointer;
@@ -1084,41 +1317,50 @@ textarea.form-input {
   font-weight: 600;
   color: var(--text-color-light);
   border-bottom: 2px solid transparent;
-  transform: translateY(2px); 
+  transform: translateY(2px);
 }
+
 .tab-link.active {
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
 }
+
 .tab-content {
-  display: none; 
+  display: none;
 }
+
 .tab-content.active {
   display: block;
 }
+
 .calendar-container {
   padding: 0;
-  overflow: hidden; 
+  overflow: hidden;
 }
+
 .calendar-header {
   display: grid;
-  grid-template-columns: 100px repeat(5, 1fr); 
+  grid-template-columns: 100px repeat(5, 1fr);
   font-weight: 600;
   text-align: center;
   background: var(--light-color);
 }
-.calendar-header > div {
+
+.calendar-header>div {
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
 }
+
 .calendar-header .time-header {
   border-left: none;
 }
+
 .calendar-body {
   display: grid;
   grid-template-columns: 100px repeat(5, 1fr);
 }
+
 .time-label {
   padding: 1rem;
   font-weight: 600;
@@ -1127,6 +1369,7 @@ textarea.form-input {
   border-bottom: 1px solid var(--border-color);
   color: var(--text-color-light);
 }
+
 .time-slot {
   border-bottom: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
@@ -1137,61 +1380,75 @@ textarea.form-input {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .time-slot p {
   margin: 0;
-  padding: 0.75rem 0; 
+  padding: 0.75rem 0;
   border-radius: var(--border-radius);
   transition: background-color 0.2s, color 0.2s;
 }
+
 .time-slot.available p {
   background-color: #d4edda;
   color: #155724;
 }
+
 .time-slot.available:hover p {
   background-color: #155724;
   color: white;
 }
+
 .time-slot.limited p {
   background-color: #fff3cd;
   color: #856404;
 }
+
 .time-slot.limited:hover p {
   background-color: #856404;
   color: white;
 }
+
 .time-slot.full {
   cursor: not-allowed;
   opacity: 0.6;
 }
+
 .time-slot.full p {
   background-color: #f8d7da;
   color: #721c24;
-  padding: 0.75rem 0; /* THE SHRINK FIX */
+  padding: 0.75rem 0;
+  /* THE SHRINK FIX */
 }
+
 .time-slot.selected {
   outline: 3px solid var(--primary-color);
-  outline-offset: -2px; 
-  border-radius: 9px; 
+  outline-offset: -2px;
+  border-radius: 9px;
 }
+
 .time-slot.selected p {
   background-color: var(--primary-color) !important;
   color: white !important;
 }
+
 #booking-summary .placeholder-text {
   color: var(--text-color-light);
   font-style: italic;
   font-size: 0.9em;
 }
+
 #booking-summary .price-summary {
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
   margin: 1.5rem 0;
 }
+
 #booking-summary #total-price {
   color: var(--primary-color);
   font-size: 1.3rem;
 }
+
 #book-now-btn:disabled {
   background-color: var(--secondary-color);
   cursor: not-allowed;
@@ -1208,22 +1465,26 @@ textarea.form-input {
   background: var(--light-color);
   text-align: left;
 }
+
 .price-plan-price {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--primary-color);
   margin: 0 0 1.5rem 0;
 }
+
 .price-plan-price span {
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-color-light);
 }
+
 .price-plan-features {
   list-style: none;
   padding: 0;
   margin: 0 0 2rem 0;
 }
+
 .price-plan-features li {
   margin-bottom: 1rem;
   font-weight: 500;
@@ -1240,17 +1501,20 @@ textarea.form-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1002; /* <-- THIS IS THE FIX (was 1000) */
+  z-index: 1002;
+  /* <-- THIS IS THE FIX (was 1000) */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  padding: 1.5rem; 
-  box-sizing: border-box; 
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
+
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
 }
+
 .modal-content {
   background: var(--card-bg);
   padding: 2rem;
@@ -1259,32 +1523,42 @@ textarea.form-input {
   max-width: 400px;
   transition: all 0.3s ease;
   transform: translateY(20px);
-  position: relative; 
-  width: 100%; 
-  max-height: 90vh; 
-  overflow-y: auto; 
+  position: relative;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
+
 .modal-overlay.active .modal-content {
   transform: translateY(0);
 }
+
 .modal-content.modal-large {
-  max-width: 700px; /* For the 'Post a Match' modal */
+  max-width: 700px;
+  /* For the 'Post a Match' modal */
 }
+
 .modal-content h3 {
   margin-top: 0;
-  margin-bottom: 0.5rem; /* Tighter title */
+  margin-bottom: 0.5rem;
+  /* Tighter title */
 }
+
 .modal-content p {
   color: var(--text-color-light);
   margin-top: -10px;
-  margin-bottom: 1.5rem; /* Tighter text */
+  margin-bottom: 1.5rem;
+  /* Tighter text */
 }
+
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 1rem; /* Was 1.5rem */
+  margin-top: 1rem;
+  /* Was 1.5rem */
 }
+
 /* New Close Button for Modals */
 .btn-close {
   background: none;
@@ -1293,25 +1567,32 @@ textarea.form-input {
   padding: 5px;
   color: var(--secondary-color);
   transition: color 0.2s ease;
-  position: absolute; 
+  position: absolute;
   top: 1rem;
   right: 1rem;
 }
+
 .btn-close:hover {
   color: var(--text-color);
 }
+
 /* ---
     NEWLY ADDED FOR COMPACT MODAL
     Reduces spacing to prevent scrolling
 --- */
 .modal-compact-form .filter-group {
-   margin-bottom: 0.75rem; /* Was 1.5rem */
+  margin-bottom: 0.75rem;
+  /* Was 1.5rem */
 }
+
 .modal-compact-form label {
-   margin-bottom: 4px; /* Was 8px */
+  margin-bottom: 4px;
+  /* Was 8px */
 }
+
 .modal-compact-form .form-input {
-   margin-bottom: 8px; /* Was 16px */
+  margin-bottom: 8px;
+  /* Was 16px */
 }
 
 
@@ -1320,14 +1601,16 @@ textarea.form-input {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 32px;
-  height: calc(100vh - 200px); 
+  height: calc(100vh - 200px);
 }
+
 .chat-sidebar {
   padding: 1.5rem;
   height: 100%;
   box-sizing: border-box;
   overflow-y: auto;
 }
+
 .chat-main {
   padding: 0;
   height: 100%;
@@ -1335,6 +1618,7 @@ textarea.form-input {
   flex-direction: column;
   overflow: hidden;
 }
+
 .chat-messages {
   flex-grow: 1;
   padding: 1.5rem;
@@ -1343,6 +1627,7 @@ textarea.form-input {
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .chat-input-area {
   display: flex;
   gap: 10px;
@@ -1351,21 +1636,25 @@ textarea.form-input {
   background: var(--light-color);
   flex-shrink: 0;
 }
+
 .chat-message {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   max-width: 80%;
 }
+
 .chat-message .message-content {
   background: var(--light-color);
   padding: 10px 15px;
   border-radius: var(--border-radius);
 }
+
 .chat-message .message-content p {
   margin: 0;
   color: var(--text-color);
 }
+
 .message-sender {
   font-weight: 700;
   font-size: 0.9em;
@@ -1373,16 +1662,20 @@ textarea.form-input {
   margin-bottom: 4px;
   display: block;
 }
+
 .chat-message.self {
   align-self: flex-end;
 }
+
 .chat-message.self .message-content {
   background: var(--primary-color);
   color: white;
 }
+
 .chat-message.self .message-content p {
   color: white;
 }
+
 .chat-message.system {
   align-self: center;
   max-width: 100%;
@@ -1391,11 +1684,14 @@ textarea.form-input {
   font-size: 0.9em;
   font-style: italic;
 }
-.player-payment-list { /* For group_chat.html */
+
+.player-payment-list {
+  /* For group_chat.html */
   list-style: none;
   padding: 0;
   margin: 1rem 0;
 }
+
 .player-payment-list li {
   display: flex;
   align-items: center;
@@ -1404,16 +1700,19 @@ textarea.form-input {
   margin-bottom: 8px;
   color: var(--text-color-light);
 }
+
 .player-payment-list li .avatar-pill {
   margin-left: 0;
   font-size: 0.9em;
 }
+
 .ai-chat-widget {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
 }
+
 .ai-chat-bubble {
   width: 60px;
   height: 60px;
@@ -1428,14 +1727,17 @@ textarea.form-input {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .ai-chat-bubble:hover {
   background: var(--primary-hover);
   transform: scale(1.1);
 }
+
 .ai-chat-bubble svg {
   width: 32px;
   height: 32px;
 }
+
 .ai-chat-window {
   position: absolute;
   bottom: 80px;
@@ -1452,35 +1754,44 @@ textarea.form-input {
   visibility: hidden;
   transition: all 0.3s ease;
 }
+
 .ai-chat-window.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
+
 .ai-chat-header {
   background: var(--primary-color);
   color: white;
   padding: 1rem 1.5rem;
-  position: relative; /* For close button */
+  position: relative;
+  /* For close button */
 }
+
 .ai-chat-header h3 {
   color: white;
   margin: 0 0 5px 0;
   font-size: 1.2rem;
 }
+
 .ai-chat-header p {
   color: white;
   opacity: 0.9;
   font-size: 0.8em;
   margin: 0;
 }
-.ai-chat-header .btn-close { /* Close button for chat */
+
+.ai-chat-header .btn-close {
+  /* Close button for chat */
   color: white;
   opacity: 0.7;
 }
+
 .ai-chat-header .btn-close:hover {
   opacity: 1;
 }
+
 .ai-chat-body {
   flex-grow: 1;
   padding: 1rem;
@@ -1489,6 +1800,7 @@ textarea.form-input {
   flex-direction: column;
   gap: 1rem;
 }
+
 .ai-chat-message.ai p {
   background: var(--light-color);
   padding: 10px 15px;
@@ -1497,6 +1809,7 @@ textarea.form-input {
   max-width: 85%;
   align-self: flex-start;
 }
+
 .ai-chat-message.user p {
   background: var(--primary-color);
   color: white;
@@ -1506,30 +1819,47 @@ textarea.form-input {
   max-width: 85%;
   align-self: flex-end;
 }
+
 .loading-dots {
   display: inline-block;
   font-weight: bold;
 }
+
 .loading-dots::after {
   content: ' .';
   animation: dots 1.4s infinite;
   animation-delay: 0s;
 }
+
 @keyframes dots {
-  0% { content: ' .'; }
-  33% { content: ' ..'; }
-  66% { content: ' ...'; }
-  100% { content: ' .'; }
+  0% {
+    content: ' .';
+  }
+
+  33% {
+    content: ' ..';
+  }
+
+  66% {
+    content: ' ...';
+  }
+
+  100% {
+    content: ' .';
+  }
 }
 
 /* --- 9. Responsive Design (MOBILE NAV FIXED) --- */
 
 /* Hide/Show classes for responsive tables */
 .desktop-hide {
-    display: none; /* Hidden by default on desktop */
+  display: none;
+  /* Hidden by default on desktop */
 }
+
 .mobile-hide {
-    display: table-cell; /* Visible by default on desktop */
+  display: table-cell;
+  /* Visible by default on desktop */
 }
 
 /* NEW: Week Navigator */
@@ -1542,11 +1872,13 @@ textarea.form-input {
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
 }
+
 .week-navigator h3 {
   margin: 0;
   font-size: 1.1rem;
   color: var(--text-color);
 }
+
 .week-navigator .btn {
   padding: 0.5rem 0.75rem;
 }
@@ -1554,18 +1886,24 @@ textarea.form-input {
 
 /* NEW: Mobile Accordion Calendar */
 .calendar-desktop-grid {
-  display: block; /* Show on desktop */
+  display: block;
+  /* Show on desktop */
 }
+
 .calendar-mobile-list {
-  display: none; /* Hide on desktop */
+  display: none;
+  /* Hide on desktop */
 }
+
 .day-accordion {
   background: var(--card-bg);
   border-radius: var(--border-radius);
   margin-bottom: 10px;
   box-shadow: var(--shadow);
-  overflow: hidden; /* Fix for rounded corners */
+  overflow: hidden;
+  /* Fix for rounded corners */
 }
+
 .day-accordion-toggle {
   width: 100%;
   background: var(--card-bg);
@@ -1580,22 +1918,28 @@ textarea.form-input {
   cursor: pointer;
   text-align: left;
 }
+
 .day-accordion-toggle:hover {
   background: var(--light-color);
 }
+
 .day-accordion-toggle span {
   font-size: 0.9em;
   color: var(--text-color-light);
   font-weight: 500;
 }
+
 .day-accordion-content {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   padding: 0 1rem 1rem 1rem;
   background: #fafafa;
 }
+
 .day-accordion-content.active {
   display: block;
 }
+
 .time-slot-row {
   display: flex;
   justify-content: space-between;
@@ -1604,58 +1948,74 @@ textarea.form-input {
   border-bottom: 1px solid var(--border-color);
   cursor: pointer;
 }
+
 .time-slot-row:last-child {
   border-bottom: none;
 }
+
 .time-slot-row span {
   font-weight: 600;
   color: var(--text-color-light);
 }
+
 .time-slot-row strong {
   font-size: 1.1rem;
 }
+
 .time-slot-row.available strong {
   color: var(--success-color);
 }
+
 .time-slot-row.limited strong {
   color: var(--warning-color);
 }
+
 .time-slot-row.closed strong {
   color: var(--danger-color);
   text-decoration: line-through;
 }
+
 .time-slot-row.full {
   color: var(--text-color-light);
   opacity: 0.7;
   cursor: not-allowed;
 }
+
 /* End of New Calendar Styles */
 
 
 .hamburger-btn {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   background: none;
   border: none;
   cursor: pointer;
   padding: 5px;
   color: var(--dark-color);
-  z-index: 1001; /* Make sure it's above other content */
+  z-index: 1001;
+  /* Make sure it's above other content */
 }
+
 .mobile-nav-menu {
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   position: absolute;
-  top: 100%; /* THIS IS THE FIX: Position it directly at the bottom of the navbar */
+  top: 100%;
+  /* THIS IS THE FIX: Position it directly at the bottom of the navbar */
   left: 0;
-  right: 0; 
+  right: 0;
   width: 100%;
   background: var(--card-bg);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  z-index: 1000; /* Sits just below hamburger */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* Sits just below hamburger */
 }
+
 .mobile-nav-menu.active {
   display: flex;
   flex-direction: column;
 }
+
 .mobile-nav-menu a {
   padding: 1rem 5%;
   text-decoration: none;
@@ -1663,18 +2023,22 @@ textarea.form-input {
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
 }
+
 .mobile-nav-menu a:hover {
   background-color: var(--light-color);
 }
 
 /* --- NEW AI SLIDESHOW STYLES --- */
 .ai-slideshow {
-  display: none; /* Hidden on desktop by default */
+  display: none;
+  /* Hidden on desktop by default */
   position: relative;
-  height: 200px; /* You can adjust this height */
+  height: 200px;
+  /* You can adjust this height */
   overflow: hidden;
   border-radius: var(--border-radius);
 }
+
 .ai-slide {
   position: absolute;
   top: 0;
@@ -1685,6 +2049,7 @@ textarea.form-input {
   transition: opacity 1.0s ease-in-out;
   /* The .card and .card-ai styles will apply automatically */
 }
+
 .ai-slideshow-dots {
   position: absolute;
   bottom: 15px;
@@ -1694,22 +2059,28 @@ textarea.form-input {
   display: flex;
   gap: 8px;
 }
+
 .ai-dot {
   height: 10px;
   width: 10px;
-  background-color: rgba(0, 0, 0, 0.3); /* Dim dot */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Dim dot */
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .ai-dot.active {
-  background-color: var(--primary-color); /* Active dot */
+  background-color: var(--primary-color);
+  /* Active dot */
 }
+
 /* --- End of AI Slideshow Styles --- */
 
 
 @media (max-width: 900px) {
+
   /* This breakpoint stacks multi-column layouts */
   .feature-grid,
   .booking-layout,
@@ -1722,79 +2093,106 @@ textarea.form-input {
   /* --- FIX for Profile Tabs --- */
   .tabs {
     /* overflow-x: auto; <-- REMOVED */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   .tabs::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
   }
+
   /* .tab-link { white-space: nowrap; } <-- REMOVED */
   /* --- End of FIX --- */
 
   /* --- MODIFIED for AI Slideshow --- */
   .card-grid.ai-suggestions {
-    display: none; /* Hide desktop grid on mobile */
+    display: none;
+    /* Hide desktop grid on mobile */
   }
+
   .ai-slideshow {
-    display: block; /* Show mobile slideshow */
+    display: block;
+    /* Show mobile slideshow */
   }
+
   /* --- End of MODIFICATION --- */
 
   /* --- FIX for Booking Card --- */
   .result-card {
     grid-template-columns: 1fr;
     text-align: center;
-    padding: 0; /* Remove parent padding */
+    padding: 0;
+    /* Remove parent padding */
   }
+
   .result-card-image img {
     height: 200px;
-    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Only round top corners */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    /* Only round top corners */
   }
+
   .result-card-content {
-    padding: 1.5rem; /* Add padding back to content */
+    padding: 1.5rem;
+    /* Add padding back to content */
     text-align: center;
   }
+
   .result-card-action {
     border: none;
-    padding: 0 1.5rem 1.5rem 1.5rem; /* Add padding to action area */
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    /* Add padding to action area */
     margin-top: 0;
   }
+
   .result-card-action .btn {
-    width: 100%; /* Button is now full width *inside* padding */
-    box-sizing: border-box; /* Ensure padding is included */
+    width: 100%;
+    /* Button is now full width *inside* padding */
+    box-sizing: border-box;
+    /* Ensure padding is included */
   }
+
   .availability-summary {
     justify-content: center;
   }
+
   /* --- End of FIX --- */
 
   .facility-sidebar .card {
     position: static;
   }
+
   .facility-gallery {
     grid-template-columns: 1fr;
     grid-template-rows: 250px 100px 100px;
   }
+
   .gallery-thumb {
     grid-column: span 1;
   }
-  
+
   /* --- FIX FOR CALENDAR: HIDE DESKTOP, SHOW MOBILE --- */
   .calendar-desktop-grid {
     display: none;
   }
+
   .calendar-mobile-list {
     display: block;
   }
+
   /* --- End of FIX --- */
-  
+
   .chat-layout {
     height: auto;
   }
+
   .chat-sidebar {
     height: auto;
     order: 1;
   }
+
   .chat-main {
     height: 60vh;
     order: 0;
@@ -1802,40 +2200,50 @@ textarea.form-input {
 }
 
 @media (max-width: 768px) {
-    
+
   /* FIX FOR USER MATCH HISTORY TABLE ON MOBILE */
   /* Hide columns that aren't Date, Location, or Details */
   .mobile-hide {
-      display: none !important;
+    display: none !important;
   }
+
   /* Show the Details column that was hidden on desktop */
   .desktop-hide {
-      display: table-cell !important;
+    display: table-cell !important;
   }
-  
+
   /* Adjust remaining columns to share space */
   #match-history-table thead tr th:nth-child(1),
   #match-history-table thead tr th:nth-child(3),
-  #match-history-table thead tr th:nth-child(5), /* Targetting Details */
+  #match-history-table thead tr th:nth-child(5),
+  /* Targetting Details */
   #match-history-table tbody tr td:nth-child(1),
   #match-history-table tbody tr td:nth-child(3),
-  #match-history-table tbody tr td:nth-child(5) { /* Targetting Details */
-      width: auto !important;
-      max-width: none !important;
+  #match-history-table tbody tr td:nth-child(5) {
+    /* Targetting Details */
+    width: auto !important;
+    max-width: none !important;
   }
-    
+
   /* This breakpoint handles the main navbar swap */
   .navbar {
-    max-height: 150px; /* Your max-height */
+    max-height: 150px;
+    /* Your max-height */
   }
+
   /* THIS IS THE FIX: Hide desktop links on mobile */
-  .nav-links, .nav-links-landing, .nav-icons, .nav-auth {
-    display: none; 
+  .nav-links,
+  .nav-links-landing,
+  .nav-icons,
+  .nav-auth {
+    display: none;
   }
+
   .hamburger-btn {
-    display: block; /* Show hamburger button */
+    display: block;
+    /* Show hamburger button */
   }
-  
+
   .hero-content h1 {
     font-size: 2.5em;
   }
@@ -1844,67 +2252,84 @@ textarea.form-input {
   .organizer-layout {
     flex-direction: column;
   }
+
   .organizer-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
+
   .header-welcome-text {
-      font-size: 1rem;
+    font-size: 1rem;
   }
+
   .sidebar {
     width: 100%;
     min-height: auto;
     height: auto;
-    position: fixed; /* Make it a fixed overlay */
+    position: fixed;
+    /* Make it a fixed overlay */
     top: 0;
     left: 0;
     bottom: 0;
     z-index: 1000;
     /* transform: translateX(-100%); <-- REMOVED this */
-    display: none; /* <-- ADDED this */
+    display: none;
+    /* <-- ADDED this */
   }
+
   .sidebar.active {
     /* transform: translateX(0); <-- REMOVED this */
-    display: block; /* <-- ADDED this */
+    display: block;
+    /* <-- ADDED this */
   }
+
   .sidebar ul {
     height: auto;
-    flex-direction: column; /* Stack links vertically */
+    flex-direction: column;
+    /* Stack links vertically */
     overflow-x: hidden;
     align-items: center;
     margin-top: 2rem;
   }
+
   .btn-close-sidebar {
-      display: block; /* Show the close button */
+    display: block;
+    /* Show the close button */
   }
+
   .sidebar li a {
     min-width: 200px;
     text-align: center;
   }
+
   .sidebar-logout {
     margin-top: auto;
     border: none;
   }
+
   /* --- End of FIX --- */
 
   /* This was the old, incorrect fix. It is now correct */
-  .role-selection .role-box { 
+  .role-selection .role-box {
     width: 100%;
   }
-  
+
   .post-match-banner {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
+
   .match-card-header {
     flex-direction: column;
   }
+
   .match-time {
     margin-left: 0;
     margin-top: 0.5rem;
   }
+
   .form-container {
     width: auto;
     margin: 30px 5%;
@@ -1913,13 +2338,18 @@ textarea.form-input {
 
   /* --- FIX for Modals on Mobile --- */
   .modal-overlay {
-      padding: 1rem; /* Less padding on small phones */
+    padding: 1rem;
+    /* Less padding on small phones */
   }
+
   .modal-content {
-    max-height: 85vh; /* Limit height */
-    overflow-y: auto; /* Allow scrolling *inside* modal */
-    padding: 1.5rem; 
+    max-height: 85vh;
+    /* Limit height */
+    overflow-y: auto;
+    /* Allow scrolling *inside* modal */
+    padding: 1.5rem;
   }
+
   /* --- End of FIX --- */
 }
 
@@ -1934,7 +2364,8 @@ textarea.form-input {
 
 /* MODIFIED: Changed #bookings-table to .status-table-colors */
 .status-table-colors .status-pending td:first-child strong {
-  color: #856404; /* Darker yellow from .status-pill.pending */
+  color: #856404;
+  /* Darker yellow from .status-pill.pending */
 }
 
 /* For cancelled, make the whole row dim and strike-through */
@@ -1943,6 +2374,7 @@ textarea.form-input {
   color: var(--text-color-light);
   text-decoration: line-through;
 }
+
 /* Then make the name red */
 /* MODIFIED: Changed #bookings-table to .status-table-colors */
 .status-table-colors .status-cancelled td:first-child strong {
@@ -1957,6 +2389,7 @@ textarea.form-input {
   margin-top: auto;
   flex-shrink: 0;
 }
+
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -1965,15 +2398,18 @@ textarea.form-input {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .footer-column {
   display: flex;
   flex-direction: column;
 }
+
 .footer-column h4 {
   color: white;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
+
 .footer-column a,
 .footer-column p {
   color: #bdc3c7;
@@ -1981,10 +2417,12 @@ textarea.form-input {
   margin-bottom: 0.75rem;
   font-size: 0.9em;
 }
+
 .footer-column a:hover {
   color: white;
   text-decoration: underline;
 }
+
 .footer-logo {
   height: 45px;
   width: 500px;
@@ -1992,15 +2430,18 @@ textarea.form-input {
   /* Invert logo for dark background if needed */
   /* filter: brightness(0) invert(1); */
 }
+
 .footer-column.about p {
   line-height: 1.6;
   margin-bottom: 1rem;
 }
+
 .footer-bottom {
   border-top: 1px solid #34495e;
   text-align: center;
   padding: 1.5rem 0;
 }
+
 .footer-bottom p {
   margin: 0;
   font-size: 0.9em;
@@ -2010,19 +2451,25 @@ textarea.form-input {
 /* Footer responsive */
 @media (max-width: 768px) {
   .footer-grid {
-    grid-template-columns: 1fr 1fr; /* 2 columns on tablet */
+    grid-template-columns: 1fr 1fr;
+    /* 2 columns on tablet */
   }
 }
+
 @media (max-width: 480px) {
   .footer-grid {
-    grid-template-columns: 1fr; /* 1 column on phone */
+    grid-template-columns: 1fr;
+    /* 1 column on phone */
   }
+
   .footer-enhanced {
     padding-top: 2rem;
   }
+
   .footer-column {
     text-align: center;
   }
+
   .footer-logo {
     margin: 0 auto 1rem auto;
   }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SportLink</title>
+    <title>Register as Player - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -15,41 +15,40 @@
             <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
         </div>
         <div class="nav-auth">
-            <span class="form-link-inline">Don't have an account?</span>
-            <a href="register.html" class="btn btn-primary">Register</a>
+            <span class="form-link-inline">Already have an account?</span>
+            <a href="login.html" class="btn btn-secondary">Login</a>
         </div>
     </nav>
 
     <div class="form-container">
-        <h1>Welcome Back!</h1>
-        <p>Login to book your next game.</p>
+        <h1>Create Your Player Account</h1>
+        <p>Get ready to book, play, and connect.</p>
 
         <form class="login-form">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" placeholder="e.g., Alex M.">
+            
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="user@example.com">
 
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="••••••••">
+            
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="••••••••">
 
-            <button type="button" class="btn btn-primary login-action-btn" id="login-player-btn">
-                Login as Player
-            </button>
-            <button type="button" class="btn btn-organizer login-action-btn" id="login-organizer-btn">
-                Login as Organizer
+            <button type="button" class="btn btn-primary login-action-btn" id="register-player-btn">
+                Create Player Account
             </button>
 
-            <p class="form-link">Don't have an account? <a href="register.html">Register here</a></p>
+            <p class="form-link">Already have an account? <a href="login.html">Login here</a></p>
         </form>
-    </div>
-
-    <div class="ai-chat-widget">
     </div>
 
     <footer class="footer">
         <p>&copy; 2025 SportLink. All rights reserved.</p>
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script> 
 </body>
-
 </html>

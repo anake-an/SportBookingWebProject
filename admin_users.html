@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Super Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li class="active"><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>User Management</h2>
+            </div>
+            <span class="header-welcome-text">Search, audit, and modify all user and organizer accounts.</span>
+        </header>
+
+        <div class="card">
+            <div class="booking-filters">
+                <div class="filter-group">
+                    <label for="search-user">Search Name/Email</label>
+                    <input type="text" id="search-user" class="form-input" placeholder="user@example.com">
+                </div>
+                <div class="filter-group">
+                    <label for="role-filter">Role</label>
+                    <select id="role-filter" class="form-input">
+                        <option>All Roles</option>
+                        <option>Player</option>
+                        <option>Organizer (3)</option>
+                        <option>Admin</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="verification-filter">eKYC Status</label>
+                    <select id="verification-filter" class="form-input">
+                        <option>All</option>
+                        <option>Pending (2)</option>
+                        <option>Verified</option>
+                        <option>Rejected</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem; overflow-x: auto;">
+            <table id="users-table" class="status-table-colors">
+                <thead>
+                    <tr>
+                        <th>User / Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>eKYC</th>
+                        <th>Last Login</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-role="Player">
+                        <td><strong>Alex M.</strong>
+                            <p style="font-size:0.9em; margin: 0; color: var(--text-color-light);">alex@example.com</p>
+                        </td>
+                        <td>Player</td>
+                        <td><span class="status-pill paid">Active</span></td>
+                        <td><span class="status-pill paid">Verified</span></td>
+                        <td>5 min ago</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small">Audit</button>
+                            <button class="btn-logout btn-small" style="margin-left: 8px;">Ban</button>
+                        </td>
+                    </tr>
+                    <tr data-role="Organizer" class="status-pending">
+                        <td><strong>Maria K.</strong>
+                            <p style="font-size:0.9em; margin: 0; color: #856404;">maria@organizer.com</p>
+                        </td>
+                        <td>Organizer</td>
+                        <td><span class="status-pill pending">Pending</span></td>
+                        <td><span class="status-pill pending">Pending</span></td>
+                        <td>1 hour ago</td>
+                        <td>
+                            <button class="btn btn-primary btn-small">Verify</button>
+                            <button class="btn-logout btn-small" style="margin-left: 8px;">Deactivate</button>
+                        </td>
+                    </tr>
+                    <tr data-role="Player" class="status-cancelled">
+                        <td><strong>Ben S.</strong>
+                            <p style="font-size:0.9em; margin: 0; color: var(--danger-color);">ben@spam.com</p>
+                        </td>
+                        <td>Player</td>
+                        <td><span class="status-pill cancelled">Banned</span></td>
+                        <td>N/A</td>
+                        <td>4 weeks ago</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small">Audit</button>
+                            <button class="btn btn-primary btn-small" style="margin-left: 8px;">Unban</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

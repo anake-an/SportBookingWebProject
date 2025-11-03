@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Organizer - SportLink</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img"></a>
+        </div>
+        <div class="nav-auth">
+            <span class="form-link-inline">Already have an account?</span>
+            <a href="login.html" class="btn btn-secondary">Login</a>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h1>List Your Facility</h1>
+        <p>Join SportLink and start managing your bookings.</p>
+
+        <form class="login-form">
+            <label for="facility-name">Facility Name</label>
+            <input type="text" id="facility-name" placeholder="e.g., PowerPlayz Futsal">
+
+            <label for="owner-name">Owner's Full Name</label>
+            <input type="text" id="owner-name" placeholder="e.g., Maria K.">
+            
+            <label for="email">Business Email</label>
+            <input type="email" id="email" placeholder="owner@example.com">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••">
+            
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="••••••••">
+
+            <button type="button" class="btn btn-organizer login-action-btn" id="register-organizer-btn">
+                Create Organizer Account
+            </button>
+
+            <p class="form-link">Already have an account? <a href="login.html">Login here</a></p>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 SportLink. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="js/main.js"></script> 
+</body>
+</html>

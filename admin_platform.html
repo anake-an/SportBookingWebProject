@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Settings - Super Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li class="active"><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Platform Settings</h2>
+            </div>
+            <span class="header-welcome-text">Adjust global parameters and system health.</span>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-link active" data-tab="system">System Status</button>
+            <button class="tab-link" data-tab="fees">Fees & Revenue</button>
+            <button class="tab-link" data-tab="ai">AI & Matchmaking</button>
+            <button class="tab-link" data-tab="logs">Logs & Debug</button>
+        </div>
+
+        <div class="tab-content-wrapper">
+
+            <div id="system" class="tab-content active">
+                <div class="card">
+                    <h3>Maintenance & Shutdown Control</h3>
+                    <p style="color: var(--danger-color);">Use with extreme caution. This affects all live users.</p>
+
+                    <div class="filter-group">
+                        <label for="site-status">Current Site Status</label>
+                        <p style="font-size: 1.2rem; font-weight: 700; color: var(--success-color);">Operational</p>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="maintenance-mode-select">Toggle Site Mode</label>
+                        <select id="maintenance-mode-select" class="form-input">
+                            <option value="live">Live (Normal Operation)</option>
+                            <option value="maintenance">Maintenance Mode (2 hours)</option>
+                            <option value="emergency">Emergency Shutdown</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="shutdown-message">Maintenance Message</label>
+                        <input type="text" id="shutdown-message" class="form-input"
+                            placeholder="We are down for essential maintenance. Back soon!">
+                    </div>
+
+                    <button type="button" class="btn btn-danger" style="margin-top: 1rem;">Apply System Status</button>
+                </div>
+            </div>
+
+            <div id="fees" class="tab-content">
+                <div class="card">
+                    <h3>Global Financial Controls</h3>
+                    <p>These values determine the platform's profitability and are applied to all Organizer revenue.</p>
+
+                    <div class="filter-group">
+                        <label for="platform-fee-percent">Platform Fee Percentage (%)</label>
+                        <input type="number" id="platform-fee-percent" class="form-input" value="10" min="0" max="100">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="payout-threshold">Minimum Payout Threshold ($)</label>
+                        <input type="number" id="payout-threshold" class="form-input" value="100" min="10">
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+                    <h3>Transaction Timeouts</h3>
+                    <div class="filter-group">
+                        <label for="payment-window">Group Payment Window (Hours)</label>
+                        <input type="number" id="payment-window" class="form-input" value="12" min="1">
+                        <p style="font-size: 0.9em; color: var(--text-color-light); margin-top: -10px;">(Time before a
+                            match is cancelled if group payment is incomplete.)</p>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" style="margin-top: 1rem;">Save Financial
+                        Settings</button>
+                </div>
+            </div>
+
+            <div id="ai" class="tab-content">
+                <div class="card">
+                    <h3>AI & Matchmaking Parameters</h3>
+
+                    <div class="filter-group">
+                        <label for="matchmaking-radius">Default Matchmaking Search Radius (KM)</label>
+                        <input type="number" id="matchmaking-radius" class="form-input" value="10" min="1">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="suggestion-frequency">AI Suggestion Frequency (Hours)</label>
+                        <input type="number" id="suggestion-frequency" class="form-input" value="24" min="1">
+                        <p style="font-size: 0.9em; color: var(--text-color-light); margin-top: -10px;">(How often users
+                            receive proactive match/booking suggestions.)</p>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+                    <h3>AI Content Filtering</h3>
+                    <div class="filter-group">
+                        <label for="content-filter-level">Group Chat Profanity Filter Level</label>
+                        <select id="content-filter-level" class="form-input">
+                            <option>High (Strict)</option>
+                            <option>Medium (Default)</option>
+                            <option>Low (Lax)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" style="margin-top: 1rem;">Save AI Settings</button>
+                </div>
+            </div>
+
+            <div id="logs" class="tab-content">
+                <div class="card">
+                    <h3>Real-Time System Logs</h3>
+                    <div
+                        style="background: #333; color: #00ff00; padding: 1rem; border-radius: var(--border-radius); font-family: monospace; height: 300px; overflow-y: scroll;">
+                        <p>$> [2025-11-03 18:05:12] INFO: Server health check passed (API Latency: 45ms)</p>
+                        <p>$> [2025-11-03 18:04:40] ERROR: Payout #458 failed for organizer_id: 102 (Bank Code Mismatch)
+                        </p>
+                        <p>$> [2025-11-03 18:03:55] INFO: User 'alex@example.com' completed eKYC verification process.
+                        </p>
+                        <p>$> [2025-11-03 18:03:01] WARNING: High traffic detected from IP 192.168.1.1 (Rate Limit
+                            Approaching)</p>
+                        <p>$> [2025-11-03 18:02:10] INFO: Booking #890 Confirmed. Facility: PowerPlayz Futsal.</p>
+                        <p>$> [2025-11-03 18:01:30] ERROR: Database connection pool utilization at 98%.</p>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+                        <button class="btn btn-secondary">Download Full Logs</button>
+                        <button class="btn btn-danger">Clear Logs</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

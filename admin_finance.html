@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Audit - Super Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="organizer-layout">
+
+    <aside class="sidebar" id="admin-sidebar">
+        <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="logo">
+            <a href="admin_super.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
+        </div>
+        <ul>
+            <li><a href="admin_super.html">🏠 Super Admin Home</a></li>
+            <li><a href="admin_users.html">👥 Player Accounts</a></li>
+            <li><a href="admin_facilities.html">🏟️ Facilities & Courts</a></li>
+            <li><a href="admin_announcements.html">📣 Announcements</a></li>
+            <li class="active"><a href="admin_finance.html">💵 Financial Audit</a></li>
+            <li><a href="admin_platform.html">⚙️ Platform Settings</a></li>
+            <li class="sidebar-logout"><a href="#" id="sign-out-btn-admin">➡️ Sign Out</a></li>
+        </ul>
+    </aside>
+
+    <main class="organizer-content">
+        <header class="organizer-header">
+            <div class="organizer-header-left">
+                <button class="hamburger-btn" id="hamburger-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <h2>Financial Audit</h2>
+            </div>
+            <span class="header-welcome-text">Review platform performance and approve organizer payouts.</span>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="card kpi-card kpi-revenue">
+                <h4>Platform Revenue (30 Days)</h4>
+                <p>$18,500.00</p>
+            </div>
+            <div class="card kpi-card kpi-facilities">
+                <h4>Total Platform Commission</h4>
+                <p>$1,850.00</p>
+            </div>
+            <div class="card kpi-card kpi-payouts">
+                <h4>Pending Payouts Value</h4>
+                <p>$3,200.00</p>
+            </div>
+        </section>
+
+        <div class="dashboard-main-split">
+
+            <section>
+                <h2>Payout Approval Queue (3)</h2>
+                <div class="card">
+                    <div style="overflow-x: auto;">
+                        <table id="payout-queue-table" class="status-table-colors">
+                            <thead>
+                                <tr>
+                                    <th>Organizer</th>
+                                    <th>Amount</th>
+                                    <th>Date Requested</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="status-pending">
+                                    <td><strong>PowerPlayz Futsal</strong></td>
+                                    <td>
+                                        <p style="color: var(--primary-color); font-weight: 700; margin: 0;">$1,800.00
+                                        </p>
+                                    </td>
+                                    <td>Nov 2, 2:15 PM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-small">Approve</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr class="status-pending">
+                                    <td><strong>CourtKing Badminton</strong></td>
+                                    <td>
+                                        <p style="color: var(--primary-color); font-weight: 700; margin: 0;">$400.00</p>
+                                    </td>
+                                    <td>Nov 1, 10:00 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-small">Approve</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr class="status-pending">
+                                    <td><strong>Local Community Court</strong></td>
+                                    <td>
+                                        <p style="color: var(--primary-color); font-weight: 700; margin: 0;">$1,000.00
+                                        </p>
+                                    </td>
+                                    <td>Oct 30, 4:00 PM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-small">Approve</button>
+                                        <button class="btn-logout btn-small" style="margin-left: 8px;">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Transaction Audit Log</h2>
+                <div class="card">
+                    <div class="organizer-header" style="margin-bottom: 1.5rem;">
+                        <h3>All Transactions</h3>
+                        <button class="btn btn-secondary btn-small">Export Full CSV</button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table id="full-audit-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User/Facility</th>
+                                    <th>Amount</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 3</td>
+                                    <td>Alex M.</td>
+                                    <td>
+                                        <p style="color: var(--success-color); font-weight: 600; margin: 0;">+ $50.00
+                                        </p>
+                                    </td>
+                                    <td>Booking (Futsal)</td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 3</td>
+                                    <td>PowerPlayz</td>
+                                    <td>
+                                        <p style="color: var(--danger-color); font-weight: 600; margin: 0;">- $10.00</p>
+                                    </td>
+                                    <td>Ad Fee</td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 1</td>
+                                    <td>Ben S.</td>
+                                    <td>
+                                        <p style="color: var(--danger-color); font-weight: 600; margin: 0;">- $12.00</p>
+                                    </td>
+                                    <td>Refund</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

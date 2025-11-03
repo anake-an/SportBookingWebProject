@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - SportLink Organizer</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="organizer-layout">
-    
+
     <aside class="sidebar" id="organizer-sidebar">
-        
+
         <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        
+
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
@@ -34,15 +38,16 @@
     <main class="organizer-content">
         <header class="organizer-header">
             <div class="organizer-header-left">
-                
+
                 <button class="hamburger-btn" id="hamburger-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
-                
+
                 <h2>Settings</h2>
             </div>
             <span class="header-welcome-text">Manage your facility and courts</span>
@@ -65,7 +70,8 @@
                         </div>
                         <div class="filter-group">
                             <label for="facility-address">Address</label>
-                            <input type="text" id="facility-address" class="form-input" value="123 Futsal Drive, Kota Kinabalu, 88400">
+                            <input type="text" id="facility-address" class="form-input"
+                                value="123 Futsal Drive, Kota Kinabalu, 88400">
                         </div>
                         <div class="filter-group">
                             <label for="facility-rules">Information & Rules (for users)</label>
@@ -84,8 +90,9 @@
                         <h3>Your Courts (3)</h3>
                         <button class="btn btn-primary">+ Add New Court</button>
                     </div>
-                    
-                    <div style="overflow-x: auto;"> <table>
+
+                    <div style="overflow-x: auto;">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Court Name</th>
@@ -144,11 +151,11 @@
                             <label for="weekday-evening-price">Weekday Evening Price ($) (5 PM onwards)</label>
                             <input type="number" id="weekday-evening-price" class="form-input" value="50" min="0">
                         </div>
-                        
+
                         <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
 
                         <h4 style="margin-bottom: 1rem;">Weekend Template</h4>
-                         <div class="filter-group">
+                        <div class="filter-group">
                             <label for="weekend-morning-price">Weekend Daytime Price ($) (Before 5 PM)</label>
                             <input type="number" id="weekend-morning-price" class="form-input" value="60" min="0">
                         </div>
@@ -164,7 +171,8 @@
             <div id="compliance" class="tab-content">
                 <div class="card">
                     <h3>Compliance (eKYC / SSM)</h3>
-                    <p>Upload your company registration documents (SSM) to get verified. Verified partners receive a badge and priority support.</p>
+                    <p>Upload your company registration documents (SSM) to get verified. Verified partners receive a
+                        badge and priority support.</p>
                     <div class="filter-group">
                         <label for="ssm-upload">Upload SSM Document (PDF)</label>
                         <input type="file" id="ssm-upload" class="form-input">
@@ -184,7 +192,8 @@
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
                 <button class="btn-close" id="ai-chat-close-btn" title="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -195,7 +204,7 @@
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                </div>
+            </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -219,4 +228,5 @@
 
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

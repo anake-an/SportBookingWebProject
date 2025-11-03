@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet & Payouts - SportLink</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="organizer-layout">
-    
+
     <aside class="sidebar" id="organizer-sidebar">
         <button class="btn-close-sidebar" id="close-sidebar-btn" title="Close Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
 
         <div class="logo">
-            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo" class="logo-img sidebar-logo-img"></a>
+            <a href="organizer_dashboard.html"> <img src="assets/img/sportlink-logo.png" alt="SportLink Logo"
+                    class="logo-img sidebar-logo-img"></a>
         </div>
         <ul>
             <li><a href="organizer_dashboard.html">Dashboard</a></li>
@@ -34,7 +38,8 @@
         <header class="organizer-header">
             <div class="organizer-header-left">
                 <button class="hamburger-btn" id="hamburger-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -46,7 +51,7 @@
         </header>
 
         <div class="dashboard-main-split">
-            
+
             <section>
                 <div class="card kpi-card" style="border-bottom-color: var(--success-color);">
                     <h4>Available for Payout</h4>
@@ -74,9 +79,10 @@
                         <h3>Transaction History</h3>
                         <button class="btn btn-secondary btn-small">Export CSV</button>
                     </div>
-                    
+
                     <div style="overflow-x: auto;">
-                        <table id="transaction-table"> <thead>
+                        <table id="transaction-table">
+                            <thead>
                                 <tr>
                                     <th>Date</th>
                                     <th>Amount</th>
@@ -86,43 +92,51 @@
                             <tbody>
                                 <tr>
                                     <td>Nov 1, 2025</td>
-                                    <td><p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $500.00</p></td>
+                                    <td>
+                                        <p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $500.00
+                                        </p>
+                                    </td>
                                     <td>
                                         <button class="btn btn-secondary btn-small btn-details"
-                                            data-desc="Payout to Maybank"
-                                            data-date="Nov 1, 2025, 9:05 AM" data-type="Payout"
-                                            data-amount="- $500.00">
+                                            data-desc="Payout to Maybank" data-date="Nov 1, 2025, 9:05 AM"
+                                            data-type="Payout" data-amount="- $500.00">
                                             Details
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Oct 31, 2025</td>
-                                    <td><p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00</p></td>
+                                    <td>
+                                        <p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00
+                                        </p>
+                                    </td>
                                     <td>
                                         <button class="btn btn-secondary btn-small btn-details"
-                                            data-desc="Booking: Alex M. (Court 1)"
-                                            data-date="Oct 31, 2025, 7:02 PM" data-type="Booking Revenue"
-                                            data-amount="+ $50.00">
+                                            data-desc="Booking: Alex M. (Court 1)" data-date="Oct 31, 2025, 7:02 PM"
+                                            data-type="Booking Revenue" data-amount="+ $50.00">
                                             Details
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Oct 31, 2025</td>
-                                    <td><p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00</p></td>
+                                    <td>
+                                        <p style="color: var(--success-color); font-weight: 700; margin: 0;">+ $50.00
+                                        </p>
+                                    </td>
                                     <td>
                                         <button class="btn btn-secondary btn-small btn-details"
-                                            data-desc="Booking: Maria K. (Group)"
-                                            data-date="Oct 31, 2025, 6:01 PM" data-type="Booking Revenue"
-                                            data-amount="+ $50.00">
+                                            data-desc="Booking: Maria K. (Group)" data-date="Oct 31, 2025, 6:01 PM"
+                                            data-type="Booking Revenue" data-amount="+ $50.00">
                                             Details
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Oct 30, 2025</td>
-                                    <td><p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $70.00</p></td>
+                                    <td>
+                                        <p style="color: var(--danger-color); font-weight: 700; margin: 0;">- $70.00</p>
+                                    </td>
                                     <td>
                                         <button class="btn btn-secondary btn-small btn-details"
                                             data-desc="Ad Purchase: Student Discount (7 Days)"
@@ -144,13 +158,14 @@
     <div class="modal-overlay" id="transaction-detail-modal">
         <div class="modal-content">
             <button class="btn-close" id="close-txn-modal-btn" title="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
             <h3>Transaction Details</h3>
-            
+
             <div class="booking-detail-list" style="margin-top: 1.5rem;">
                 <div class="booking-detail-item">
                     <span>Description:</span>
@@ -181,7 +196,8 @@
                 <h3>SportLink AI</h3>
                 <p>Your personal assistant.</p>
                 <button class="btn-close" id="ai-chat-close-btn" title="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -192,7 +208,7 @@
                     <p>Hi there! How can I help you today? You can ask me to find courts, look for games, or answer
                         questions.</p>
                 </div>
-                </div>
+            </div>
             <div class="chat-input-area">
                 <input type="text" class="form-input" placeholder="Ask me anything...">
                 <button class="btn btn-primary" title="Send">
@@ -216,4 +232,5 @@
 
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
